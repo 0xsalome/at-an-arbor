@@ -1,24 +1,28 @@
-export type ContentType = 'blog' | 'poem';
+export type ContentType = 'blog' | 'poem' | 'moment';
 
-export interface BaseContent {
+export interface ContentItem {
   slug: string;
   title: string;
   date: string;
+  updated: string;
   type: ContentType;
   excerpt: string;
-  content: string; // Markdown-like string
+  content: string;       // HTML
+  rawContent: string;    // Original Markdown
+  images?: string[];
 }
 
-export interface BlogPost extends BaseContent {
+// Legacy types for backward compatibility during migration
+export interface BlogPost extends Omit<ContentItem, 'rawContent' | 'images'> {
   type: 'blog';
 }
 
-export interface Poem extends BaseContent {
+export interface Poem extends Omit<ContentItem, 'rawContent' | 'images'> {
   type: 'poem';
 }
 
 export interface SectionPair {
   id: string;
-  blog?: BlogPost;
-  poem?: Poem;
+  left?: ContentItem;  // blog or moment
+  poem?: ContentItem;
 }

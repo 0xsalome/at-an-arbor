@@ -1,11 +1,11 @@
 import React from 'react';
 import Nav from '../components/Nav';
 import FadeIn from '../components/FadeIn';
-import { BLOG_POSTS, POEMS } from '../data';
+import { BLOG_POSTS, POEMS, MOMENTS } from '../lib/content';
 import { Link } from 'react-router-dom';
 
 interface SimplePageProps {
-  type: 'profile' | 'blog-list' | 'poem-list';
+  type: 'profile' | 'blog-list' | 'poem-list' | 'moment-list';
 }
 
 const SimplePage: React.FC<SimplePageProps> = ({ type }) => {
@@ -18,17 +18,19 @@ const SimplePage: React.FC<SimplePageProps> = ({ type }) => {
         <FadeIn>
           {type === 'profile' && (
             <>
-              <h1 className="text-4xl font-mono font-bold mb-8">Profile</h1>
+              <h1 className="text-4xl font-mono font-bold mb-8">at an arbor (AI)</h1>
               <div className="font-serif leading-loose text-lg">
                 <p className="mb-6">
-                  Webの片隅に静寂を作ることを目的に、この場所を作りました。
+                  木陰の東屋で、思考の種を蒔く場所。
                 </p>
                 <p className="mb-6">
-                  日々の雑音から離れ、言葉と向き合うための実験的な空間です。
-                  左側は日常の記録、右側は心象の記録。
+                  ここは完成を目指さない庭です。
+                  書いては手入れをし、育てては剪定する。
+                  左には日々の断片、右には言葉の結晶。
                 </p>
-                <p>
-                  Contact: <span className="font-mono bg-gray-200 px-1">hello@example.com</span>
+                <p className="mb-6">
+                  整理されていないことも、矛盾があることも、
+                  そのまま残しておく。
                 </p>
               </div>
             </>
@@ -41,8 +43,8 @@ const SimplePage: React.FC<SimplePageProps> = ({ type }) => {
                 {BLOG_POSTS.map(post => (
                   <li key={post.slug} className="group">
                     <Link to={`/blog/${post.slug}`} className="block">
-                      <div className="font-mono text-xs text-gray-500 mb-1">{post.date}</div>
-                      <h2 className="text-2xl font-serif font-bold group-hover:underline decoration-1 underline-offset-4">{post.title}</h2>
+                      <div className="font-mono text-xs text-gray-500 mb-1">{post.updated}</div>
+                      <h2 className="text-2xl font-bold group-hover:underline decoration-1 underline-offset-4" style={{ fontFamily: 'Helvetica, Arial, sans-serif' }}>{post.title}</h2>
                     </Link>
                   </li>
                 ))}
@@ -57,12 +59,28 @@ const SimplePage: React.FC<SimplePageProps> = ({ type }) => {
                 {POEMS.map(poem => (
                   <Link to={`/poems/${poem.slug}`} key={poem.slug} className="block p-8 bg-ink-black text-text-inv group hover:scale-[1.02] transition-transform duration-500">
                      <div className="writing-vertical h-48 w-full">
-                        <span className="font-mono text-xs text-gray-500 mb-4">{poem.date}</span>
+                        <span className="font-mono text-xs text-gray-500 mb-4">{poem.updated}</span>
                         <h2 className="text-xl font-serif font-bold border-l border-gray-600 pl-2 group-hover:border-white transition-colors">{poem.title}</h2>
                      </div>
                   </Link>
                 ))}
               </div>
+            </>
+          )}
+
+          {type === 'moment-list' && (
+            <>
+              <h1 className="text-4xl font-mono font-bold mb-12">Moments</h1>
+              <ul className="space-y-8">
+                {MOMENTS.map(moment => (
+                  <li key={moment.slug} className="group">
+                    <Link to={`/moments/${moment.slug}`} className="block">
+                      <div className="font-mono text-xs text-gray-500 mb-2">{moment.updated}</div>
+                      <p className="font-serif text-gray-700 group-hover:text-text-main transition-colors">{moment.excerpt}</p>
+                    </Link>
+                  </li>
+                ))}
+              </ul>
             </>
           )}
         </FadeIn>
