@@ -86,20 +86,6 @@ const ContentDetail: React.FC<ContentDetailProps> = ({ type }) => {
             )}
           </header>
 
-          {/* Display images for moments */}
-          {item.images && item.images.length > 0 && (
-            <div className="mb-8">
-              {item.images.map((img, idx) => (
-                <img
-                  key={idx}
-                  src={img}
-                  alt=""
-                  className="max-w-full h-auto rounded mb-4"
-                />
-              ))}
-            </div>
-          )}
-
           <article
             className="prose prose-stone prose-lg font-serif leading-loose text-gray-800"
             dangerouslySetInnerHTML={{ __html: item.content }}
