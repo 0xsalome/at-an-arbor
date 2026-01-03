@@ -1,19 +1,18 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { LEFT_COLUMN_CONTENT, POEMS } from '../lib/content';
+import { BLOG_POSTS, MOMENTS, POEMS } from '../lib/content';
 import FadeIn from '../components/FadeIn';
 import Nav from '../components/Nav';
 import type { ContentItem } from '../types';
 
-// Create pairs: left column content paired with poems
-function createPairs(leftItems: ContentItem[], poems: ContentItem[]) {
-  const maxLength = Math.max(leftItems.length, poems.length);
+// Create pairs: 2 blogs per screen, paired with poems
+function createBlogPairs(blogs: ContentItem[], poems: ContentItem[]) {
   const pairs = [];
-  for (let i = 0; i < maxLength; i++) {
+  for (let i = 0; i < blogs.length; i += 2) {
     pairs.push({
-      id: `pair-${i}`,
-      left: leftItems[i],
-      poem: poems[i],
+      id: `blog-${i}`,
+      blogs: [blogs[i], blogs[i + 1]].filter(Boolean), // 2件ずつ
+      poem: poems[Math.floor(i / 2) + 1], // poems[0] is used in first screen
     });
   }
   return pairs;
@@ -21,54 +20,102 @@ function createPairs(leftItems: ContentItem[], poems: ContentItem[]) {
 
 const Home: React.FC = () => {
   const navigate = useNavigate();
-  const pairs = createPairs(LEFT_COLUMN_CONTENT, POEMS);
-
-  const getRoute = (item: ContentItem) => {
-    if (item.type === 'blog') return `/blog/${item.slug}`;
-    if (item.type === 'moment') return `/moments/${item.slug}`;
-    return `/poems/${item.slug}`;
-  };
+  const recentMoments = MOMENTS.slice(0, 2); // 最新2件のmoments
+  const blogPairs = createBlogPairs(BLOG_POSTS, POEMS);
 
   return (
     <div className="w-full snap-y snap-mandatory h-screen overflow-y-scroll overflow-x-hidden">
-      {pairs.map((pair, index) => (
+      {/* First Screen: Nav + Moments */}
+      <section className="w-full h-screen snap-start grid grid-cols-[2fr_1fr] relative">
+        {/* Left Column: Nav + Moments */}
+        <div className="bg-paper-white h-full flex flex-col p-6 md:p-12 lg:p-16 border-r border-gray-200">
+          <div className="flex-none mb-12">
+            <Nav />
+          </div>
+
+          <div className="flex-grow flex flex-col justify-end pb-8 max-w-2xl">
+            <FadeIn>
+              <div className="space-y-6">
+                {recentMoments.map((moment) => (
+                  <article
+                    key={moment.slug}
+                    className="cursor-pointer group"
+                    onClick={() => navigate(`/moments/${moment.slug}`)}
+                  >
+                    <div className="font-mono text-xs text-gray-400 mb-1">
+                      {moment.updated} <span className="mx-1">/</span> MOMENT
+                    </div>
+                    <p className="font-serif leading-relaxed text-gray-700 text-sm group-hover:text-gray-900 transition-colors">
+                      {moment.excerpt}
+                    </p>
+                  </article>
+                ))}
+                {MOMENTS.length > 2 && (
+                  <div
+                    className="text-xs font-mono text-gray-400 cursor-pointer hover:text-gray-600 transition-colors"
+                    onClick={() => navigate('/moments')}
+                  >
+                    [MORE MOMENTS →]
+                  </div>
+                )}
+              </div>
+            </FadeIn>
+          </div>
+        </div>
+
+        {/* Right Column: First Poem */}
+        <div className="bg-ink-black h-full relative overflow-hidden flex flex-col items-center justify-center py-12 select-none">
+          {POEMS[0] && (
+            <FadeIn delay={200} className="h-3/4 w-full flex justify-center">
+              <article
+                className="poem h-full writing-vertical text-text-inv cursor-pointer hover:opacity-80 transition-opacity"
+                onClick={() => navigate(`/poems/${POEMS[0]?.slug}`)}
+              >
+                <h2 className="text-xl md:text-2xl font-serif font-bold ml-4 md:ml-8 tracking-widest border-b-2 border-text-inv/20 pb-4 mb-4">
+                  {POEMS[0].title}
+                </h2>
+                <div className="text-sm md:text-base font-serif leading-loose tracking-wider text-gray-300 opacity-90 max-h-full whitespace-pre-wrap">
+                  {POEMS[0].excerpt}
+                </div>
+              </article>
+            </FadeIn>
+          )}
+          <div className="absolute bottom-8 text-text-inv/10 font-mono text-xs writing-vertical">
+            Vol. 1
+          </div>
+        </div>
+      </section>
+
+      {/* Blog Screens */}
+      {blogPairs.map((pair, index) => (
         <section
           key={pair.id}
-          className="pair w-full h-screen snap-start grid grid-cols-[2fr_1fr] relative"
+          className="w-full h-screen snap-start grid grid-cols-[2fr_1fr] relative"
         >
-          {/* Left Column: Blog & Moments */}
+          {/* Left Column: Blogs (2 per screen) */}
           <div className="bg-paper-white h-full flex flex-col p-6 md:p-12 lg:p-16 border-r border-gray-200">
-            <div className="flex-none mb-12">
-              {index === 0 && <Nav />}
-              {index !== 0 && <div className="h-24"></div>}
-            </div>
+            <div className="flex-none h-12"></div>
 
-            {pair.left && (
-              <div className="flex-grow flex flex-col justify-center max-w-2xl">
-                <FadeIn>
+            <div className="flex-grow flex flex-col justify-center max-w-2xl space-y-8">
+              {pair.blogs.map((blog) => (
+                <FadeIn key={blog.slug}>
                   <article
                     className="blog-entry cursor-pointer group"
-                    onClick={() => navigate(getRoute(pair.left!))}
+                    onClick={() => navigate(`/blog/${blog.slug}`)}
                   >
-                    <div className="font-mono text-sm text-gray-500 mb-2">
-                      {pair.left.updated} <span className="mx-2">/</span>
-                      {pair.left.type === 'moment' ? 'MOMENT' : 'BLOG'}
+                    <div className="font-mono text-xs text-gray-400 mb-1">
+                      {blog.updated} <span className="mx-1">/</span> BLOG
                     </div>
-                    {pair.left.type !== 'moment' && (
-                      <h2 className="text-2xl md:text-3xl font-bold mb-6 group-hover:underline decoration-1 underline-offset-4" style={{ fontFamily: 'Helvetica, Arial, sans-serif' }}>
-                        {pair.left.title}
-                      </h2>
-                    )}
-                    <p className="font-serif leading-relaxed text-gray-700 text-sm md:text-base line-clamp-4 md:line-clamp-6">
-                      {pair.left.excerpt}
+                    <h2 className="text-lg md:text-xl font-semibold mb-2 group-hover:underline decoration-1 underline-offset-4" style={{ fontFamily: 'Helvetica, Arial, sans-serif' }}>
+                      {blog.title}
+                    </h2>
+                    <p className="font-serif leading-relaxed text-gray-700 text-sm line-clamp-1">
+                      {blog.excerpt}...
                     </p>
-                    <div className="mt-4 text-xs font-mono text-gray-400 group-hover:text-text-main transition-colors">
-                      [READ MORE]
-                    </div>
                   </article>
                 </FadeIn>
-              </div>
-            )}
+              ))}
+            </div>
           </div>
 
           {/* Right Column: Poetry */}
@@ -90,7 +137,7 @@ const Home: React.FC = () => {
             )}
 
             <div className="absolute bottom-8 text-text-inv/10 font-mono text-xs writing-vertical">
-              Vol. {index + 1}
+              Vol. {index + 2}
             </div>
           </div>
         </section>
