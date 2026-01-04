@@ -10,9 +10,9 @@ interface SimplePageProps {
 
 const SimplePage: React.FC<SimplePageProps> = ({ type }) => {
   return (
-    <div className="min-h-screen bg-paper-white text-text-main flex flex-col md:flex-row">
-      <aside className="w-full md:w-1/6 p-6 md:p-12 border-b md:border-b-0 md:border-r border-gray-200">
-        <Nav />
+    <div className="min-h-screen bg-paper-white dark:bg-ink-black text-text-main dark:text-text-inv flex flex-col md:flex-row">
+      <aside className="w-full md:w-1/6 p-6 md:p-12 border-b md:border-b-0 md:border-r border-gray-200 dark:border-gray-700">
+        <Nav showDarkModeToggle />
       </aside>
       <main className="w-full md:w-5/6 p-6 md:p-16 lg:p-24 max-w-3xl">
         <FadeIn>
@@ -76,7 +76,14 @@ const SimplePage: React.FC<SimplePageProps> = ({ type }) => {
                   <li key={moment.slug} className="group">
                     <Link to={`/moments/${moment.slug}`} className="block">
                       <div className="font-mono text-xs text-gray-500 mb-2">{moment.updated}</div>
-                      <p className="font-serif text-gray-700 group-hover:text-text-main transition-colors">{moment.excerpt}</p>
+                      <p className="font-serif text-gray-700 dark:text-gray-300 group-hover:text-text-main dark:group-hover:text-text-inv transition-colors">{moment.excerpt}</p>
+                      {moment.images && moment.images.length > 0 && (
+                        <img
+                          src={moment.images[0]}
+                          alt=""
+                          className="mt-3 max-w-xs rounded opacity-80 group-hover:opacity-100 transition-opacity"
+                        />
+                      )}
                     </Link>
                   </li>
                 ))}

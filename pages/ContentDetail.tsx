@@ -34,7 +34,7 @@ const ContentDetail: React.FC<ContentDetailProps> = ({ type }) => {
       <div className="h-screen w-full bg-ink-black text-text-inv overflow-hidden relative flex">
         <div className="absolute top-0 left-0 p-6 md:p-12 z-10 opacity-50 hover:opacity-100 transition-opacity">
           <div className="invert filter">
-            <Nav />
+            <Nav showDarkModeToggle />
           </div>
         </div>
 
@@ -68,14 +68,14 @@ const ContentDetail: React.FC<ContentDetailProps> = ({ type }) => {
 
   // Blog and Moment layout (light, horizontal)
   return (
-    <div className="min-h-screen bg-paper-white text-text-main flex flex-col md:flex-row">
-      <aside className="w-full md:w-1/6 p-6 md:p-12 border-b md:border-b-0 md:border-r border-gray-200">
-        <Nav />
+    <div className="min-h-screen bg-paper-white dark:bg-ink-black text-text-main dark:text-text-inv flex flex-col md:flex-row">
+      <aside className="w-full md:w-1/6 p-6 md:p-12 border-b md:border-b-0 md:border-r border-gray-200 dark:border-gray-700">
+        <Nav showDarkModeToggle />
       </aside>
 
       <main className="w-full md:w-5/6 p-6 md:p-16 lg:p-24 max-w-4xl mx-auto">
         <FadeIn>
-          <header className={`mb-12 ${type !== 'moment' ? 'border-b border-gray-900 pb-8' : ''}`}>
+          <header className={`mb-12 ${type !== 'moment' ? 'border-b border-gray-900 dark:border-gray-600 pb-8' : ''}`}>
             <div className="font-mono text-sm text-gray-500 mb-4">
               {item.updated}
               <span className="mx-2">/</span>
@@ -87,11 +87,11 @@ const ContentDetail: React.FC<ContentDetailProps> = ({ type }) => {
           </header>
 
           <article
-            className="prose prose-stone prose-lg font-serif leading-loose text-gray-800"
+            className="prose prose-stone dark:prose-invert prose-lg font-serif leading-loose text-gray-800 dark:text-gray-200"
             dangerouslySetInnerHTML={{ __html: item.content }}
           />
 
-          <footer className="mt-16 pt-8 border-t border-gray-200 flex justify-between font-mono text-sm">
+          <footer className="mt-16 pt-8 border-t border-gray-200 dark:border-gray-700 flex justify-between font-mono text-sm">
             <button onClick={() => navigate(-1)} className="hover:underline">← BACK</button>
             <span>END OF RECORD</span>
           </footer>

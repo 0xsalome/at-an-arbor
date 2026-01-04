@@ -48,7 +48,7 @@ const Home: React.FC = () => {
                     <p className="font-serif leading-relaxed text-gray-700 text-sm group-hover:text-gray-900 transition-colors">
                       {moment.excerpt}
                       {moment.images && moment.images.length > 0 && (
-                        <span className="ml-2 text-gray-400">[画像]</span>
+                        <span className="ml-2 text-gray-400">[photo]</span>
                       )}
                     </p>
                   </article>
