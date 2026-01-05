@@ -88,7 +88,7 @@ const Home: React.FC = () => {
                     <div className="font-mono text-xs text-gray-400 dark:text-gray-500 mb-1">
                       {moment.updated} <span className="mx-1">/</span> MOMENT
                     </div>
-                    <p className="font-serif leading-relaxed text-gray-700 dark:text-gray-300 text-sm group-hover:text-gray-900 dark:group-hover:text-gray-100 transition-colors">
+                    <p className="font-serif leading-relaxed text-gray-700 dark:text-gray-300 text-sm md:text-base group-hover:text-gray-900 dark:group-hover:text-gray-100 transition-colors">
                       {moment.excerpt}
                       {moment.images && moment.images.length > 0 && (
                         <span className="ml-2 text-gray-400 dark:text-gray-500">[photo]</span>
