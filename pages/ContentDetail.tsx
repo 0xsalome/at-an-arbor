@@ -26,7 +26,7 @@ const PoemSection: React.FC<{ poem: ContentItem; onScrollReady?: (el: HTMLElemen
 
   return (
     <section ref={sectionRef} className="h-screen w-full snap-start flex flex-col relative">
-      <main ref={scrollContainerRef} className="flex-1 w-full overflow-x-auto overflow-y-hidden md:overflow-hidden md:flex md:items-center md:justify-center p-8 pt-20 md:p-16">
+      <main ref={scrollContainerRef} className="flex-1 w-full overflow-x-auto overflow-y-hidden md:overflow-hidden md:flex md:items-center md:justify-center p-8 pt-20 pb-32 md:pb-16 md:p-16">
         <FadeIn className="h-full md:max-h-[80vh] w-max md:w-full md:max-w-4xl flex justify-start md:justify-center">
           <div className="writing-vertical h-full text-right select-none pr-8 md:pr-0">
             <div className="ml-8 md:ml-16 flex flex-col gap-4 text-xs font-mono text-gray-500 tracking-widest border-l border-gray-700 pl-2">
