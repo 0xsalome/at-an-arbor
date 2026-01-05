@@ -1,26 +1,69 @@
 import React, { useRef, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { getContentBySlug } from '../lib/content';
+import { getContentBySlug, POEMS } from '../lib/content';
 import Nav from '../components/Nav';
 import FadeIn from '../components/FadeIn';
-import type { ContentType } from '../types';
+import type { ContentType, ContentItem } from '../types';
 
 interface ContentDetailProps {
   type: ContentType;
 }
 
+// 詩の単独セクションコンポーネント
+const PoemSection: React.FC<{ poem: ContentItem; onScrollReady?: (el: HTMLElement) => void }> = ({ poem, onScrollReady }) => {
+  const sectionRef = useRef<HTMLElement>(null);
+  const scrollContainerRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    // スマホ用：横スクロールを右端に
+    if (scrollContainerRef.current) {
+      scrollContainerRef.current.scrollLeft = scrollContainerRef.current.scrollWidth;
+    }
+    if (onScrollReady && sectionRef.current) {
+      onScrollReady(sectionRef.current);
+    }
+  }, [onScrollReady]);
+
+  return (
+    <section ref={sectionRef} className="h-screen w-full snap-start flex flex-col relative">
+      <main ref={scrollContainerRef} className="flex-1 w-full overflow-x-auto overflow-y-hidden md:overflow-hidden md:flex md:items-center md:justify-center p-8 pt-20 md:p-16">
+        <FadeIn className="h-full md:max-h-[80vh] w-max md:w-full md:max-w-4xl flex justify-start md:justify-center">
+          <div className="writing-vertical h-full text-right select-none pr-8 md:pr-0">
+            <div className="ml-8 md:ml-16 flex flex-col gap-4 text-xs font-mono text-gray-500 tracking-widest border-l border-gray-700 pl-2">
+              <span>{poem.updated}</span>
+              {poem.date && <span>{poem.date}</span>}
+              <span>POEM</span>
+            </div>
+            <h1 className="text-3xl md:text-6xl font-serif font-bold ml-8 md:ml-24 leading-normal">
+              {poem.title}
+            </h1>
+            <div
+              className="text-base md:text-xl font-serif leading-loose md:leading-[2.5] tracking-widest ml-4 text-gray-300"
+              dangerouslySetInnerHTML={{ __html: poem.content }}
+            />
+          </div>
+        </FadeIn>
+      </main>
+    </section>
+  );
+};
+
 const ContentDetail: React.FC<ContentDetailProps> = ({ type }) => {
   const { slug } = useParams();
   const navigate = useNavigate();
   const item = slug ? getContentBySlug(slug, type) : undefined;
-  const poemScrollRef = useRef<HTMLElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const currentPoemIndex = POEMS.findIndex(p => p.slug === slug);
 
-  // 詩ページでスクロール位置を右端に設定（日本語は右から左へ読む）
+  // 詩ページで選択された詩にスクロール
   useEffect(() => {
-    if (type === 'poem' && poemScrollRef.current) {
-      poemScrollRef.current.scrollLeft = poemScrollRef.current.scrollWidth;
+    if (type === 'poem' && containerRef.current && currentPoemIndex >= 0) {
+      const targetSection = containerRef.current.children[currentPoemIndex] as HTMLElement;
+      if (targetSection) {
+        targetSection.scrollIntoView({ behavior: 'auto' });
+      }
     }
-  }, [type, item]);
+  }, [type, currentPoemIndex]);
 
   if (!item) {
     return (
@@ -36,34 +79,24 @@ const ContentDetail: React.FC<ContentDetailProps> = ({ type }) => {
     );
   }
 
-  // Poem layout (dark, vertical writing)
+  // Poem layout (dark, vertical writing) - 全詩を縦スクロールで表示
   if (type === 'poem') {
     return (
-      <div className="h-screen w-full bg-ink-black text-text-inv overflow-hidden relative flex flex-col">
+      <div className="h-screen w-full bg-ink-black text-text-inv overflow-hidden relative">
         <div className="absolute top-0 left-0 p-6 md:p-12 z-10 opacity-50 hover:opacity-100 transition-opacity">
           <div className="invert filter">
             <Nav showDarkModeToggle />
           </div>
         </div>
 
-        <main ref={poemScrollRef} className="flex-1 w-full overflow-x-auto overflow-y-hidden md:overflow-hidden md:flex md:items-center md:justify-center p-8 pt-20 md:p-16">
-          <FadeIn className="h-full md:max-h-[80vh] w-max md:w-full md:max-w-4xl flex justify-start md:justify-center">
-            <div className="writing-vertical h-full text-right select-none pr-8 md:pr-0">
-              <div className="ml-8 md:ml-16 flex flex-col gap-4 text-xs font-mono text-gray-500 tracking-widest border-l border-gray-700 pl-2">
-                <span>{item.updated}</span>
-                {item.date && <span>{item.date}</span>}
-                <span>POEM</span>
-              </div>
-              <h1 className="text-3xl md:text-6xl font-serif font-bold ml-8 md:ml-24 leading-normal">
-                {item.title}
-              </h1>
-              <div
-                className="text-base md:text-xl font-serif leading-loose tracking-widest ml-4 text-gray-300"
-                dangerouslySetInnerHTML={{ __html: item.content }}
-              />
-            </div>
-          </FadeIn>
-        </main>
+        <div
+          ref={containerRef}
+          className="h-full w-full overflow-y-scroll snap-y snap-mandatory"
+        >
+          {POEMS.map((poem) => (
+            <PoemSection key={poem.slug} poem={poem} />
+          ))}
+        </div>
 
         <button
           onClick={() => navigate('/')}
