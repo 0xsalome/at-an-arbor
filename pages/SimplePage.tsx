@@ -44,7 +44,7 @@ const SimplePage: React.FC<SimplePageProps> = ({ type }) => {
                   <li key={post.slug} className="group">
                     <Link to={`/blog/${post.slug}`} className="block">
                       <div className="font-mono text-xs text-gray-500 mb-1">{post.updated}</div>
-                      <h2 className="text-2xl font-bold group-hover:underline decoration-1 underline-offset-4" style={{ fontFamily: 'Helvetica, Arial, sans-serif' }}>{post.title}</h2>
+                      <h2 className="text-2xl font-serif font-bold group-hover:underline decoration-1 underline-offset-4">{post.title}</h2>
                     </Link>
                   </li>
                 ))}
@@ -55,9 +55,9 @@ const SimplePage: React.FC<SimplePageProps> = ({ type }) => {
           {type === 'poem-list' && (
             <>
               <h1 className="text-4xl font-mono font-bold mb-12">Poetry Collection</h1>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              <div className="flex overflow-x-auto gap-4 pb-4 md:grid md:grid-cols-2 md:gap-8 md:overflow-visible snap-x snap-mandatory">
                 {POEMS.map(poem => (
-                  <Link to={`/poems/${poem.slug}`} key={poem.slug} className="block p-8 bg-ink-black text-text-inv group hover:scale-[1.02] transition-transform duration-500">
+                  <Link to={`/poems/${poem.slug}`} key={poem.slug} className="flex-shrink-0 w-48 md:w-auto block p-8 bg-ink-black text-text-inv group hover:scale-[1.02] transition-transform duration-500 snap-start">
                      <div className="writing-vertical h-48 w-full">
                         <span className="font-mono text-xs text-gray-500 mb-4">{poem.updated}</span>
                         <h2 className="text-xl font-serif font-bold border-l border-gray-600 pl-2 group-hover:border-white transition-colors">{poem.title}</h2>
@@ -81,7 +81,7 @@ const SimplePage: React.FC<SimplePageProps> = ({ type }) => {
                         <img
                           src={moment.images[0]}
                           alt=""
-                          className="mt-3 max-w-xs rounded opacity-80 group-hover:opacity-100 transition-opacity"
+                          className="mt-3 max-w-xs rounded group-hover:brightness-110 transition-all"
                         />
                       )}
                     </Link>

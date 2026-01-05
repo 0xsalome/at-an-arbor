@@ -82,7 +82,7 @@ const ContentDetail: React.FC<ContentDetailProps> = ({ type }) => {
               {type === 'moment' ? 'MOMENT' : 'BLOG'}
             </div>
             {type !== 'moment' && (
-              <h1 className="text-3xl md:text-5xl font-bold leading-tight" style={{ fontFamily: 'Helvetica, Arial, sans-serif' }}>{item.title}</h1>
+              <h1 className="text-3xl md:text-5xl font-serif font-bold leading-tight">{item.title}</h1>
             )}
           </header>
 
