@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { getContentBySlug } from '../lib/content';
 import Nav from '../components/Nav';
@@ -13,6 +13,14 @@ const ContentDetail: React.FC<ContentDetailProps> = ({ type }) => {
   const { slug } = useParams();
   const navigate = useNavigate();
   const item = slug ? getContentBySlug(slug, type) : undefined;
+  const poemScrollRef = useRef<HTMLElement>(null);
+
+  // 詩ページでスクロール位置を右端に設定（日本語は右から左へ読む）
+  useEffect(() => {
+    if (type === 'poem' && poemScrollRef.current) {
+      poemScrollRef.current.scrollLeft = poemScrollRef.current.scrollWidth;
+    }
+  }, [type, item]);
 
   if (!item) {
     return (
@@ -31,25 +39,26 @@ const ContentDetail: React.FC<ContentDetailProps> = ({ type }) => {
   // Poem layout (dark, vertical writing)
   if (type === 'poem') {
     return (
-      <div className="h-screen w-full bg-ink-black text-text-inv overflow-hidden relative flex">
+      <div className="h-screen w-full bg-ink-black text-text-inv overflow-hidden relative flex flex-col">
         <div className="absolute top-0 left-0 p-6 md:p-12 z-10 opacity-50 hover:opacity-100 transition-opacity">
           <div className="invert filter">
             <Nav showDarkModeToggle />
           </div>
         </div>
 
-        <main className="w-full h-full flex items-center justify-center p-8 md:p-16">
-          <FadeIn className="h-full max-h-[80vh] w-full max-w-4xl flex justify-center">
-            <div className="writing-vertical h-full text-right select-none">
+        <main ref={poemScrollRef} className="flex-1 w-full overflow-x-auto overflow-y-hidden md:overflow-hidden md:flex md:items-center md:justify-center p-8 pt-20 md:p-16">
+          <FadeIn className="h-full md:max-h-[80vh] w-max md:w-full md:max-w-4xl flex justify-start md:justify-center">
+            <div className="writing-vertical h-full text-right select-none pr-8 md:pr-0">
               <div className="ml-8 md:ml-16 flex flex-col gap-4 text-xs font-mono text-gray-500 tracking-widest border-l border-gray-700 pl-2">
                 <span>{item.updated}</span>
+                {item.date && <span>{item.date}</span>}
                 <span>POEM</span>
               </div>
-              <h1 className="text-4xl md:text-6xl font-serif font-bold ml-12 md:ml-24 leading-normal">
+              <h1 className="text-3xl md:text-6xl font-serif font-bold ml-8 md:ml-24 leading-normal">
                 {item.title}
               </h1>
               <div
-                className="text-lg md:text-xl font-serif leading-loose tracking-widest ml-4 text-gray-300"
+                className="text-base md:text-xl font-serif leading-loose tracking-widest ml-4 text-gray-300"
                 dangerouslySetInnerHTML={{ __html: item.content }}
               />
             </div>
@@ -58,7 +67,7 @@ const ContentDetail: React.FC<ContentDetailProps> = ({ type }) => {
 
         <button
           onClick={() => navigate('/')}
-          className="absolute bottom-8 right-8 text-xs font-mono text-gray-600 hover:text-white transition-colors"
+          className="absolute bottom-8 right-8 text-xs font-mono text-gray-600 hover:text-white transition-colors z-10"
         >
           [CLOSE]
         </button>
