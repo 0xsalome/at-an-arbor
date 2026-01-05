@@ -70,7 +70,6 @@ function createBlogPairs(blogs: ContentItem[], poems: ContentItem[]) {
 const Home: React.FC = () => {
   const navigate = useNavigate();
   const recentMoments = MOMENTS.slice(0, 2); // 最新2件のmoments
-  const nextMoments = MOMENTS.slice(2, 6); // 続きの4件のmoments
   const blogPairs = createBlogPairs(BLOG_POSTS, POEMS);
 
   return (
@@ -115,24 +114,6 @@ const Home: React.FC = () => {
                     [MORE MOMENTS →]
                   </div>
                 )}
-
-                {/* Latest Blog */}
-                {BLOG_POSTS[0] && (
-                  <article
-                    className="blog-entry cursor-pointer group pt-4"
-                    onClick={() => navigate(`/blog/${BLOG_POSTS[0].slug}`)}
-                  >
-                    <div className="font-mono text-xs text-gray-400 dark:text-gray-500 mb-1">
-                      {BLOG_POSTS[0].updated} <span className="mx-1">/</span> BLOG
-                    </div>
-                    <h2 className="text-lg md:text-xl font-serif font-semibold mb-2 group-hover:underline decoration-1 underline-offset-4 text-text-main dark:text-text-inv">
-                      {BLOG_POSTS[0].title}
-                    </h2>
-                    <p className="font-serif leading-relaxed text-gray-700 dark:text-gray-300 text-sm line-clamp-1">
-                      {BLOG_POSTS[0].excerpt}...
-                    </p>
-                  </article>
-                )}
               </div>
             </FadeIn>
           </div>
@@ -167,41 +148,11 @@ const Home: React.FC = () => {
           key={pair.id}
           className="w-full h-screen snap-start grid grid-cols-[2fr_1fr] relative"
         >
-          {/* Left Column: Moments (on first blog screen) + Blogs */}
+          {/* Left Column: Blogs */}
           <div className="bg-paper-white dark:bg-ink-black h-full flex flex-col p-6 md:p-12 lg:p-16 border-r border-gray-200 dark:border-gray-700">
-            <div className={`flex-none ${index === 0 ? 'h-6 md:h-8' : 'h-12'}`}></div>
+            <div className="flex-none h-12"></div>
 
-            <div className={`flex-grow flex flex-col ${index === 0 ? 'justify-start' : 'justify-center'} max-w-2xl space-y-6`}>
-              {/* Moments continuation on first blog screen */}
-              {index === 0 && nextMoments.length > 0 && (
-                <div className="space-y-4 mb-2">
-                  {nextMoments.map((moment, momentIndex) => (
-                    <FadeIn key={moment.slug}>
-                      <article
-                        className={`cursor-pointer group ${momentIndex === 3 ? 'hidden md:block' : ''}`}
-                        onClick={() => navigate(`/moments/${moment.slug}`)}
-                      >
-                        <div className="font-mono text-xs text-gray-400 dark:text-gray-500 mb-1">
-                          {moment.updated} <span className="mx-1">/</span> MOMENT
-                        </div>
-                        <p className="font-serif leading-relaxed text-gray-700 dark:text-gray-300 text-sm md:text-base group-hover:text-gray-900 dark:group-hover:text-gray-100 transition-colors">
-                          {moment.excerpt}
-                          {moment.images && moment.images.length > 0 && (
-                            <span className="ml-2 text-gray-400 dark:text-gray-500">[photo]</span>
-                          )}
-                        </p>
-                      </article>
-                    </FadeIn>
-                  ))}
-                  <div
-                    className="text-xs font-mono text-gray-400 dark:text-gray-500 cursor-pointer hover:text-gray-600 dark:hover:text-gray-300 transition-colors"
-                    onClick={() => navigate('/moments')}
-                  >
-                    [MORE MOMENTS →]
-                  </div>
-                </div>
-              )}
-
+            <div className="flex-grow flex flex-col justify-center max-w-2xl space-y-6">
               {/* Blogs */}
               {pair.blogs.map((blog) => (
                 <FadeIn key={blog.slug}>
