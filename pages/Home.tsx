@@ -159,10 +159,12 @@ const Home: React.FC = () => {
           className="w-full h-screen snap-start grid grid-cols-[2fr_1fr] relative"
         >
           {/* Left Column: Blogs */}
-          <div className="bg-paper-white dark:bg-ink-black h-full flex flex-col p-6 md:p-12 lg:p-16 border-r border-gray-200 dark:border-gray-700">
-            <div className="flex-none h-12"></div>
+          <div className="bg-paper-white dark:bg-ink-black h-full flex flex-col p-6 md:p-12 lg:p-16 border-r border-gray-200 dark:border-gray-700 relative overflow-hidden">
+            {/* Background contour - left portion */}
+            <div className="absolute inset-0 opacity-[0.06] dark:opacity-[0.08] pointer-events-none dark:invert bg-contour-left" />
+            <div className="flex-none h-12 relative z-10"></div>
 
-            <div className="flex-grow flex flex-col justify-center max-w-2xl space-y-6">
+            <div className="flex-grow flex flex-col justify-center max-w-2xl space-y-6 relative z-10">
               {/* Blogs */}
               {pair.blogs.map((blog) => (
                 <FadeIn key={blog.slug}>
@@ -187,6 +189,8 @@ const Home: React.FC = () => {
 
           {/* Right Column: Poetry */}
           <div className="bg-ink-black dark:bg-paper-white h-full relative overflow-hidden flex flex-col items-center justify-center py-12 select-none">
+            {/* Background contour - right portion */}
+            <div className="absolute inset-0 opacity-[0.08] pointer-events-none invert dark:invert-0 bg-contour-right" />
             {pair.poem && (
               <FadeIn delay={200} className="h-3/4 w-full flex justify-center">
                 <article
@@ -212,20 +216,27 @@ const Home: React.FC = () => {
 
       {/* Footer / End Section */}
       <section className="snap-start h-screen w-full grid grid-cols-[2fr_1fr]">
-        <div className="bg-paper-white dark:bg-ink-black flex items-center justify-center flex-col font-mono text-xs text-gray-400 dark:text-gray-500">
-          <p className="mb-4">NO MORE CONTENT</p>
-          <Nav />
-          <p className="mt-8">at an arbor</p>
+        <div className="bg-paper-white dark:bg-ink-black flex items-center justify-center flex-col font-mono text-xs text-gray-400 dark:text-gray-500 relative overflow-hidden">
+          {/* Background contour - left portion */}
+          <div className="absolute inset-0 opacity-[0.06] dark:opacity-[0.08] pointer-events-none dark:invert bg-contour-left" />
+          <p className="mb-4 relative z-10">NO MORE CONTENT</p>
+          <div className="relative z-10">
+            <Nav />
+          </div>
+          <p className="mt-8 relative z-10">at an arbor</p>
           <a
             href="/at-an-arbor/rss.xml"
             target="_blank"
             rel="noopener noreferrer"
-            className="mt-4 hover:text-gray-600 dark:hover:text-gray-300 transition-colors"
+            className="mt-4 hover:text-gray-600 dark:hover:text-gray-300 transition-colors relative z-10"
           >
             RSS
           </a>
         </div>
-        <div className="bg-ink-black dark:bg-paper-white"></div>
+        <div className="bg-ink-black dark:bg-paper-white relative overflow-hidden">
+          {/* Background contour - right portion */}
+          <div className="absolute inset-0 opacity-[0.08] pointer-events-none invert dark:invert-0 bg-contour-right" />
+        </div>
       </section>
     </div>
   );
