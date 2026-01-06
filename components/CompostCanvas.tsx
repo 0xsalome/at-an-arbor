@@ -1,8 +1,10 @@
 import React, { useRef, useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const CompostCanvas: React.FC = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
+  const navigate = useNavigate();
   
   // 浮遊する言葉たち
   const words = [
@@ -134,7 +136,7 @@ const CompostCanvas: React.FC = () => {
         p.x += p.vx;
         p.y += p.vy;
         
-        // 摩擦 (少し強めて速度管理)
+        // 摩擦
         p.vx *= 0.97; 
         p.vy *= 0.97;
 
@@ -247,6 +249,17 @@ const CompostCanvas: React.FC = () => {
   return (
     <div ref={containerRef} className="w-full relative overflow-hidden rounded-lg border border-gray-200 dark:border-gray-800 bg-paper-white dark:bg-ink-black transition-colors duration-500">
       <canvas ref={canvasRef} className="block w-full h-auto cursor-none" />
+      
+      {/* Pixel Button */}
+      <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 z-10">
+        <button
+          onClick={() => navigate('/underground')}
+          className="font-pixel-jp text-[10px] bg-black/30 text-white px-4 py-1.5 border border-white/50 hover:bg-white/20 hover:border-white transition-all duration-200 shadow-lg tracking-widest cursor-pointer backdrop-blur-[2px]"
+        >
+          地下に降りる
+        </button>
+      </div>
+
       <div className="absolute bottom-4 right-4 text-[8px] font-pixel text-white/50 pointer-events-none select-none tracking-tighter">
         Wait for decomposition...
       </div>
