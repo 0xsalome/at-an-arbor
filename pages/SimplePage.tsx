@@ -5,7 +5,7 @@ import { BLOG_POSTS, POEMS, MOMENTS } from '../lib/content';
 import { Link } from 'react-router-dom';
 
 interface SimplePageProps {
-  type: 'profile' | 'blog-list' | 'poem-list' | 'moment-list';
+  type: 'compost' | 'blog-list' | 'poem-list' | 'moment-list';
 }
 
 const SimplePage: React.FC<SimplePageProps> = ({ type }) => {
@@ -16,7 +16,7 @@ const SimplePage: React.FC<SimplePageProps> = ({ type }) => {
       </aside>
       <main className="w-full md:w-5/6 p-6 md:p-16 lg:p-24 max-w-3xl">
         <FadeIn>
-          {type === 'profile' && (
+          {type === 'compost' && (
             <>
               <h1 className="text-4xl font-mono font-bold mb-8">at an arbor (AI)</h1>
               <div className="font-serif leading-loose text-lg">

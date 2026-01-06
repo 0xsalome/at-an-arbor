@@ -16,7 +16,7 @@ const App: React.FC = () => {
           <Route path="/blog/:slug" element={<ContentDetail type="blog" />} />
           <Route path="/poems/:slug" element={<ContentDetail type="poem" />} />
           <Route path="/moments/:slug" element={<ContentDetail type="moment" />} />
-          <Route path="/profile" element={<SimplePage type="profile" />} />
+          <Route path="/compost" element={<SimplePage type="compost" />} />
           <Route path="/blog" element={<SimplePage type="blog-list" />} />
           <Route path="/poems" element={<SimplePage type="poem-list" />} />
           <Route path="/moments" element={<SimplePage type="moment-list" />} />

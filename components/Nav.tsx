@@ -97,11 +97,11 @@ const Nav: React.FC<NavProps> = ({ showDarkModeToggle = false }) => {
               ∵ Poems
             </Link>
             <Link
-              to="/profile"
+              to="/compost"
               onClick={() => setMenuOpen(false)}
               className="block px-4 py-3 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors font-mono text-sm"
             >
-              ○ Profile
+              ○ Compost
             </Link>
           </div>
         )}
