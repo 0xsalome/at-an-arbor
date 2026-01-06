@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>at an arbor</title>
+    <link>https://0xsalome.github.io/at-an-arbor</link>
+    <description>digital garden</description>
+    <language>ja</language>
+    <atom:link href="https://0xsalome.github.io/at-an-arbor/rss.xml" rel="self" type="application/rss+xml"/>
+    <lastBuildDate>Tue, 06 Jan 2026 07:07:52 GMT</lastBuildDate>
+    
+    <item>
+      <title>test</title>
+      <link>https://0xsalome.github.io/at-an-arbor/#/blog/test</link>
+      <guid>https://0xsalome.github.io/at-an-arbor/#/blog/test</guid>
+      <pubDate>Tue, 06 Jan 2026 01:58:00 GMT</pubDate>
+      <description>test</description>
+      <category>blog</category>
+    </item>
+    <item>
+      <title>親しみ</title>
+      <link>https://0xsalome.github.io/at-an-arbor/#/poems/2025.12.23</link>
+      <guid>https://0xsalome.github.io/at-an-arbor/#/poems/2025.12.23</guid>
+      <pubDate>Sun, 04 Jan 2026 02:42:00 GMT</pubDate>
+      <description>ある本の中に出てきた言葉が残っている   愛より少し軽いもの、それは親切。  </description>
+      <category>poem</category>
+    </item>
+    <item>
+      <title>ジョウビタキ</title>
+      <link>https://0xsalome.github.io/at-an-arbor/#/poems/2025.11.25</link>
+      <guid>https://0xsalome.github.io/at-an-arbor/#/poems/2025.11.25</guid>
+      <pubDate>Sun, 04 Jan 2026 02:33:00 GMT</pubDate>
+      <description>てん　てんてん　と聴こえたら   柿色の腹をした 小鳥が近くに居るだろう  </description>
+      <category>poem</category>
+    </item>
+    <item>
+      <title>ふとしたときに</title>
+      <link>https://0xsalome.github.io/at-an-arbor/#/poems/2025.10.21</link>
+      <guid>https://0xsalome.github.io/at-an-arbor/#/poems/2025.10.21</guid>
+      <pubDate>Sun, 04 Jan 2026 02:03:00 GMT</pubDate>
+      <description>あたまにゾウを飼っている   何事にも動じず  優しいまなざしで  </description>
+      <category>poem</category>
+    </item>
+    <item>
+      <title>朝の光(AI)</title>
+      <link>https://0xsalome.github.io/at-an-arbor/#/blog/morning-light</link>
+      <guid>https://0xsalome.github.io/at-an-arbor/#/blog/morning-light</guid>
+      <pubDate>Fri, 14 Nov 2025 23:00:00 GMT</pubDate>
+      <description>自動化テスト２</description>
+      <category>blog</category>
+    </item>
+    <item>
+      <title>反響 (AI)</title>
+      <link>https://0xsalome.github.io/at-an-arbor/#/poems/echo</link>
+      <guid>https://0xsalome.github.io/at-an-arbor/#/poems/echo</guid>
+      <pubDate>Wed, 08 Oct 2025 10:45:00 GMT</pubDate>
+      <description>声は壁に当たり 形を変えて戻ってくる</description>
+      <category>poem</category>
+    </item>
+    <item>
+      <title>Digital_Gardening (AI)</title>
+      <link>https://0xsalome.github.io/at-an-arbor/#/blog/digital-gardening</link>
+      <guid>https://0xsalome.github.io/at-an-arbor/#/blog/digital-gardening</guid>
+      <pubDate>Sun, 05 Oct 2025 06:30:00 GMT</pubDate>
+      <description>ウェブサイトは建築ではなく、庭であるべきだ。</description>
+      <category>blog</category>
+    </item>
+    <item>
+      <title>夜の静寂について (AI)</title>
+      <link>https://0xsalome.github.io/at-an-arbor/#/blog/quiet-night</link>
+      <guid>https://0xsalome.github.io/at-an-arbor/#/blog/quiet-night</guid>
+      <pubDate>Wed, 01 Oct 2025 14:00:00 GMT</pubDate>
+      <description>ランプの光が机を照らす。コーヒーの香りが漂う。</description>
+      <category>blog</category>
+    </item>
+    <item>
+      <title>月影 (AI)</title>
+      <link>https://0xsalome.github.io/at-an-arbor/#/poems/moonshadow</link>
+      <guid>https://0xsalome.github.io/at-an-arbor/#/poems/moonshadow</guid>
+      <pubDate>Wed, 01 Oct 2025 12:00:00 GMT</pubDate>
+      <description>静かな夜の裂け目から 白い風が流れ込む</description>
+      <category>poem</category>
+    </item>
+  </channel>
+</rss>
