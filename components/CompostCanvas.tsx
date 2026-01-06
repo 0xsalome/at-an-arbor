@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 const CompostCanvas: React.FC = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
+  const buttonRef = useRef<HTMLButtonElement>(null); // ボタン用のRefを追加
   const navigate = useNavigate();
   
   // 浮遊する言葉たち
@@ -18,6 +19,7 @@ const CompostCanvas: React.FC = () => {
   useEffect(() => {
     const canvas = canvasRef.current;
     const container = containerRef.current;
+    const button = buttonRef.current;
     if (!canvas || !container) return;
 
     // ピクセル操作のために willReadFrequently を true にする
@@ -42,7 +44,7 @@ const CompostCanvas: React.FC = () => {
     // マウス位置
     let mouse = { x: canvas.width / 2, y: canvas.height / 2, active: false };
 
-    // 拡大フレームの設定 - 60, 50, 65に戻す
+    // 拡大フレームの設定
     const frames = [
       { xRatio: 0.05, yRatio: 0.05, w: 60, h: 60, zoom: 2 },
       { xRatio: 0.85, yRatio: 0.1, w: 50, h: 50, zoom: 4 },
@@ -82,7 +84,7 @@ const CompostCanvas: React.FC = () => {
           text: word,
           x: Math.random() * canvas.width,
           y: Math.random() * canvas.height,
-          vx: (Math.random() - 0.5) * 1.5, // 速度も少し微調整
+          vx: (Math.random() - 0.5) * 1.5,
           vy: (Math.random() - 0.5) * 1.5,
           size: size,
           width: ctx.measureText(word).width,
@@ -106,6 +108,8 @@ const CompostCanvas: React.FC = () => {
     };
 
     const handleTouchMove = (e: TouchEvent) => {
+      // ボタン上での操作の場合も座標更新を行うが、デフォルト動作（クリックなど）は妨げないようにする
+      // ただし、Canvasのスクロール防止などはCanvas側のリスナーで行う
       if (e.touches.length > 0) {
         updateMousePos(e.touches[0].clientX, e.touches[0].clientY);
       }
@@ -122,19 +126,17 @@ const CompostCanvas: React.FC = () => {
     const render = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-      // 背景描画
       if (imageLoaded) {
         ctx.globalAlpha = 1.0; 
         ctx.drawImage(bgImage, 0, 0, canvas.width, canvas.height);
       }
 
-      // パーティクルの更新と描画
       particles.forEach(p => {
         if (mouse.active) {
             const dx = p.x - mouse.x;
             const dy = p.y - mouse.y;
             const dist = Math.sqrt(dx * dx + dy * dy);
-            const minDist = 70; // 反発距離を少し短く
+            const minDist = 70;
 
             if (dist < minDist) {
             const force = (minDist - dist) / minDist;
@@ -181,7 +183,6 @@ const CompostCanvas: React.FC = () => {
         ctx.shadowBlur = 0;
       });
 
-      // ズームフレーム
       if (imageLoaded && mouse.active) {
         frames.forEach(frame => {
           const fx = frame.xRatio * canvas.width;
@@ -235,9 +236,18 @@ const CompostCanvas: React.FC = () => {
     canvas.addEventListener('mousemove', handleMouseMove);
     canvas.addEventListener('mouseleave', handleMouseLeave);
     
+    // Canvasイベント
     canvas.addEventListener('touchstart', handleTouchMove, { passive: false });
     canvas.addEventListener('touchmove', handleTouchMove, { passive: false });
     canvas.addEventListener('touchend', handleTouchEnd);
+
+    // ボタンにも同様のイベントリスナーを追加して、タッチ座標をCanvasに反映させる
+    if (button) {
+      button.addEventListener('touchstart', handleTouchMove, { passive: true }); // passive trueでクリック動作を阻害しない
+      button.addEventListener('touchmove', handleTouchMove, { passive: true });
+      // touchendはボタン本来の動作（onClick遷移）に任せるため、ここではmouse.active=falseにしない（一瞬で消えるのを防ぐため）
+      // あるいは遷移するので気にしなくて良い
+    }
     
     if (bgImage.complete) {
         imageLoaded = true;
@@ -253,6 +263,12 @@ const CompostCanvas: React.FC = () => {
       canvas.removeEventListener('touchstart', handleTouchMove);
       canvas.removeEventListener('touchmove', handleTouchMove);
       canvas.removeEventListener('touchend', handleTouchEnd);
+      
+      if (button) {
+        button.removeEventListener('touchstart', handleTouchMove);
+        button.removeEventListener('touchmove', handleTouchMove);
+      }
+      
       cancelAnimationFrame(animationFrameId);
     };
   }, []);
@@ -264,6 +280,7 @@ const CompostCanvas: React.FC = () => {
       {/* Pixel Button */}
       <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 z-10">
         <button
+          ref={buttonRef} // Refを割り当て
           onClick={() => navigate('/underground')}
           className="font-pixel-jp text-[8px] bg-black/30 text-white px-3 py-1 border border-white/50 hover:bg-white/20 hover:border-white transition-all duration-200 shadow-lg tracking-widest cursor-pointer backdrop-blur-[2px]"
         >
