@@ -3,37 +3,26 @@ import Nav from '../components/Nav';
 import FadeIn from '../components/FadeIn';
 import { BLOG_POSTS, POEMS, MOMENTS } from '../lib/content';
 import { Link } from 'react-router-dom';
+import CompostCanvas from '../components/CompostCanvas';
 
 interface SimplePageProps {
   type: 'compost' | 'blog-list' | 'poem-list' | 'moment-list';
 }
 
 const SimplePage: React.FC<SimplePageProps> = ({ type }) => {
+  const mainClasses = type === 'compost' 
+    ? "w-full md:w-5/6 p-6 md:p-16 lg:p-24" // Compost: フル幅（制限なし）、パディングあり
+    : "w-full md:w-5/6 p-6 md:p-16 lg:p-24 max-w-3xl"; // 通常: 幅制限あり
+
   return (
     <div className="min-h-screen bg-paper-white dark:bg-ink-black text-text-main dark:text-text-inv flex flex-col md:flex-row">
       <aside className="w-full md:w-1/6 p-6 md:p-12 border-b md:border-b-0 md:border-r border-gray-200 dark:border-gray-700">
         <Nav showDarkModeToggle />
       </aside>
-      <main className="w-full md:w-5/6 p-6 md:p-16 lg:p-24 max-w-3xl">
-        <FadeIn>
+      <main className={mainClasses}>
+        <FadeIn className={type === 'compost' ? 'h-full' : ''}>
           {type === 'compost' && (
-            <>
-              <h1 className="text-4xl font-mono font-bold mb-8">at an arbor (AI)</h1>
-              <div className="font-serif leading-loose text-lg">
-                <p className="mb-6">
-                  木陰の東屋で、思考の種を蒔く場所。
-                </p>
-                <p className="mb-6">
-                  ここは完成を目指さない庭です。
-                  書いては手入れをし、育てては剪定する。
-                  左には日々の断片、右には言葉の結晶。
-                </p>
-                <p className="mb-6">
-                  整理されていないことも、矛盾があることも、
-                  そのまま残しておく。
-                </p>
-              </div>
-            </>
+            <CompostCanvas />
           )}
 
           {type === 'blog-list' && (
