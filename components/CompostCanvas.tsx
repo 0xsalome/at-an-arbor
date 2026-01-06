@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 const CompostCanvas: React.FC = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
-  const buttonRef = useRef<HTMLButtonElement>(null); // ボタン用のRefを追加
+  const buttonRef = useRef<HTMLButtonElement>(null);
   const navigate = useNavigate();
   
   // 浮遊する言葉たち
@@ -22,11 +22,9 @@ const CompostCanvas: React.FC = () => {
     const button = buttonRef.current;
     if (!canvas || !container) return;
 
-    // ピクセル操作のために willReadFrequently を true にする
     const ctx = canvas.getContext('2d', { willReadFrequently: true });
     if (!ctx) return;
 
-    // 画像描画時の補間を無効化（ドット感を出すため）
     ctx.imageSmoothingEnabled = false;
 
     let animationFrameId: number;
@@ -41,15 +39,11 @@ const CompostCanvas: React.FC = () => {
       history: Array<{x: number, y: number}>;
     }> = [];
 
+    // フレーム定義を可変にするため、ここでは型定義のみ
+    let frames: Array<{xRatio: number, yRatio: number, w: number, h: number, zoom: number}> = [];
+
     // マウス位置
     let mouse = { x: canvas.width / 2, y: canvas.height / 2, active: false };
-
-    // 拡大フレームの設定
-    const frames = [
-      { xRatio: 0.05, yRatio: 0.05, w: 60, h: 60, zoom: 2 },
-      { xRatio: 0.85, yRatio: 0.1, w: 50, h: 50, zoom: 4 },
-      { xRatio: 0.1, yRatio: 0.7, w: 65, h: 65, zoom: 8 }
-    ];
 
     // 画像の読み込み
     const bgImage = new Image();
@@ -57,28 +51,14 @@ const CompostCanvas: React.FC = () => {
     
     let imageLoaded = false;
 
-    const handleResize = () => {
-      if (!container) return;
-      const width = container.clientWidth;
-      canvas.width = width;
-      
-      const ratio = 1620 / 1080;
-      canvas.height = width / ratio;
-      
-      ctx.imageSmoothingEnabled = false;
-      
-      initParticles();
-    };
-
-    bgImage.onload = () => {
-      imageLoaded = true;
-      handleResize();
-    };
-
-    const initParticles = () => {
+    // パーティクル初期化（レスポンシブ対応）
+    const initParticles = (isMobile: boolean) => {
       particles = words.map(word => {
-        // 文字サイズを一回り小さく (8px - 16px)
-        const size = 8 + Math.random() * 8;
+        // PC: 12-24px, Mobile: 8-16px
+        const minSize = isMobile ? 8 : 12;
+        const range = isMobile ? 8 : 12;
+        const size = minSize + Math.random() * range;
+        
         ctx.font = `${size}px "Press Start 2P", cursive`;
         return {
           text: word,
@@ -91,6 +71,41 @@ const CompostCanvas: React.FC = () => {
           history: []
         };
       });
+    };
+
+    const handleResize = () => {
+      if (!container) return;
+      const width = container.clientWidth;
+      canvas.width = width;
+      
+      const ratio = 1620 / 1080;
+      canvas.height = width / ratio;
+      
+      ctx.imageSmoothingEnabled = false;
+      
+      const isMobile = window.innerWidth < 768;
+      
+      // フレームサイズのレスポンシブ設定
+      if (isMobile) {
+        frames = [
+          { xRatio: 0.05, yRatio: 0.05, w: 60, h: 60, zoom: 2 },
+          { xRatio: 0.85, yRatio: 0.1, w: 50, h: 50, zoom: 4 },
+          { xRatio: 0.1, yRatio: 0.7, w: 65, h: 65, zoom: 8 }
+        ];
+      } else {
+        frames = [
+          { xRatio: 0.05, yRatio: 0.05, w: 120, h: 120, zoom: 2 },
+          { xRatio: 0.85, yRatio: 0.1, w: 100, h: 100, zoom: 4 },
+          { xRatio: 0.1, yRatio: 0.7, w: 140, h: 140, zoom: 8 }
+        ];
+      }
+      
+      initParticles(isMobile);
+    };
+
+    bgImage.onload = () => {
+      imageLoaded = true;
+      handleResize();
     };
 
     const updateMousePos = (clientX: number, clientY: number) => {
@@ -108,8 +123,6 @@ const CompostCanvas: React.FC = () => {
     };
 
     const handleTouchMove = (e: TouchEvent) => {
-      // ボタン上での操作の場合も座標更新を行うが、デフォルト動作（クリックなど）は妨げないようにする
-      // ただし、Canvasのスクロール防止などはCanvas側のリスナーで行う
       if (e.touches.length > 0) {
         updateMousePos(e.touches[0].clientX, e.touches[0].clientY);
       }
@@ -219,8 +232,11 @@ const CompostCanvas: React.FC = () => {
           ctx.lineWidth = 2;
           ctx.strokeRect(fx, fy, frame.w, frame.h);
           
+          // ズーム倍率文字もレスポンシブに
+          const isMobile = window.innerWidth < 768;
+          const fontSize = isMobile ? 6 : 8;
           ctx.fillStyle = '#FFFFFF';
-          ctx.font = '6px "Press Start 2P", cursive';
+          ctx.font = `${fontSize}px "Press Start 2P", cursive`;
           ctx.fillText(`x${frame.zoom}`, fx + 4, fy + frame.h - 4);
         });
         
@@ -236,17 +252,13 @@ const CompostCanvas: React.FC = () => {
     canvas.addEventListener('mousemove', handleMouseMove);
     canvas.addEventListener('mouseleave', handleMouseLeave);
     
-    // Canvasイベント
     canvas.addEventListener('touchstart', handleTouchMove, { passive: false });
     canvas.addEventListener('touchmove', handleTouchMove, { passive: false });
     canvas.addEventListener('touchend', handleTouchEnd);
 
-    // ボタンにも同様のイベントリスナーを追加して、タッチ座標をCanvasに反映させる
     if (button) {
-      button.addEventListener('touchstart', handleTouchMove, { passive: true }); // passive trueでクリック動作を阻害しない
+      button.addEventListener('touchstart', handleTouchMove, { passive: true });
       button.addEventListener('touchmove', handleTouchMove, { passive: true });
-      // touchendはボタン本来の動作（onClick遷移）に任せるため、ここではmouse.active=falseにしない（一瞬で消えるのを防ぐため）
-      // あるいは遷移するので気にしなくて良い
     }
     
     if (bgImage.complete) {
@@ -280,7 +292,7 @@ const CompostCanvas: React.FC = () => {
       {/* Pixel Button */}
       <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 z-10">
         <button
-          ref={buttonRef} // Refを割り当て
+          ref={buttonRef}
           onClick={() => navigate('/underground')}
           className="font-pixel-jp text-[8px] bg-black/30 text-white px-3 py-1 border border-white/50 hover:bg-white/20 hover:border-white transition-all duration-200 shadow-lg tracking-widest cursor-pointer backdrop-blur-[2px]"
         >
