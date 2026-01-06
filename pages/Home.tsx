@@ -101,7 +101,7 @@ const Home: React.FC = () => {
                   <article
                     key={moment.slug}
                     className="cursor-pointer group"
-                    onClick={() => navigate(`/moments/${moment.slug}`)}
+                    onClick={() => navigate('/moments')}
                   >
                     <div className="font-mono text-xs text-gray-400 dark:text-gray-500 mb-1">
                       {moment.updated} <span className="mx-1">/</span> MOMENT
