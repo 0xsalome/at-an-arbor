@@ -42,11 +42,11 @@ const CompostCanvas: React.FC = () => {
     // マウス位置
     let mouse = { x: canvas.width / 2, y: canvas.height / 2, active: false };
 
-    // 拡大フレームの設定
+    // 拡大フレームの設定 - 60, 50, 65に戻す
     const frames = [
-      { xRatio: 0.05, yRatio: 0.05, w: 120, h: 120, zoom: 2 },
-      { xRatio: 0.85, yRatio: 0.1, w: 100, h: 100, zoom: 4 },
-      { xRatio: 0.1, yRatio: 0.7, w: 140, h: 140, zoom: 8 }
+      { xRatio: 0.05, yRatio: 0.05, w: 60, h: 60, zoom: 2 },
+      { xRatio: 0.85, yRatio: 0.1, w: 50, h: 50, zoom: 4 },
+      { xRatio: 0.1, yRatio: 0.7, w: 65, h: 65, zoom: 8 }
     ];
 
     // 画像の読み込み
@@ -75,16 +75,15 @@ const CompostCanvas: React.FC = () => {
 
     const initParticles = () => {
       particles = words.map(word => {
-        // 文字サイズを一回り大きく (12px - 24px)
-        const size = 12 + Math.random() * 12;
+        // 文字サイズを一回り小さく (8px - 16px)
+        const size = 8 + Math.random() * 8;
         ctx.font = `${size}px "Press Start 2P", cursive`;
         return {
           text: word,
           x: Math.random() * canvas.width,
           y: Math.random() * canvas.height,
-          // 初期速度を上げる
-          vx: (Math.random() - 0.5) * 2.0, 
-          vy: (Math.random() - 0.5) * 2.0,
+          vx: (Math.random() - 0.5) * 1.5, // 速度も少し微調整
+          vy: (Math.random() - 0.5) * 1.5,
           size: size,
           width: ctx.measureText(word).width,
           history: []
@@ -92,17 +91,31 @@ const CompostCanvas: React.FC = () => {
       });
     };
 
-    const handleMouseMove = (e: MouseEvent) => {
+    const updateMousePos = (clientX: number, clientY: number) => {
       const rect = canvas.getBoundingClientRect();
       const scaleX = canvas.width / rect.width;
       const scaleY = canvas.height / rect.height;
       
-      mouse.x = (e.clientX - rect.left) * scaleX;
-      mouse.y = (e.clientY - rect.top) * scaleY;
+      mouse.x = (clientX - rect.left) * scaleX;
+      mouse.y = (clientY - rect.top) * scaleY;
       mouse.active = true;
     };
 
+    const handleMouseMove = (e: MouseEvent) => {
+      updateMousePos(e.clientX, e.clientY);
+    };
+
+    const handleTouchMove = (e: TouchEvent) => {
+      if (e.touches.length > 0) {
+        updateMousePos(e.touches[0].clientX, e.touches[0].clientY);
+      }
+    };
+
     const handleMouseLeave = () => {
+      mouse.active = false;
+    };
+
+    const handleTouchEnd = () => {
       mouse.active = false;
     };
 
@@ -117,43 +130,36 @@ const CompostCanvas: React.FC = () => {
 
       // パーティクルの更新と描画
       particles.forEach(p => {
-        // マウス反発ロジック - 少し強めに
         if (mouse.active) {
             const dx = p.x - mouse.x;
             const dy = p.y - mouse.y;
             const dist = Math.sqrt(dx * dx + dy * dy);
-            const minDist = 100;
+            const minDist = 70; // 反発距離を少し短く
 
             if (dist < minDist) {
             const force = (minDist - dist) / minDist;
             const angle = Math.atan2(dy, dx);
-            p.vx += Math.cos(angle) * force * 1.5;
-            p.vy += Math.sin(angle) * force * 1.5;
+            p.vx += Math.cos(angle) * force * 1.2;
+            p.vy += Math.sin(angle) * force * 1.2;
             }
         }
 
-        // 位置更新
         p.x += p.vx;
         p.y += p.vy;
-        
-        // 摩擦
         p.vx *= 0.97; 
         p.vy *= 0.97;
 
-        // ランダムな推進力を強めてキビキビ動かす
         const speed = Math.sqrt(p.vx * p.vx + p.vy * p.vy);
-        if (speed < 0.5) {
-            p.vx += (Math.random() - 0.5) * 0.5;
-            p.vy += (Math.random() - 0.5) * 0.5;
+        if (speed < 0.4) {
+            p.vx += (Math.random() - 0.5) * 0.4;
+            p.vy += (Math.random() - 0.5) * 0.4;
         }
 
-        // 履歴の更新
         p.history.push({ x: p.x, y: p.y });
         if (p.history.length > 8) {
             p.history.shift();
         }
 
-        // バウンド
         if (p.x < 0) { p.x = 0; p.vx *= -1; }
         if (p.x > canvas.width) { p.x = canvas.width; p.vx *= -1; }
         if (p.y < 0) { p.y = 0; p.vy *= -1; }
@@ -161,7 +167,6 @@ const CompostCanvas: React.FC = () => {
 
         ctx.font = `${p.size}px "Press Start 2P", cursive`;
 
-        // 残像の描画
         p.history.forEach((pos, index) => {
             const alpha = (index / p.history.length) * 0.3;
             ctx.fillStyle = `rgba(255, 255, 255, ${alpha})`;
@@ -169,7 +174,6 @@ const CompostCanvas: React.FC = () => {
             ctx.fillText(p.text, pos.x, pos.y);
         });
 
-        // 本体の描画
         ctx.fillStyle = '#FFFFFF';
         ctx.shadowColor = 'rgba(0,0,0,0.8)';
         ctx.shadowBlur = 2;
@@ -215,7 +219,7 @@ const CompostCanvas: React.FC = () => {
           ctx.strokeRect(fx, fy, frame.w, frame.h);
           
           ctx.fillStyle = '#FFFFFF';
-          ctx.font = '8px "Press Start 2P", cursive';
+          ctx.font = '6px "Press Start 2P", cursive';
           ctx.fillText(`x${frame.zoom}`, fx + 4, fy + frame.h - 4);
         });
         
@@ -231,6 +235,10 @@ const CompostCanvas: React.FC = () => {
     canvas.addEventListener('mousemove', handleMouseMove);
     canvas.addEventListener('mouseleave', handleMouseLeave);
     
+    canvas.addEventListener('touchstart', handleTouchMove, { passive: false });
+    canvas.addEventListener('touchmove', handleTouchMove, { passive: false });
+    canvas.addEventListener('touchend', handleTouchEnd);
+    
     if (bgImage.complete) {
         imageLoaded = true;
         handleResize();
@@ -242,6 +250,9 @@ const CompostCanvas: React.FC = () => {
       window.removeEventListener('resize', handleResize);
       canvas.removeEventListener('mousemove', handleMouseMove);
       canvas.removeEventListener('mouseleave', handleMouseLeave);
+      canvas.removeEventListener('touchstart', handleTouchMove);
+      canvas.removeEventListener('touchmove', handleTouchMove);
+      canvas.removeEventListener('touchend', handleTouchEnd);
       cancelAnimationFrame(animationFrameId);
     };
   }, []);
@@ -254,7 +265,7 @@ const CompostCanvas: React.FC = () => {
       <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 z-10">
         <button
           onClick={() => navigate('/underground')}
-          className="font-pixel-jp text-[10px] bg-black/30 text-white px-4 py-1.5 border border-white/50 hover:bg-white/20 hover:border-white transition-all duration-200 shadow-lg tracking-widest cursor-pointer backdrop-blur-[2px]"
+          className="font-pixel-jp text-[8px] bg-black/30 text-white px-3 py-1 border border-white/50 hover:bg-white/20 hover:border-white transition-all duration-200 shadow-lg tracking-widest cursor-pointer backdrop-blur-[2px]"
         >
           地下に降りる
         </button>
