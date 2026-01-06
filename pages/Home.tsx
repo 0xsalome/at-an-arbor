@@ -216,6 +216,14 @@ const Home: React.FC = () => {
           <p className="mb-4">NO MORE CONTENT</p>
           <Nav />
           <p className="mt-8">at an arbor</p>
+          <a
+            href="/at-an-arbor/rss.xml"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-4 hover:text-gray-600 dark:hover:text-gray-300 transition-colors"
+          >
+            RSS
+          </a>
         </div>
         <div className="bg-ink-black dark:bg-paper-white"></div>
       </section>
