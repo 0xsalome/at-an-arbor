@@ -94,7 +94,7 @@ const Home: React.FC = () => {
             <Nav />
           </div>
 
-          <div className="flex-grow flex flex-col justify-end pb-8 max-w-2xl relative z-10">
+          <div className="flex-grow flex flex-col justify-end pb-20 md:pb-8 max-w-2xl relative z-10">
             <FadeIn>
               <div className="space-y-6">
                 {recentMoments.map((moment) => (
