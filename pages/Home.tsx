@@ -44,24 +44,15 @@ const DarkModeToggle: React.FC = () => {
   );
 };
 
-// Create pairs: blogs per screen, paired with poems
-// First screen gets 3 blogs, rest get 2
+// Create pairs: 2 blogs per screen, paired with poems
 function createBlogPairs(blogs: ContentItem[], poems: ContentItem[]) {
   const pairs = [];
-  // First pair: 3 blogs
-  if (blogs.length > 0) {
-    pairs.push({
-      id: `blog-0`,
-      blogs: blogs.slice(0, 3).filter(Boolean),
-      poem: poems[1],
-    });
-  }
-  // Rest: 2 blogs each
-  for (let i = 3; i < blogs.length; i += 2) {
+  // All screens get 2 blogs each
+  for (let i = 0; i < blogs.length; i += 2) {
     pairs.push({
       id: `blog-${i}`,
       blogs: [blogs[i], blogs[i + 1]].filter(Boolean),
-      poem: poems[Math.floor((i - 3) / 2) + 2],
+      poem: poems[Math.floor(i / 2) + 1],
     });
   }
   return pairs;
@@ -80,13 +71,30 @@ const Home: React.FC = () => {
         <div className="absolute top-6 left-[66.666%] -translate-x-1/2 z-20">
           <DarkModeToggle />
         </div>
+        {/* Fieldwork link - positioned on white side, line pointing toward 470 (5 o'clock direction) */}
+        <div
+          className="absolute z-20 left-[48%] top-[45%] cursor-pointer group flex items-center gap-1"
+          onClick={() => navigate('/fieldwork')}
+        >
+          <span className="font-mono text-[10px] text-text-main/30 dark:text-text-inv/30 group-hover:text-text-main/60 dark:group-hover:text-text-inv/60 transition-opacity tracking-wider">
+            fieldwork
+          </span>
+          <span
+            className="text-text-main/20 dark:text-text-inv/20 group-hover:text-text-main/40 dark:group-hover:text-text-inv/40 transition-opacity inline-block"
+            style={{ transform: 'rotate(45deg)', transformOrigin: 'left center' }}
+          >
+            ──
+          </span>
+        </div>
         {/* Left Column: Nav + Moments */}
-        <div className="bg-paper-white dark:bg-ink-black h-full flex flex-col p-6 md:p-12 lg:p-16 border-r border-gray-200 dark:border-gray-700">
-          <div className="flex-none mb-12">
+        <div className="bg-paper-white dark:bg-ink-black h-full flex flex-col p-6 md:p-12 lg:p-16 border-r border-gray-200 dark:border-gray-700 relative overflow-hidden">
+          {/* Background contour - left portion */}
+          <div className="absolute inset-0 opacity-[0.06] dark:opacity-[0.08] pointer-events-none dark:invert bg-contour-left" />
+          <div className="flex-none mb-12 relative z-10">
             <Nav />
           </div>
 
-          <div className="flex-grow flex flex-col justify-end pb-8 max-w-2xl">
+          <div className="flex-grow flex flex-col justify-end pb-8 max-w-2xl relative z-10">
             <FadeIn>
               <div className="space-y-6">
                 {recentMoments.map((moment) => (
@@ -121,6 +129,8 @@ const Home: React.FC = () => {
 
         {/* Right Column: First Poem */}
         <div className="bg-ink-black dark:bg-paper-white h-full relative overflow-hidden flex flex-col items-center justify-center py-12 select-none">
+          {/* Background contour - right portion */}
+          <div className="absolute inset-0 opacity-[0.08] pointer-events-none invert dark:invert-0 bg-contour-right" />
           {POEMS[0] && (
             <FadeIn delay={200} className="h-3/4 w-full flex justify-center">
               <article

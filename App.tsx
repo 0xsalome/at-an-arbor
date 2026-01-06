@@ -3,6 +3,7 @@ import { HashRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
 import ContentDetail from './pages/ContentDetail';
 import SimplePage from './pages/SimplePage';
+import Fieldwork from './pages/Fieldwork';
 import Comet from './components/Comet';
 
 const App: React.FC = () => {
@@ -19,6 +20,7 @@ const App: React.FC = () => {
           <Route path="/blog" element={<SimplePage type="blog-list" />} />
           <Route path="/poems" element={<SimplePage type="poem-list" />} />
           <Route path="/moments" element={<SimplePage type="moment-list" />} />
+          <Route path="/fieldwork" element={<Fieldwork />} />
         </Routes>
       </div>
     </Router>

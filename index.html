@@ -4,6 +4,22 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>at an arbor</title>
+    <meta name="description" content="at an arbor - digital garden" />
+
+    <!-- OGP -->
+    <meta property="og:title" content="at an arbor" />
+    <meta property="og:description" content="digital garden" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://0xsalome.github.io/at-an-arbor/" />
+    <meta property="og:image" content="https://0xsalome.github.io/at-an-arbor/images/ogp.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="at an arbor" />
+    <meta name="twitter:description" content="digital garden" />
+    <meta name="twitter:image" content="https://0xsalome.github.io/at-an-arbor/images/ogp.png" />
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -55,6 +71,27 @@
       .writing-vertical {
         writing-mode: vertical-rl;
         text-orientation: mixed;
+      }
+      /* Background contour - PC uses % based, mobile uses vw for seamless */
+      .bg-contour-left {
+        background-image: url('/at-an-arbor/images/contour.png');
+        background-size: 150% auto;
+        background-position: left center;
+      }
+      .bg-contour-right {
+        background-image: url('/at-an-arbor/images/contour.png');
+        background-size: 300% auto;
+        background-position: right center;
+      }
+      @media (max-width: 768px) {
+        .bg-contour-left {
+          background-size: 300vw auto;
+          background-position: -70vw 30%;
+        }
+        .bg-contour-right {
+          background-size: 300vw auto;
+          background-position: -136.67vw 30%;
+        }
       }
     </style>
   <script type="importmap">
