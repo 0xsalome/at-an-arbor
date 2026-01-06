@@ -79,7 +79,7 @@ function parseMarkdownFile(
     updated: data.updated || data.date || '',
     type,
     excerpt,
-    content: DOMPurify.sanitize(marked(content) as string),
+    content: DOMPurify.sanitize(marked(content, { breaks: true }) as string),
     rawContent: content,
     images: images.length > 0 ? images : undefined,
   };
