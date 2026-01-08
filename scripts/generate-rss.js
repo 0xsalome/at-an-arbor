@@ -99,7 +99,7 @@ function generateRss(items) {
 // Main
 const blogPosts = readMarkdownFiles('blog', 'blog');
 const poems = readMarkdownFiles('poem', 'poem');
-const allItems = [...blogPosts, ...poems];
+
 
 const rss = generateRss(allItems);
 

@@ -64,6 +64,13 @@ function parseMarkdownFile(
     excerpt = firstParagraph.slice(0, 100) + (firstParagraph.length > 100 ? '...' : '');
   }
 
+  // Convert Obsidian wiki links to standard markdown images
+  const wikiLinkRegex = /!\[\[(.*?)\]\]/g;
+  content = content.replace(wikiLinkRegex, (match, filename) => {
+    const encoded = filename.trim();
+    return `![${encoded}](/at-an-arbor/images/${type}/${encoded})`;
+  });
+
   // Extract images from markdown
   const imageRegex = /!\[.*?\]\((.*?)\)/g;
   const images: string[] = [];
