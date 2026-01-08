@@ -48,7 +48,8 @@ function parseMarkdownFile(
   rawContent: string,
   type: ContentType
 ): ContentItem {
-  const { data, content } = parseFrontmatter(rawContent);
+  const { data, content: rawBody } = parseFrontmatter(rawContent);
+  let content = rawBody;
   const slug = filePath.split('/').pop()?.replace('.md', '') || '';
 
   // Extract excerpt based on type
