@@ -25,29 +25,37 @@
 
 ## Project Information
 
-- Project purpose: Digital Garden - ブログ、詩、呟きを通じて思考を有機的に育てる個人サイト
+- Project purpose: Digital Garden - A personal site for organically growing thoughts through blogs, poetry, and moments
 - Technologies used: React 19 / TypeScript / Vite / react-router-dom / Markdown (gray-matter, marked)
 - Main folder structure:
-  - `components/` - 共通UIコンポーネント（Nav, FadeIn, Comet, CompostCanvas）
-  - `pages/` - ページコンポーネント（Home, ContentDetail, SimplePage等）
-  - `content/` - Markdownコンテンツ（blog/, moments/, poem/）
-  - `public/` - 静的ファイル
-  - `scripts/` - ビルドスクリプト（RSS生成）
+  - `components/` - Shared UI components (Nav, FadeIn, Comet, CompostCanvas)
+  - `pages/` - Page components (Home, ContentDetail, SimplePage, etc.)
+  - `content/` - Markdown content (blog/, moments/, poem/)
+  - `public/` - Static files
+  - `scripts/` - Build scripts (RSS generation)
 - Files/folders not to touch:
   - `node_modules/`
   - `dist/`
   - `.git/`
-  - `content/` 内のMarkdownファイル（Obsidianで管理、指示がない限り編集しない）
+  - Markdown files in `content/` (managed by Obsidian, do not edit unless instructed)
 
 ## Development Commands
 
 ```bash
-npm run dev      # 開発サーバー起動
-npm run build    # RSS生成 + ビルド
-npm run preview  # ビルド結果プレビュー
+npm run dev      # Start development server
+npm run build    # Generate RSS + build
+npm run preview  # Preview build output
 ```
+
+## Skills
+
+### Agent Memory
+- Location: `.claude/skills/agent-memory/`
+- Purpose: Persistent memory space for storing knowledge that survives across conversations
+- Usage: Save research findings, codebase patterns, architectural decisions, and in-progress work
+- See `.claude/skills/agent-memory/SKILL.md` for detailed instructions
 
 ## Notes
 
-- コンテンツはObsidianで編集 → content/フォルダにコピー → git pushのワークフロー
-- GitHub Pagesでホスティング（https://0xsalome.github.io/at-an-arbor/）
+- Content workflow: Edit in Obsidian → Copy to content/ folder → git push
+- Hosted on GitHub Pages (https://0xsalome.github.io/at-an-arbor/)
