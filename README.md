@@ -20,6 +20,8 @@
 
 そうしたものを、剪定しすぎず、時間をかけて育てていくことを目的としています。
 
+**参考:** [Digital Gardeners](https://github.com/MaggieAppleton/digital-gardeners) - Digital Garden実践者のリソース集
+
 ### 完成を前提にしない
 
 ここに置かれている内容は「未完成」であることを前提としています。
