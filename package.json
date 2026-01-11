@@ -6,9 +6,11 @@
   "scripts": {
     "dev": "node scripts/copy-images.js && vite",
     "rss": "node scripts/generate-rss.js",
+    "sitemap": "node scripts/generate-sitemap.js",
     "copy-images": "node scripts/copy-images.js",
-    "build": "node scripts/copy-images.js && node scripts/generate-rss.js && vite build",
-    "preview": "vite preview"
+    "build": "node scripts/copy-images.js && node scripts/generate-rss.js && node scripts/generate-sitemap.js && vite build",
+    "preview": "vite preview",
+    "publish": "node scripts/publish.js"
   },
   "dependencies": {
     "dompurify": "^3.3.1",

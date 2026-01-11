@@ -40,8 +40,19 @@
 
 ```bash
 npm run dev      # Start development server
-npm run build    # Generate RSS + build
+npm run build    # Generate RSS + sitemap + build
 npm run preview  # Preview build output
+npm run publish <file> <type>  # Publish article with images
+```
+
+### Publishing Workflow
+```bash
+# Example: Publish a blog post from your draft vault
+npm run publish ~/my-vault/drafts/new-post.md blog
+
+# This copies:
+# - new-post.md → content/blog/
+# - Referenced images (![[image.png]]) → content/blog/images/
 ```
 
 ## Skills
@@ -51,6 +62,22 @@ npm run preview  # Preview build output
 - Purpose: Persistent memory space for storing knowledge that survives across conversations
 - Usage: Save research findings, codebase patterns, architectural decisions, and in-progress work
 - See `.claude/skills/agent-memory/SKILL.md` for detailed instructions
+
+## Efficiency Guidelines
+
+### Recommended Subagents
+- **Explore**: Codebase exploration (e.g., "Where is X processed?", "How does data flow between components?")
+- **Plan**: Feature design planning (e.g., search functionality, new content types)
+- **Bash**: Build execution, preview, and testing
+
+### Token Optimization
+- Delegate multi-file exploration to Explore subagent instead of manual Glob/Grep
+- Save project patterns and decisions in agent-memory for reuse across sessions
+- Use Plan mode before implementing large features to solidify design first
+
+### AI Role Assignment (Claude + Gemini)
+- **Claude**: Architecture decisions, security review, performance optimization, complex logic (RSS generation, routing)
+- **Gemini**: Component implementation, CSS/animations, test creation, documentation generation
 
 ## Notes
 

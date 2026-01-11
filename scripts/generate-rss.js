@@ -43,15 +43,20 @@ function readMarkdownFiles(dir, type) {
     const firstParagraph = body.trim().split('\n\n')[0] || '';
     const excerpt = firstParagraph.slice(0, 200).replace(/\n/g, ' ');
 
+    // URL mapping based on type
+    const urlMap = {
+      blog: `${SITE_URL}/#/blog/${slug}`,
+      poem: `${SITE_URL}/#/poems/${slug}`,
+      moment: `${SITE_URL}/#/moments/${slug}`,
+    };
+
     return {
       title: data.title || slug,
       date: data.updated || data.date || '',
       slug,
       type,
       excerpt,
-      url: type === 'poem'
-        ? `${SITE_URL}/#/poems/${slug}`
-        : `${SITE_URL}/#/blog/${slug}`
+      url: urlMap[type] || `${SITE_URL}/#/${type}/${slug}`
     };
   });
 }
@@ -99,7 +104,8 @@ function generateRss(items) {
 // Main
 const blogPosts = readMarkdownFiles('blog', 'blog');
 const poems = readMarkdownFiles('poem', 'poem');
-const allItems = [...blogPosts, ...poems];
+const moments = readMarkdownFiles('moments', 'moment');
+const allItems = [...blogPosts, ...poems, ...moments];
 
 const rss = generateRss(allItems);
 
