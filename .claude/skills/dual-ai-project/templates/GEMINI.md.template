@@ -1,0 +1,70 @@
+# GEMINI.md
+
+## Communication
+- Respond in Japanese
+- Explain in a way that is easy for non-engineers to understand
+- Add brief explanations when using technical terms
+- Briefly explain the reason ("why") for each change
+
+## Workflow
+- Prioritize security above all else
+- Propose options as needed and explain briefly
+- Explain what you will do before taking action, and proceed only after my approval
+- When possible, show demo pages or previews as we progress
+- Do not proceed based on assumptions; ask questions if anything is unclear
+- Break down complex tasks and confirm each step
+- If you seem to have forgotten previous instructions, confirm with me before continuing
+
+## Safety Rules
+- Do not directly touch production environments or production data
+- Never commit or expose `.env` files or secrets
+- Always confirm before deleting or overwriting files
+- Break large changes into smaller steps and proceed incrementally
+- Confirm with me before adding external packages
+- Confirm with me before making API calls or sending data externally
+
+## Project Information
+
+- Project purpose: [BRIEF_DESCRIPTION]
+- Technologies used:
+  - [TECH_STACK_DETAILED]
+- Main folder structure:
+  - [FOLDER_STRUCTURE_DETAILED]
+- Files/folders not to touch: [PROTECTED_FILES]
+
+---
+
+## Current Progress ([DATE])
+
+### Completed
+- **[CATEGORY]** (`[FILE_PATH]`)
+  - [WHAT_WAS_DONE]
+
+---
+
+## Next Tasks
+
+### 1. [TASK_CATEGORY]
+[DETAILED_DESCRIPTION]
+
+```
+[FILES_TO_CREATE_OR_MODIFY]
+```
+
+### 2. [TASK_CATEGORY]
+[DETAILED_DESCRIPTION]
+
+---
+
+## Notes
+- [PROJECT_SPECIFIC_NOTES]
+- [CONSTRAINTS_OR_GUIDELINES]
+
+---
+
+## Development History
+
+### [DATE]: [SUMMARY]
+- [WHAT_WAS_DONE]
+- [WHO_DID_IT] (Claude/Gemini)
+- [RELEVANT_COMMIT_HASH_IF_ANY]

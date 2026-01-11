@@ -1,0 +1,65 @@
+# CLAUDE.md
+
+## Communication
+- Respond in Japanese
+- Explain in a way that is easy for non-engineers to understand
+- Add brief explanations when using technical terms
+- Briefly explain the reason ("why") for each change
+
+## Workflow
+- Prioritize security above all else
+- Propose options as needed and explain briefly
+- Explain what you will do before taking action, and proceed only after my approval
+- When possible, show demo pages or previews as we progress
+
+## Safety Rules
+- Do not directly touch production environments or production data
+- Never commit or expose `.env` files or secrets
+- Always confirm before deleting or overwriting files
+- Break large changes into smaller steps and proceed incrementally
+- Confirm with me before adding external packages
+- Confirm with me before making API calls or sending data externally
+
+## Project Information
+
+- Project name: [PROJECT_NAME]
+- Project purpose: [BRIEF_DESCRIPTION]
+- Technologies used: [TECH_STACK]
+- Main folder structure:
+  - [FOLDER_STRUCTURE]
+- Files/folders not to touch:
+  - [PROTECTED_FILES]
+
+## Design Philosophy
+
+[PROJECT_SPECIFIC_PHILOSOPHY]
+
+## Efficiency Guidelines
+
+### Subagent Usage
+Use subagents to reduce token consumption and improve efficiency:
+
+| Subagent | When to Use |
+|----------|-------------|
+| Explore | Codebase exploration, finding files, understanding structure |
+| Plan | Implementation planning, architecture decisions |
+| Bash | Git operations, build, test execution |
+
+### Token Optimization
+- Large code generation → Delegate to Gemini
+- Codebase exploration → Use Explore subagent
+- Repetitive tasks → Script and run via Bash
+
+### AI Role Assignment
+- **Claude**: Design, review, complex judgment, bug fixes
+- **Gemini**: Implementation, refactoring, test creation
+
+See `GEMINI.md` for current progress and next tasks.
+
+## Development Commands
+
+[PROJECT_SPECIFIC_COMMANDS]
+
+## Environment Variables
+
+[REQUIRED_ENV_VARS]
