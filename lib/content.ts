@@ -69,7 +69,8 @@ function parseMarkdownFile(
   const wikiLinkRegex = /!\[\[(.*?)\]\]/g;
   content = content.replace(wikiLinkRegex, (match, filename) => {
     const encoded = filename.trim();
-    return `![${encoded}](/at-an-arbor/images/${type}/${encoded})`;
+    const folderName = type === 'moment' ? 'moments' : type;
+    return `![${encoded}](/at-an-arbor/images/${folderName}/${encoded})`;
   });
 
   // Extract images from markdown
