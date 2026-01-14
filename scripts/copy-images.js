@@ -67,9 +67,15 @@ async function processImage(srcPath, destPath) {
     }
 
     const ext = path.extname(srcPath).toLowerCase();
-    
-    // Process only supported image formats
-    if (!['.jpg', '.jpeg', '.png', '.webp'].includes(ext)) {
+
+    // Process only supported image formats (GIF and SVG are copied as-is)
+    if (!['.jpg', '.jpeg', '.png', '.webp', '.gif', '.svg'].includes(ext)) {
+       fs.copyFileSync(srcPath, destPath);
+       return true;
+    }
+
+    // Copy GIF and SVG without optimization
+    if (['.gif', '.svg'].includes(ext)) {
        fs.copyFileSync(srcPath, destPath);
        return true;
     }
@@ -155,9 +161,7 @@ async function main() {
       }
     }
     
-    if (processedCount > 0) {
-      console.log(`Processed/Synced ${processedCount} images for ${type}`);
-    }
+    console.log(`Processed ${processedCount} image(s) for ${type}`);
   }
 }
 
