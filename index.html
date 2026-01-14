@@ -59,6 +59,20 @@
       }
     </script>
     <style>
+      /* Lazy loading image styles */
+      .lazy-load, .manual-lazy-load {
+        opacity: 0;
+        transition: opacity 1.0s ease-out;
+        background-color: #e5e5e5; /* Placeholder */
+      }
+      .dark .lazy-load, .dark .manual-lazy-load {
+        background-color: #2a2a2a;
+      }
+      .lazy-load.loaded, .manual-lazy-load.loaded {
+        opacity: 1;
+        background-color: transparent;
+      }
+
       /* Global scroll behavior */
       html {
         scroll-behavior: smooth;

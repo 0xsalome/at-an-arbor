@@ -43,6 +43,12 @@ const momentFiles = import.meta.glob('../content/moments/*.md', {
   eager: true
 }) as Record<string, string>;
 
+// Configure marked renderer for lazy loading
+const renderer = new marked.Renderer();
+renderer.image = ({ href, title, text }) => {
+  return `<img src="${href}" alt="${text || ''}" title="${title || ''}" class="lazy-load" loading="lazy" decoding="async" />`;
+};
+
 function parseMarkdownFile(
   filePath: string,
   rawContent: string,
@@ -88,7 +94,9 @@ function parseMarkdownFile(
     updated: data.updated || data.date || '',
     type,
     excerpt,
-    content: DOMPurify.sanitize(marked(content, { breaks: true }) as string),
+    content: DOMPurify.sanitize(marked.parse(content, { renderer, breaks: true }) as string, {
+      ADD_ATTR: ['loading', 'decoding', 'class'],
+    }),
     rawContent: content,
     images: images.length > 0 ? images : undefined,
   };

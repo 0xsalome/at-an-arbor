@@ -3,6 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { getContentBySlug, POEMS } from '../lib/content';
 import Nav from '../components/Nav';
 import FadeIn from '../components/FadeIn';
+import { useImageLoader } from '../hooks/useImageLoader';
 import type { ContentType, ContentItem } from '../types';
 
 interface ContentDetailProps {
@@ -52,6 +53,10 @@ const ContentDetail: React.FC<ContentDetailProps> = ({ type }) => {
   const { slug } = useParams();
   const navigate = useNavigate();
   const item = slug ? getContentBySlug(slug, type) : undefined;
+  
+  // Enable lazy loading fade-in
+  useImageLoader([item?.content]);
+
   const containerRef = useRef<HTMLDivElement>(null);
   const currentPoemIndex = POEMS.findIndex(p => p.slug === slug);
 

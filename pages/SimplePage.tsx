@@ -4,12 +4,15 @@ import FadeIn from '../components/FadeIn';
 import { BLOG_POSTS, POEMS, MOMENTS } from '../lib/content';
 import { Link } from 'react-router-dom';
 import CompostCanvas from '../components/CompostCanvas';
+import { useImageLoader } from '../hooks/useImageLoader';
 
 interface SimplePageProps {
   type: 'compost' | 'blog-list' | 'poem-list' | 'moment-list';
 }
 
 const SimplePage: React.FC<SimplePageProps> = ({ type }) => {
+  useImageLoader([type]); // Re-run when page type changes
+
   const mainClasses = type === 'compost' 
     ? "w-full md:w-5/6 p-6 md:p-16 lg:p-24" // Compost: フル幅（制限なし）、パディングあり
     : "w-full md:w-5/6 p-6 md:p-16 lg:p-24 max-w-3xl"; // 通常: 幅制限あり
@@ -70,7 +73,9 @@ const SimplePage: React.FC<SimplePageProps> = ({ type }) => {
                         <img
                           src={moment.images[0]}
                           alt=""
-                          className="mt-3 max-w-xs rounded group-hover:brightness-110 transition-all"
+                          className="mt-3 max-w-xs rounded group-hover:brightness-110 transition-all manual-lazy-load"
+                          loading="lazy"
+                          decoding="async"
                         />
                       )}
                     </Link>
