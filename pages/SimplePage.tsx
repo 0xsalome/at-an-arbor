@@ -63,22 +63,19 @@ const SimplePage: React.FC<SimplePageProps> = ({ type }) => {
           {type === 'moment-list' && (
             <>
               <h1 className="text-4xl font-mono font-bold mb-12">Moments</h1>
-              <ul className="space-y-8">
+              <ul className="space-y-16">
                 {MOMENTS.map(moment => (
-                  <li key={moment.slug} className="group">
-                    <Link to={`/moments/${moment.slug}`} className="block">
-                      <div className="font-mono text-xs text-gray-500 mb-2">{moment.updated}</div>
-                      <p className="font-serif text-gray-700 dark:text-gray-300 group-hover:text-text-main dark:group-hover:text-text-inv transition-colors">{moment.excerpt}</p>
-                      {moment.images && moment.images.length > 0 && (
-                        <img
-                          src={moment.images[0]}
-                          alt=""
-                          className="mt-3 max-w-xs rounded group-hover:brightness-110 transition-all manual-lazy-load"
-                          loading="lazy"
-                          decoding="async"
-                        />
-                      )}
-                    </Link>
+                  <li key={moment.slug} className="group border-b border-gray-100 dark:border-gray-800 pb-12 last:border-0">
+                    <div className="font-mono text-xs text-gray-400 mb-4">{moment.updated}</div>
+                    <div 
+                      className="prose prose-stone dark:prose-invert font-serif leading-loose text-gray-800 dark:text-gray-200"
+                      dangerouslySetInnerHTML={{ __html: moment.content }}
+                    />
+                    <div className="mt-6">
+                      <Link to={`/moments/${moment.slug}`} className="text-xs font-mono text-gray-400 hover:text-text-main dark:hover:text-text-inv transition-colors">
+                        [PERMALINK]
+                      </Link>
+                    </div>
                   </li>
                 ))}
               </ul>
