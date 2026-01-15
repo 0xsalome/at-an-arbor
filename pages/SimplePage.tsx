@@ -11,6 +11,9 @@ interface SimplePageProps {
 }
 
 const SimplePage: React.FC<SimplePageProps> = ({ type }) => {
+  console.log('SimplePage rendered with type:', type);
+  console.log('MOMENTS count:', MOMENTS.length);
+  
   useImageLoader([type]); // Re-run when page type changes
 
   const mainClasses = type === 'compost' 
@@ -80,6 +83,13 @@ const SimplePage: React.FC<SimplePageProps> = ({ type }) => {
                 ))}
               </ul>
             </>
+          )}
+          
+          {/* Debug/Fallback */}
+          {!['compost', 'blog-list', 'poem-list', 'moment-list'].includes(type) && (
+             <div className="text-red-500 font-mono p-4 border border-red-500">
+               Unknown page type: {type}
+             </div>
           )}
         </FadeIn>
       </main>
