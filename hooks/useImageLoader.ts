@@ -6,7 +6,7 @@ import { useEffect } from 'react';
  *
  * @param deps Dependency array to re-run the effect (e.g. content changes)
  */
-export const useImageLoader = (deps: React.DependencyList = []) => {
+export const useImageLoader = (deps: any[] = []) => {
   useEffect(() => {
     const images = document.querySelectorAll('img.lazy-load, img.manual-lazy-load');
     const listeners = new Map<Element, EventListener>();

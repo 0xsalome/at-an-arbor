@@ -74,9 +74,12 @@ function parseMarkdownFile(
   // Convert Obsidian wiki links to standard markdown images
   const wikiLinkRegex = /!\[\[(.*?)\]\]/g;
   content = content.replace(wikiLinkRegex, (match, filename) => {
-    const encoded = filename.trim();
+    const name = filename.trim();
     const folderName = type === 'moment' ? 'moments' : type;
-    return `![${encoded}](/at-an-arbor/images/${folderName}/${encoded})`;
+    // URL encode the filename to handle spaces and other special characters
+    const encodedName = encodeURIComponent(name);
+    // Use empty alt text to avoid displaying the filename as text
+    return `![](/at-an-arbor/images/${folderName}/${encodedName})`;
   });
 
   // Extract images from markdown
