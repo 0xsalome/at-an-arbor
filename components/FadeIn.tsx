@@ -22,7 +22,7 @@ const FadeIn: React.FC<FadeInProps> = ({ children, delay = 0, className = '' }) 
         });
       },
       {
-        threshold: 0.2, // Trigger when 20% visible
+        threshold: 0.01, // Trigger when 1% visible (fixes issue with very long content)
       }
     );
 

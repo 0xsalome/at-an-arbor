@@ -11,9 +11,6 @@ interface SimplePageProps {
 }
 
 const SimplePage: React.FC<SimplePageProps> = ({ type }) => {
-  console.log('SimplePage rendered with type:', type);
-  console.log('MOMENTS count:', MOMENTS.length);
-  
   useImageLoader([type]); // Re-run when page type changes
 
   const mainClasses = type === 'compost' 
