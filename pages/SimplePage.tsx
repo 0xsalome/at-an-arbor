@@ -23,7 +23,7 @@ const SimplePage: React.FC<SimplePageProps> = ({ type }) => {
         <Nav showDarkModeToggle />
       </aside>
       <main className={mainClasses}>
-        <FadeIn className={type === 'compost' ? 'h-full' : ''}>
+        <div className={type === 'compost' ? 'h-full' : ''}>
           {type === 'compost' && (
             <CompostCanvas />
           )}
@@ -88,7 +88,7 @@ const SimplePage: React.FC<SimplePageProps> = ({ type }) => {
                Unknown page type: {type}
              </div>
           )}
-        </FadeIn>
+        </div>
       </main>
     </div>
   );
