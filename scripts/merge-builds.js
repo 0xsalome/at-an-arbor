@@ -170,6 +170,14 @@ function mergeBuilds() {
     `Merged ${reactStats.copiedFiles} files from React build (${reactStats.skippedFiles} skipped)`
   );
 
+  // 3.5. GitHub Pages用のSPAフォールバックを作成
+  log.info('Creating 404.html for GitHub Pages SPA fallback...');
+  fs.copyFileSync(
+    path.join(FINAL_DIST, 'index.html'),
+    path.join(FINAL_DIST, '404.html')
+  );
+  log.success('Created 404.html');
+
   // 4. 一時ディレクトリ（dist-react）を削除
   log.info('Cleaning up temporary build directory...');
   removeDir(REACT_DIST);

@@ -133,5 +133,6 @@ Add `stage` field to frontmatter and display badges in UI.
 - Integrated React SPA (Home, Poem, Moment) with Astro Build
 - Switched to `BrowserRouter` with `/at-an-arbor/` base path
 - Updated RSS/Sitemap to use clean URLs
+- **Bug Fix**: Fixed GitHub Pages routing (404 on reload) and navigation issues by adding `basename` and `404.html` fallback.
 
 

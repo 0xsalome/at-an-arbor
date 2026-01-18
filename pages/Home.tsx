@@ -74,7 +74,7 @@ const Home: React.FC = () => {
         {/* Fieldwork link - positioned on white side, line pointing toward 470 (5 o'clock direction) */}
         <div
           className="absolute z-20 left-[48%] top-[45%] cursor-pointer group flex items-center gap-1"
-          onClick={() => navigate('/at-an-arbor/fieldwork')}
+          onClick={() => navigate('/fieldwork')}
         >
           <span className="font-mono text-[10px] text-text-main/30 dark:text-text-inv/30 group-hover:text-text-main/60 dark:group-hover:text-text-inv/60 transition-opacity tracking-wider">
             fieldwork
@@ -101,7 +101,7 @@ const Home: React.FC = () => {
                   <article
                     key={moment.slug}
                     className="cursor-pointer group"
-                    onClick={() => navigate('/at-an-arbor/moments')}
+                    onClick={() => navigate('/moments')}
                   >
                     <div className="font-mono text-xs text-gray-400 dark:text-gray-500 mb-1">
                       {moment.updated} <span className="mx-1">/</span> MOMENT
@@ -117,7 +117,7 @@ const Home: React.FC = () => {
                 {MOMENTS.length > 2 && (
                   <div
                     className="text-xs font-mono text-gray-400 dark:text-gray-500 cursor-pointer hover:text-gray-600 dark:hover:text-gray-300 transition-colors"
-                    onClick={() => navigate('/at-an-arbor/moments')}
+                    onClick={() => navigate('/moments')}
                   >
                     [MORE MOMENTS →]
                   </div>
@@ -135,7 +135,7 @@ const Home: React.FC = () => {
             <FadeIn delay={200} className="h-3/4 w-full flex justify-center">
               <article
                 className="poem h-full writing-vertical text-text-inv dark:text-text-main cursor-pointer hover:opacity-80 transition-opacity"
-                onClick={() => navigate(`/at-an-arbor/poems/${POEMS[0]?.slug}`)}
+                onClick={() => navigate(`/poems/${POEMS[0]?.slug}`)}
               >
                 <h2 className="text-xl md:text-2xl font-serif font-bold ml-4 md:ml-8 tracking-widest border-b-2 border-text-inv/20 dark:border-text-main/20 pb-4 mb-4">
                   {POEMS[0].title}
@@ -195,7 +195,7 @@ const Home: React.FC = () => {
               <FadeIn delay={200} className="h-3/4 w-full flex justify-center">
                 <article
                   className="poem h-full writing-vertical text-text-inv dark:text-text-main cursor-pointer hover:opacity-80 transition-opacity"
-                  onClick={() => navigate(`/at-an-arbor/poems/${pair.poem?.slug}`)}
+                  onClick={() => navigate(`/poems/${pair.poem?.slug}`)}
                 >
                   <h2 className="text-xl md:text-2xl font-serif font-bold ml-4 md:ml-8 tracking-widest border-b-2 border-text-inv/20 dark:border-text-main/20 pb-4 mb-4">
                     {pair.poem.title}
@@ -206,6 +206,13 @@ const Home: React.FC = () => {
                 </article>
               </FadeIn>
             )}
+
+            <div className="absolute bottom-8 text-text-inv/10 dark:text-text-main/10 font-mono text-xs writing-vertical">
+              Vol. {index + 2}
+            </div>
+          </div>
+        </section>
+      ))}
 
             <div className="absolute bottom-8 text-text-inv/10 dark:text-text-main/10 font-mono text-xs writing-vertical">
               Vol. {index + 2}
