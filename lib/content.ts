@@ -66,9 +66,11 @@ function parseMarkdownFile(
     const firstTwoLines = lines.slice(0, 2).join('\n');
     excerpt = firstTwoLines + (lines.length > 2 ? '：' : '');
   } else {
-    // For blog/moments: first paragraph
+    // For blog/moments: first paragraph (remove image references)
     const firstParagraph = content.trim().split('\n\n')[0] || '';
-    excerpt = firstParagraph.slice(0, 100) + (firstParagraph.length > 100 ? '...' : '');
+    // Remove Obsidian wiki-link images from excerpt
+    const excerptWithoutImages = firstParagraph.replace(/!\[\[.*?\]\]/g, '').trim();
+    excerpt = excerptWithoutImages.slice(0, 100) + (excerptWithoutImages.length > 100 ? '...' : '');
   }
 
   // Convert Obsidian wiki links to standard markdown images
