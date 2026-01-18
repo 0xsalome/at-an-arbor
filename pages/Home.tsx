@@ -214,13 +214,6 @@ const Home: React.FC = () => {
         </section>
       ))}
 
-            <div className="absolute bottom-8 text-text-inv/10 dark:text-text-main/10 font-mono text-xs writing-vertical">
-              Vol. {index + 2}
-            </div>
-          </div>
-        </section>
-      ))}
-
       {/* Footer / End Section */}
       <section className="snap-start h-screen w-full grid grid-cols-[2fr_1fr]">
         <div className="bg-paper-white dark:bg-ink-black flex items-center justify-center flex-col font-mono text-xs text-gray-400 dark:text-gray-500 relative overflow-hidden">
