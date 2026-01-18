@@ -34,10 +34,10 @@ const SimplePage: React.FC<SimplePageProps> = ({ type }) => {
               <ul className="space-y-8">
                 {BLOG_POSTS.map(post => (
                   <li key={post.slug} className="group">
-                    <Link to={`/blog/${post.slug}`} className="block">
+                    <a href={`/at-an-arbor/blog/${post.slug}`} className="block">
                       <div className="font-mono text-xs text-gray-500 mb-1">{post.updated}</div>
                       <h2 className="text-2xl font-serif font-bold group-hover:underline decoration-1 underline-offset-4">{post.title}</h2>
-                    </Link>
+                    </a>
                   </li>
                 ))}
               </ul>
@@ -49,7 +49,7 @@ const SimplePage: React.FC<SimplePageProps> = ({ type }) => {
               <h1 className="text-4xl font-mono font-bold mb-12">Poetry Collection</h1>
               <div className="flex overflow-x-auto gap-4 pb-4 md:grid md:grid-cols-2 md:gap-8 md:overflow-visible snap-x snap-mandatory">
                 {POEMS.map(poem => (
-                  <Link to={`/poems/${poem.slug}`} key={poem.slug} className="flex-shrink-0 w-48 md:w-auto block p-8 bg-ink-black text-text-inv group hover:scale-[1.02] transition-transform duration-500 snap-start">
+                  <Link to={`/at-an-arbor/poems/${poem.slug}`} key={poem.slug} className="flex-shrink-0 w-48 md:w-auto block p-8 bg-ink-black text-text-inv group hover:scale-[1.02] transition-transform duration-500 snap-start">
                      <div className="writing-vertical h-48 w-full">
                         <span className="font-mono text-xs text-gray-500 mb-4">{poem.updated}</span>
                         <h2 className="text-xl font-serif font-bold border-l border-gray-600 pl-2 group-hover:border-white transition-colors">{poem.title}</h2>
@@ -72,7 +72,7 @@ const SimplePage: React.FC<SimplePageProps> = ({ type }) => {
                       dangerouslySetInnerHTML={{ __html: moment.content }}
                     />
                     <div className="mt-6">
-                      <Link to={`/moments/${moment.slug}`} className="text-xs font-mono text-gray-400 hover:text-text-main dark:hover:text-text-inv transition-colors">
+                      <Link to={`/at-an-arbor/moments/${moment.slug}`} className="text-xs font-mono text-gray-400 hover:text-text-main dark:hover:text-text-inv transition-colors">
                         [PERMALINK]
                       </Link>
                     </div>

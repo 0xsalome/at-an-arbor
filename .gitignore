@@ -27,3 +27,4 @@ dist-ssr
 # Project Context for AI
 PROJECT_CONTEXT.md
 repomix-output.md
+.astro

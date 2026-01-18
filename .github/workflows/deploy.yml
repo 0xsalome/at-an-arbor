@@ -30,6 +30,9 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Install Astro dependencies
+        run: cd astro-blog && npm ci
+
       - name: Build
         run: npm run build
 

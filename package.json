@@ -5,11 +5,15 @@
   "type": "module",
   "scripts": {
     "dev": "node scripts/copy-images.js && vite",
+    "dev:astro": "cd astro-blog && npm run dev",
+    "build:astro": "cd astro-blog && npm run build",
+    "build:react": "vite build --outDir dist-react",
+    "build:merge": "node scripts/merge-builds.js",
+    "build": "npm run copy-images && npm run build:astro && npm run build:react && npm run build:merge && npm run rss && npm run sitemap",
+    "preview": "vite preview --outDir dist",
     "rss": "node scripts/generate-rss.js",
     "sitemap": "node scripts/generate-sitemap.js",
     "copy-images": "node scripts/copy-images.js",
-    "build": "node scripts/copy-images.js && node scripts/generate-rss.js && node scripts/generate-sitemap.js && vite build",
-    "preview": "vite preview",
     "publish": "node scripts/publish.js"
   },
   "dependencies": {

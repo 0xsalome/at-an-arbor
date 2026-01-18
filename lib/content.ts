@@ -84,6 +84,15 @@ function parseMarkdownFile(
     return `![](/at-an-arbor/images/${folderName}/${encodedName})`;
   });
 
+  // Convert [[slug]] to internal links (blog only)
+  if (type === 'blog') {
+    const articleLinkRegex = /(?<!!)(\[\[([^\]|]+?)(?:\|([^\]]+?))?\]\])/g;
+    content = content.replace(articleLinkRegex, (match, fullMatch, slug, displayText) => {
+      const text = displayText || slug;
+      return `[${text}](/at-an-arbor/blog/${slug})`;
+    });
+  }
+
   // Extract images from markdown
   const imageRegex = /!\[.*?\]\((.*?)\)/g;
   const images: string[] = [];
@@ -104,6 +113,7 @@ function parseMarkdownFile(
     }),
     rawContent: content,
     images: images.length > 0 ? images : undefined,
+    unlisted: data.unlisted === 'true' || data.unlisted === true,
   };
 }
 
@@ -131,12 +141,13 @@ function sortByUpdated(items: ContentItem[]): ContentItem[] {
 }
 
 // Export sorted content
-export const BLOG_POSTS = sortByUpdated(allBlogPosts);
+export const BLOG_POSTS = sortByUpdated(allBlogPosts).filter(item => !item.unlisted);
 export const POEMS = sortByUpdated(allPoems);
 export const MOMENTS = sortByUpdated(allMoments);
 
 // Combined blog + moments for left column (sorted by updated)
-export const LEFT_COLUMN_CONTENT = sortByUpdated([...allBlogPosts, ...allMoments]);
+export const LEFT_COLUMN_CONTENT = sortByUpdated([...allBlogPosts, ...allMoments])
+  .filter(item => !item.unlisted);
 
 // Get single item by slug and type
 export function getContentBySlug(

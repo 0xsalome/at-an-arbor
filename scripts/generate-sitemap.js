@@ -35,12 +35,17 @@ function readMarkdownFiles(dir, type) {
   return files.map(file => {
     const content = fs.readFileSync(path.join(fullPath, file), 'utf-8');
     const { data } = parseFrontmatter(content);
+
+    if (data.unlisted === 'true' || data.unlisted === true) {
+      return null;
+    }
+
     const slug = file.replace('.md', '');
     const lastmod = data.updated || data.date || '';
 
     // URL mapping based on type
     const urlMap = {
-      blog: `${SITE_URL}/#/blog/${slug}`,
+      blog: `${SITE_URL}/blog/${slug}`,
       poem: `${SITE_URL}/#/poems/${slug}`,
       moment: `${SITE_URL}/#/moments/${slug}`,
     };
@@ -49,7 +54,7 @@ function readMarkdownFiles(dir, type) {
       url: urlMap[type],
       lastmod,
     };
-  });
+  }).filter(item => item !== null);
 }
 
 // Generate sitemap XML

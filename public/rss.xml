@@ -6,8 +6,56 @@
     <description>digital garden</description>
     <language>ja</language>
     <atom:link href="https://0xsalome.github.io/at-an-arbor/rss.xml" rel="self" type="application/rss+xml"/>
-    <lastBuildDate>Thu, 15 Jan 2026 02:02:13 GMT</lastBuildDate>
+    <lastBuildDate>Sun, 18 Jan 2026 13:36:12 GMT</lastBuildDate>
     
+    <item>
+      <title>2026-01-18</title>
+      <link>https://0xsalome.github.io/at-an-arbor/#/moments/2026-01-18-2</link>
+      <guid>https://0xsalome.github.io/at-an-arbor/#/moments/2026-01-18-2</guid>
+      <pubDate>Sun, 18 Jan 2026 19:48:00 GMT</pubDate>
+      <description>新年会。小学生の子ども達はあん肝も好物なのだとか、 大人っぽいK-popを歌って踊ってた。 昔ながらの大人と子供の垣根が、現代は良い意味で薄くなってきている気がした ![[CDAB639C-B941-45E6-A658-D8ED11F3287A.jpeg]]</description>
+      <category>moment</category>
+    </item>
+    <item>
+      <title>2026-01-18</title>
+      <link>https://0xsalome.github.io/at-an-arbor/#/moments/2026-01-18</link>
+      <guid>https://0xsalome.github.io/at-an-arbor/#/moments/2026-01-18</guid>
+      <pubDate>Sun, 18 Jan 2026 17:42:00 GMT</pubDate>
+      <description>Less is moreの心持ちでゆきましょ</description>
+      <category>moment</category>
+    </item>
+    <item>
+      <title>Test Article A</title>
+      <link>https://0xsalome.github.io/at-an-arbor/blog/test-article-a</link>
+      <guid>https://0xsalome.github.io/at-an-arbor/blog/test-article-a</guid>
+      <pubDate>Sun, 18 Jan 2026 00:00:00 GMT</pubDate>
+      <description>This references [[digital-gardening]] and [[test-article-b]].</description>
+      <category>blog</category>
+    </item>
+    <item>
+      <title>Test Article B</title>
+      <link>https://0xsalome.github.io/at-an-arbor/blog/test-article-b</link>
+      <guid>https://0xsalome.github.io/at-an-arbor/blog/test-article-b</guid>
+      <pubDate>Sun, 18 Jan 2026 00:00:00 GMT</pubDate>
+      <description>Content here. Links to [[test-article-a]].</description>
+      <category>blog</category>
+    </item>
+    <item>
+      <title>2026-01-17</title>
+      <link>https://0xsalome.github.io/at-an-arbor/#/moments/2026-01-17</link>
+      <guid>https://0xsalome.github.io/at-an-arbor/#/moments/2026-01-17</guid>
+      <pubDate>Sat, 17 Jan 2026 18:45:00 GMT</pubDate>
+      <description>魅力的な技術的アップデートや新たな機能が多くて、 設定に時間がかかったり、トークン節約のセットアップに トークン浪費したり中々上手くいかない、、 一旦全て見なかったことにしようかな</description>
+      <category>moment</category>
+    </item>
+    <item>
+      <title>2026-01-15</title>
+      <link>https://0xsalome.github.io/at-an-arbor/#/moments/2026-01-15</link>
+      <guid>https://0xsalome.github.io/at-an-arbor/#/moments/2026-01-15</guid>
+      <pubDate>Thu, 15 Jan 2026 20:54:00 GMT</pubDate>
+      <description>作りたかったwebアプリのMVP、機能は概ね出来そうだけど UIデザインがAI感を抜け出せなくて全然わくわく出来ない、、 アプリの設計に沿ったUIって難しい</description>
+      <category>moment</category>
+    </item>
     <item>
       <title>2026-01-14</title>
       <link>https://0xsalome.github.io/at-an-arbor/#/moments/2026-01-14</link>
@@ -82,8 +130,8 @@
     </item>
     <item>
       <title>test</title>
-      <link>https://0xsalome.github.io/at-an-arbor/#/blog/test</link>
-      <guid>https://0xsalome.github.io/at-an-arbor/#/blog/test</guid>
+      <link>https://0xsalome.github.io/at-an-arbor/blog/test</link>
+      <guid>https://0xsalome.github.io/at-an-arbor/blog/test</guid>
       <pubDate>Tue, 06 Jan 2026 10:58:00 GMT</pubDate>
       <description>test</description>
       <category>blog</category>
@@ -118,54 +166,6 @@
       <guid>https://0xsalome.github.io/at-an-arbor/#/poems/2025.10.21</guid>
       <pubDate>Sun, 04 Jan 2026 11:03:00 GMT</pubDate>
       <description>あたまにゾウを飼っている   何事にも動じず  優しいまなざしで  </description>
-      <category>poem</category>
-    </item>
-    <item>
-      <title>テスト投稿</title>
-      <link>https://0xsalome.github.io/at-an-arbor/#/moments/2026-01-03-photo</link>
-      <guid>https://0xsalome.github.io/at-an-arbor/#/moments/2026-01-03-photo</guid>
-      <pubDate>Sat, 03 Jan 2026 21:00:00 GMT</pubDate>
-      <description>お手伝いで撮影をしてきました、openが今から待ち遠しいです。</description>
-      <category>moment</category>
-    </item>
-    <item>
-      <title>test</title>
-      <link>https://0xsalome.github.io/at-an-arbor/#/moments/2026-01-03-test2</link>
-      <guid>https://0xsalome.github.io/at-an-arbor/#/moments/2026-01-03-test2</guid>
-      <pubDate>Sat, 03 Jan 2026 14:26:00 GMT</pubDate>
-      <description>スマホアプリのgithubに慣れるため、 暫くは手動でpush</description>
-      <category>moment</category>
-    </item>
-    <item>
-      <title>00</title>
-      <link>https://0xsalome.github.io/at-an-arbor/#/moments/2026-01-03-test</link>
-      <guid>https://0xsalome.github.io/at-an-arbor/#/moments/2026-01-03-test</guid>
-      <pubDate>Sat, 03 Jan 2026 14:15:00 GMT</pubDate>
-      <description>test</description>
-      <category>moment</category>
-    </item>
-    <item>
-      <title>朝の光(AI)</title>
-      <link>https://0xsalome.github.io/at-an-arbor/#/blog/morning-light</link>
-      <guid>https://0xsalome.github.io/at-an-arbor/#/blog/morning-light</guid>
-      <pubDate>Sat, 15 Nov 2025 08:00:00 GMT</pubDate>
-      <description>自動化テスト２</description>
-      <category>blog</category>
-    </item>
-    <item>
-      <title>朝のコーヒー (AI)</title>
-      <link>https://0xsalome.github.io/at-an-arbor/#/moments/first-coffee</link>
-      <guid>https://0xsalome.github.io/at-an-arbor/#/moments/first-coffee</guid>
-      <pubDate>Fri, 10 Oct 2025 08:15:00 GMT</pubDate>
-      <description>今日も一杯から始まる。</description>
-      <category>moment</category>
-    </item>
-    <item>
-      <title>反響 (AI)</title>
-      <link>https://0xsalome.github.io/at-an-arbor/#/poems/echo</link>
-      <guid>https://0xsalome.github.io/at-an-arbor/#/poems/echo</guid>
-      <pubDate>Wed, 08 Oct 2025 19:45:00 GMT</pubDate>
-      <description>声は壁に当たり 形を変えて戻ってくる</description>
       <category>poem</category>
     </item>
   </channel>

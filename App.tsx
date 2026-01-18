@@ -1,5 +1,5 @@
 import React from 'react';
-import { HashRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
 import ContentDetail from './pages/ContentDetail';
 import SimplePage from './pages/SimplePage';
@@ -13,16 +13,16 @@ const App: React.FC = () => {
       <div className="antialiased text-text-main bg-paper-white min-h-screen">
         <Comet />
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/blog/:slug" element={<ContentDetail type="blog" />} />
-          <Route path="/poems/:slug" element={<ContentDetail type="poem" />} />
-          <Route path="/moments/:slug" element={<ContentDetail type="moment" />} />
-          <Route path="/compost" element={<SimplePage type="compost" />} />
-          <Route path="/underground" element={<Underground />} />
-          <Route path="/blog" element={<SimplePage type="blog-list" />} />
-          <Route path="/poems" element={<SimplePage type="poem-list" />} />
-          <Route path="/moments" element={<SimplePage type="moment-list" />} />
-          <Route path="/fieldwork" element={<Fieldwork />} />
+          <Route path="/at-an-arbor/" element={<Home />} />
+          <Route path="/at-an-arbor/poems/:slug" element={<ContentDetail type="poem" />} />
+          <Route path="/at-an-arbor/moments/:slug" element={<ContentDetail type="moment" />} />
+          <Route path="/at-an-arbor/compost" element={<SimplePage type="compost" />} />
+          <Route path="/at-an-arbor/underground" element={<Underground />} />
+          <Route path="/at-an-arbor/blog" element={<SimplePage type="blog-list" />} />
+          <Route path="/at-an-arbor/poems" element={<SimplePage type="poem-list" />} />
+          <Route path="/at-an-arbor/moments" element={<SimplePage type="moment-list" />} />
+          <Route path="/at-an-arbor/fieldwork" element={<Fieldwork />} />
+          <Route path="/at-an-arbor/*" element={<div>404</div>} />
         </Routes>
       </div>
     </Router>

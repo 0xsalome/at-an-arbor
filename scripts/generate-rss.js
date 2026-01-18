@@ -39,13 +39,18 @@ function readMarkdownFiles(dir, type) {
     const { data, content: body } = parseFrontmatter(content);
     const slug = file.replace('.md', '');
 
+    // Skip unlisted items
+    if (data.unlisted === 'true' || data.unlisted === true) {
+      return null;
+    }
+
     // Get excerpt
     const firstParagraph = body.trim().split('\n\n')[0] || '';
     const excerpt = firstParagraph.slice(0, 200).replace(/\n/g, ' ');
 
     // URL mapping based on type
     const urlMap = {
-      blog: `${SITE_URL}/#/blog/${slug}`,
+      blog: `${SITE_URL}/blog/${slug}`,
       poem: `${SITE_URL}/#/poems/${slug}`,
       moment: `${SITE_URL}/#/moments/${slug}`,
     };
@@ -58,7 +63,7 @@ function readMarkdownFiles(dir, type) {
       excerpt,
       url: urlMap[type] || `${SITE_URL}/#/${type}/${slug}`
     };
-  });
+  }).filter(item => item !== null);
 }
 
 // Escape XML special characters

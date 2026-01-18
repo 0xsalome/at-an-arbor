@@ -1,0 +1,32 @@
+---
+import { getCollection } from 'astro:content';
+import BlogPost from '../../layouts/BlogPost.astro';
+import { buildBacklinksMap, getBacklinksForSlug } from '../../utils/backlinks';
+
+export async function getStaticPaths() {
+  // unlisted記事も含めて全て取得（直リンクでアクセス可能にするため）
+  const blogEntries = await getCollection('blog');
+
+  const backlinksMap = await buildBacklinksMap(blogEntries);
+
+  return blogEntries.map((entry) => ({
+    params: { slug: entry.slug },
+    props: {
+      entry,
+      backlinks: getBacklinksForSlug(entry.slug, backlinksMap),
+    },
+  }));
+}
+
+const { entry, backlinks } = Astro.props;
+const { Content } = await entry.render();
+---
+
+<BlogPost
+  title={entry.data.title}
+  date={entry.data.date}
+  updated={entry.data.updated || entry.data.date}
+  backlinks={backlinks}
+>
+  <Content />
+</BlogPost>

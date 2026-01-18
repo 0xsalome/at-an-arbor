@@ -83,3 +83,67 @@ npm run publish ~/my-vault/drafts/new-post.md blog
 
 - Content workflow: Edit in Obsidian → Copy to content/ folder → git push
 - Hosted on GitHub Pages (https://0xsalome.github.io/at-an-arbor/)
+
+## Astro + React ハイブリッド構成
+
+### アーキテクチャ
+- **ブログ詳細ページ**: Astroで静的HTML生成（SEO最適化、WikiLink、バックリンク）
+- **ホーム/一覧ページ**: React SPA（インタラクティブなUI）
+- **Poem/Moment**: React SPA（既存のまま）
+
+### ビルドコマンド
+```bash
+npm run build       # フルビルド（Astro + React + マージ + RSS + Sitemap）
+npm run dev         # React開発サーバー
+npm run dev:astro   # Astro開発サーバー
+npm run preview     # ビルド結果のプレビュー
+```
+
+### WikiLink機能
+記事内で`[[slug]]`または`[[slug|表示テキスト]]`と書くと、自動的に`/at-an-arbor/blog/slug`へのリンクに変換されます。
+
+**例**:
+```markdown
+詳しくは[[digital-gardening]]を参照。
+[[terminology|用語集]]もご覧ください。
+```
+
+### バックリンク
+各記事の末尾に「📎 REFERENCED BY」セクションが自動生成され、その記事を参照している他の記事が表示されます。
+
+### unlisted記事
+frontmatterに`unlisted: true`を設定すると、メモ/リファレンス記事として扱われます。
+
+**動作**:
+- ホーム画面に非表示
+- RSS配信されない
+- 直リンク（`/at-an-arbor/blog/slug`）でアクセス可能
+- WikiLinkで参照可能
+- バックリンクに表示される
+
+**例**:
+```yaml
+---
+title: 用語集
+unlisted: true
+---
+```
+
+### ディレクトリ構造
+```
+/Users/r/src/at-an-arbor/
+├── astro-blog/           # Astroプロジェクト
+│   ├── src/
+│   │   ├── pages/blog/[slug].astro
+│   │   ├── layouts/BlogPost.astro
+│   │   └── utils/
+│   │       ├── wikilinks.ts
+│   │       └── backlinks.ts
+│   └── astro.config.ts
+├── src/                  # React SPA
+├── content/              # Markdown（共有）
+├── public/               # 静的ファイル（共有）
+├── scripts/
+│   └── merge-builds.js   # ビルド統合
+└── dist/                 # 最終出力
+```

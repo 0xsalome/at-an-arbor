@@ -10,6 +10,7 @@ export interface ContentItem {
   content: string;       // HTML
   rawContent: string;    // Original Markdown
   images?: string[];
+  unlisted?: boolean;
 }
 
 // Legacy types for backward compatibility during migration
