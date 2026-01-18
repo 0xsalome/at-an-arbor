@@ -25,26 +25,6 @@ const { title, date, updated, backlinks } = Astro.props;
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;700&family=Noto+Serif+JP:wght@400;700&family=JetBrains+Mono&display=swap" rel="stylesheet">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script is:inline>
-      tailwind.config = {
-        darkMode: 'class',
-        theme: {
-          extend: {
-            colors: {
-              'paper-white': '#f8f7f4',
-              'ink-black': '#383c3c',
-              'text-main': '#111111',
-              'text-inv': '#f5f5f5',
-            },
-            fontFamily: {
-              serif: ['"Shippori Mincho"', '"Noto Serif JP"', 'serif'],
-              mono: ['"JetBrains Mono"', 'monospace'],
-            },
-          },
-        },
-      };
-    </script>
     <script is:inline>
       (function() {
         const isDark = localStorage.getItem('darkMode') === 'true';

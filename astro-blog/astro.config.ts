@@ -10,7 +10,7 @@ export default defineConfig({
   integrations: [
     react(),
     tailwind({
-      applyBaseStyles: false, // 既存のスタイルを維持
+      applyBaseStyles: true, // Tailwindベーススタイルを適用
     }),
     mdx(),
   ],
