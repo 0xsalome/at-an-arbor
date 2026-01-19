@@ -31,6 +31,33 @@ const { title, date, updated, backlinks } = Astro.props;
         if (isDark) document.documentElement.classList.add('dark');
       })();
     </script>
+    <style is:global>
+      /* WikiLinkスタイル - グローバル */
+      .prose .wikilink {
+        color: #7c3aed !important;
+        text-decoration: underline;
+        text-decoration-style: dotted;
+        text-decoration-thickness: 2px;
+        text-underline-offset: 3px;
+        font-weight: 500;
+        transition: all 0.2s ease;
+      }
+      .prose .wikilink:hover {
+        color: #6d28d9 !important;
+        text-decoration-color: #6d28d9;
+        background-color: rgba(124, 58, 237, 0.1);
+        padding: 0 4px;
+        border-radius: 3px;
+      }
+      .dark .prose .wikilink {
+        color: #c4b5fd !important;
+        text-decoration-color: #c4b5fd;
+      }
+      .dark .prose .wikilink:hover {
+        color: #e9d5ff !important;
+        background-color: rgba(196, 181, 253, 0.15);
+      }
+    </style>
     <style>
       /* Proseスタイル（Tailwind Typography互換） */
       .prose {
@@ -95,31 +122,6 @@ const { title, date, updated, backlinks } = Astro.props;
       :global(.dark) .prose :where(h1):not(:where([class~="not-prose"] *)),
       :global(.dark) .prose :where(h2):not(:where([class~="not-prose"] *)) {
         color: #f9fafb;
-      }
-      /* WikiLinkスタイル */
-      .prose .wikilink {
-        color: #7c3aed;
-        text-decoration: underline;
-        text-decoration-style: dotted;
-        text-decoration-thickness: 2px;
-        text-underline-offset: 3px;
-        font-weight: 500;
-        transition: all 0.2s ease;
-      }
-      .prose .wikilink:hover {
-        color: #6d28d9;
-        text-decoration-color: #6d28d9;
-        background-color: rgba(124, 58, 237, 0.1);
-        padding: 0 4px;
-        border-radius: 3px;
-      }
-      :global(.dark) .prose .wikilink {
-        color: #c4b5fd;
-        text-decoration-color: #c4b5fd;
-      }
-      :global(.dark) .prose .wikilink:hover {
-        color: #e9d5ff;
-        background-color: rgba(196, 181, 253, 0.15);
       }
     </style>
   </head>
