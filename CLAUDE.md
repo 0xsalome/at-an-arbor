@@ -63,6 +63,12 @@ npm run publish ~/my-vault/drafts/new-post.md blog
 - Usage: Save research findings, codebase patterns, architectural decisions, and in-progress work
 - See `.claude/skills/agent-memory/SKILL.md` for detailed instructions
 
+### Design System
+- Location: `.claude/skills/design-system/`
+- Purpose: サイト全体の一貫したUIコンポーネント定義（リンクスタイル、カラーパレットなど）
+- Usage: 新しいコンポーネント作成時に参照。リンクスタイルは自動適用される
+- See `.claude/skills/design-system/SKILL.md` for detailed specifications
+
 ## Efficiency Guidelines
 
 ### Recommended Subagents
