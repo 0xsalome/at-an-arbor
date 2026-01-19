@@ -1,5 +1,6 @@
 ---
 import type { Backlink } from '../utils/backlinks';
+import '../styles/global.css';
 
 interface Props {
   title: string;
@@ -31,32 +32,6 @@ const { title, date, updated, backlinks } = Astro.props;
         if (isDark) document.documentElement.classList.add('dark');
       })();
     </script>
-    <style is:global>
-      /* リンク統一スタイル - 全てのリンクを紫色に */
-      .prose a,
-      .prose .wikilink {
-        color: #7c3aed !important;
-        text-decoration: none;
-        font-weight: 500;
-        transition: all 0.2s ease;
-      }
-      .prose a:hover,
-      .prose .wikilink:hover {
-        color: #6d28d9 !important;
-        background-color: rgba(124, 58, 237, 0.1);
-        padding: 0 4px;
-        border-radius: 3px;
-      }
-      .dark .prose a,
-      .dark .prose .wikilink {
-        color: #c4b5fd !important;
-      }
-      .dark .prose a:hover,
-      .dark .prose .wikilink:hover {
-        color: #e9d5ff !important;
-        background-color: rgba(196, 181, 253, 0.15);
-      }
-    </style>
     <style>
       /* Proseスタイル（Tailwind Typography互換） */
       .prose {
