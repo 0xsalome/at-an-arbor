@@ -8,4 +8,4 @@ type: blog
 [[morning-light]]の記事について
 [[quiet-night|こちらは]]別のAIブログ
 
-![[AD349677-9236-471C-9B89-587B3644C3FA_4_5005_c.jpeg]]
+![](./images/AD349677-9236-471C-9B89-587B3644C3FA_4_5005_c.jpeg)
