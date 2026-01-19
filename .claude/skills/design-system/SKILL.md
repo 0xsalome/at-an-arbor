@@ -2,6 +2,87 @@
 
 このスキルは、at-an-arborサイトのデザインシステムを定義し、一貫したUIコンポーネントの使用を保証します。
 
+## タイポグラフィ
+
+### フォントファミリー
+
+**メインフォント（本文・タイトル）:**
+- `font-serif`: Shippori Mincho, Noto Serif JP, serif
+- 用途: 記事本文、タイトル、詩の本文
+
+**モノスペースフォント:**
+- `font-mono`: JetBrains Mono, monospace
+- 用途: 日付、メタ情報、コードブロック
+
+**ピクセルフォント:**
+- `font-pixel`: Press Start 2P, cursive (英字)
+- `font-pixel-jp`: DotGothic16, sans-serif (日本語)
+- 用途: 特殊な装飾
+
+### フォント設定
+
+```html
+<link href="https://fonts.googleapis.com/css2?family=DotGothic16&family=Press+Start+2P&family=Noto+Serif+JP:wght@300;400;700&family=Shippori+Mincho:wght@400;600&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+```
+
+### Tailwind設定
+
+```javascript
+fontFamily: {
+  serif: ['"Shippori Mincho"', '"Noto Serif JP"', 'serif'],
+  mono: ['"JetBrains Mono"', 'monospace'],
+  pixel: ['"Press Start 2P"', 'cursive'],
+  'pixel-jp': ['"DotGothic16"', 'sans-serif'],
+}
+```
+
+## カラーパレット
+
+### ベースカラー
+
+**背景色:**
+- `paper-white`: `#f8f7f4` (ライトモード背景)
+- `ink-black`: `#383c3c` (ダークモード背景)
+
+**テキストカラー:**
+- `text-main`: `#111111` (ライトモード本文)
+- `text-inv`: `#f5f5f5` (ダークモード本文)
+
+**記事本文（詳細）:**
+- ライトモード: `text-gray-800` (`#1f2937`)
+- ダークモード: `text-gray-200` (`#e5e7eb`)
+
+### Tailwind設定
+
+```javascript
+colors: {
+  'paper-white': '#f8f7f4',
+  'ink-black': '#383c3c',
+  'text-main': '#111111',
+  'text-inv': '#f5f5f5',
+}
+```
+
+### 使用例
+
+**Poem（ダークモード固定）:**
+```tsx
+<div className="bg-ink-black text-text-inv">
+  <div className="font-serif text-gray-300">
+    詩の本文
+  </div>
+</div>
+```
+
+**Blog/Moment（ライト・ダークモード対応）:**
+```tsx
+<div className="bg-paper-white dark:bg-ink-black text-text-main dark:text-text-inv">
+  <article className="prose prose-stone dark:prose-invert prose-lg font-serif leading-loose text-gray-800 dark:text-gray-200">
+    記事本文
+  </article>
+</div>
+```
+
 ## リンクスタイル
 
 ### 定義
@@ -124,6 +205,41 @@ Tailwindのクラスを直接指定する場合は、以下のクラスを使用
 - **!important使用**: 他のスタイルに上書きされないよう`!important`を使用しています
 - **ホバーアニメーション**: ホバー時に背景色が表示される際、0.2秒のトランジションが適用されます
 
+## まとめ
+
+### 記事本文の標準スタイル
+
+**Astro (BlogPost.astro):**
+```tsx
+<article class="prose prose-stone dark:prose-invert prose-lg font-serif leading-loose">
+  <!-- 本文 -->
+</article>
+```
+
+**React (ContentDetail.tsx):**
+```tsx
+<article className="prose prose-stone dark:prose-invert prose-lg font-serif leading-loose text-gray-800 dark:text-gray-200">
+  <!-- 本文 -->
+</article>
+```
+
+### ページレイアウトの標準スタイル
+
+**ライト・ダークモード対応:**
+```tsx
+<div className="min-h-screen bg-paper-white dark:bg-ink-black text-text-main dark:text-text-inv">
+  <!-- コンテンツ -->
+</div>
+```
+
+**詩ページ（ダークモード固定）:**
+```tsx
+<div className="h-screen bg-ink-black text-text-inv">
+  <!-- コンテンツ -->
+</div>
+```
+
 ### 更新履歴
 
 - 2026-01-19: 初版作成、リンクスタイルを紫色に統一、下線を削除
+- 2026-01-19: タイポグラフィとカラーパレット定義を追加
