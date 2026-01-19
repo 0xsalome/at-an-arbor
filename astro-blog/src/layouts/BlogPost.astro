@@ -32,27 +32,26 @@ const { title, date, updated, backlinks } = Astro.props;
       })();
     </script>
     <style is:global>
-      /* WikiLinkスタイル - グローバル */
+      /* リンク統一スタイル - 全てのリンクを紫色に */
+      .prose a,
       .prose .wikilink {
         color: #7c3aed !important;
-        text-decoration: underline;
-        text-decoration-style: dotted;
-        text-decoration-thickness: 2px;
-        text-underline-offset: 3px;
+        text-decoration: none;
         font-weight: 500;
         transition: all 0.2s ease;
       }
+      .prose a:hover,
       .prose .wikilink:hover {
         color: #6d28d9 !important;
-        text-decoration-color: #6d28d9;
         background-color: rgba(124, 58, 237, 0.1);
         padding: 0 4px;
         border-radius: 3px;
       }
+      .dark .prose a,
       .dark .prose .wikilink {
         color: #c4b5fd !important;
-        text-decoration-color: #c4b5fd;
       }
+      .dark .prose a:hover,
       .dark .prose .wikilink:hover {
         color: #e9d5ff !important;
         background-color: rgba(196, 181, 253, 0.15);
@@ -130,7 +129,7 @@ const { title, date, updated, backlinks } = Astro.props;
       <!-- Sidebar -->
       <aside class="w-full md:w-1/6 p-6 md:p-12 border-b md:border-b-0 md:border-r border-gray-200 dark:border-gray-700">
         <nav class="space-y-6">
-          <a href="/at-an-arbor/" class="block text-sm font-mono hover:underline">← HOME</a>
+          <a href="/at-an-arbor/" class="block text-sm font-mono text-purple-600 dark:text-purple-300 hover:text-purple-700 dark:hover:text-purple-200 transition-colors">← HOME</a>
           <div class="text-xs font-mono text-gray-500 dark:text-gray-400">
             at an arbor
           </div>
@@ -162,7 +161,7 @@ const { title, date, updated, backlinks } = Astro.props;
                 <li>
                   <a
                     href={`/at-an-arbor/blog/${link.slug}`}
-                    class="text-blue-600 dark:text-blue-400 hover:underline font-serif text-lg"
+                    class="text-purple-600 dark:text-purple-300 hover:text-purple-700 dark:hover:text-purple-200 transition-colors font-serif text-lg"
                   >
                     {link.title}
                   </a>
@@ -174,7 +173,7 @@ const { title, date, updated, backlinks } = Astro.props;
         )}
 
         <footer class="mt-16 pt-8 border-t border-gray-200 dark:border-gray-700 flex justify-between font-mono text-sm">
-          <a href="/at-an-arbor/" class="hover:underline">← BACK</a>
+          <a href="/at-an-arbor/" class="text-purple-600 dark:text-purple-300 hover:text-purple-700 dark:hover:text-purple-200 transition-colors">← BACK</a>
           <span class="text-gray-500 dark:text-gray-400">END OF RECORD</span>
         </footer>
       </main>
