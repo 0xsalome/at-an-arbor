@@ -97,13 +97,29 @@ const { title, date, updated, backlinks } = Astro.props;
         color: #f9fafb;
       }
       /* WikiLinkスタイル */
-      .wikilink {
+      .prose .wikilink {
         color: #7c3aed;
         text-decoration: underline;
         text-decoration-style: dotted;
+        text-decoration-thickness: 2px;
+        text-underline-offset: 3px;
+        font-weight: 500;
+        transition: all 0.2s ease;
       }
-      .dark .wikilink {
-        color: #a78bfa;
+      .prose .wikilink:hover {
+        color: #6d28d9;
+        text-decoration-color: #6d28d9;
+        background-color: rgba(124, 58, 237, 0.1);
+        padding: 0 4px;
+        border-radius: 3px;
+      }
+      .dark .prose .wikilink {
+        color: #c4b5fd;
+        text-decoration-color: #c4b5fd;
+      }
+      .dark .prose .wikilink:hover {
+        color: #e9d5ff;
+        background-color: rgba(196, 181, 253, 0.15);
       }
     </style>
   </head>

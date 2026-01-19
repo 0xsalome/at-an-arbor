@@ -114,9 +114,16 @@ async function publish(sourcePath, type) {
     fs.mkdirSync(targetImagesDir, { recursive: true });
   }
 
-  // Copy markdown file
-  fs.copyFileSync(resolvedSource, targetFile);
-  console.log(`✓ Copied: ${fileName} → content/${type}/`);
+  // Convert Obsidian image syntax ![[image.png]] to Markdown ![](./images/image.png)
+  let convertedContent = content;
+  const imageRegex = /!\[\[(.*?)\]\]/g;
+  convertedContent = convertedContent.replace(imageRegex, (match, imageName) => {
+    return `![](./images/${imageName.trim()})`;
+  });
+
+  // Write converted markdown file
+  fs.writeFileSync(targetFile, convertedContent, 'utf-8');
+  console.log(`✓ Copied and converted: ${fileName} → content/${type}/`);
 
   // Find and copy images with compression
   const images = extractWikiLinkImages(content);
