@@ -90,7 +90,7 @@ const BlogList: React.FC = () => {
                     key={post.slug}
                     className="group"
                   >
-                    <a href={`/at-an-arbor/blog/${post.slug}`} className="block">
+                    <a href={`${import.meta.env.BASE_URL}blog/${post.slug}/`} className="block">
                         <div className="font-mono text-xs text-gray-500 mb-1">
                         {post.updated || post.date} / {post.tags && post.tags[0] ? post.tags[0].toUpperCase() : 'BLOG'}
                         {post.updated && post.updated !== post.date && (

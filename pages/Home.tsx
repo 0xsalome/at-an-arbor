@@ -170,7 +170,7 @@ const Home: React.FC = () => {
                 <FadeIn key={blog.slug}>
                   <article
                     className="blog-entry cursor-pointer group"
-                    onClick={() => window.location.href = `/at-an-arbor/blog/${blog.slug}`}
+                    onClick={() => window.location.href = `${import.meta.env.BASE_URL}blog/${blog.slug}/`}
                   >
                     <div className="font-mono text-xs text-gray-400 dark:text-gray-500 mb-1">
                       {blog.updated} <span className="mx-1">/</span> {blog.tags && blog.tags[0] ? blog.tags[0].toUpperCase() : 'BLOG'}
