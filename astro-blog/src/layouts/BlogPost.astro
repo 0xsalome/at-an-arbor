@@ -1,5 +1,7 @@
 ---
 import { marked } from 'marked';
+import DOMPurify from 'isomorphic-dompurify';
+import { convertWikiLinksInHTML } from '../utils/wikilinks';
 import type { Backlink } from '../utils/backlinks';
 import '../styles/global.css';
 
@@ -190,7 +192,7 @@ const { title, date, updated, backlinks, latestLog } = Astro.props;
               </h3>
               <div
                 class="prose prose-stone dark:prose-invert prose-lg font-serif leading-loose"
-                set:html={marked(version.content)}
+                set:html={DOMPurify.sanitize(convertWikiLinksInHTML(marked(version.content)))}
               />
             </div>
           ))}

@@ -87,6 +87,27 @@ export function remarkWikiLinks() {
 }
 
 /**
+ * HTML文字列内のWikiLink記法を変換する関数
+ *
+ * marked()で変換されたHTML内に残っている [[slug]] 記法を
+ * HTMLリンクに変換します。
+ *
+ * @param html - 変換対象のHTML文字列
+ * @returns WikiLinkが変換されたHTML文字列
+ */
+export function convertWikiLinksInHTML(html: string): string {
+  // WikiLink [[slug]] または [[slug|display]] のパターン
+  // 画像の ![[image]] は除外するため、前に!がないことを確認
+  const wikiLinkRegex = /(?<!!)(\[\[([^\]|]+?)(?:\|([^\]]+?))?\]\])/g;
+
+  return html.replace(wikiLinkRegex, (match, full, slug, displayText) => {
+    const text = displayText ? displayText.trim() : slug.trim();
+    const normalizedSlug = slug.trim();
+    return `<a href="${BASE_PATH}/blog/${normalizedSlug}" class="wikilink">${text}</a>`;
+  });
+}
+
+/**
  * 使用方法（astro.config.mjs）:
  *
  * import { remarkWikiLinks } from './astro-wikilinks';
