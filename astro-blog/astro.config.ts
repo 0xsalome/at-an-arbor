@@ -16,6 +16,8 @@ export default defineConfig({
   ],
   markdown: {
     remarkPlugins: [remarkWikiLinks],
+    gfm: true, // GitHub Flavored Markdown を有効化
+    breaks: true, // Obsidianスタイルの改行を有効化
   },
   build: {
     format: 'directory',
