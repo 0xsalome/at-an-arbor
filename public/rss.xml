@@ -6,7 +6,7 @@
     <description>digital garden</description>
     <language>ja</language>
     <atom:link href="https://0xsalome.github.io/at-an-arbor/rss.xml" rel="self" type="application/rss+xml"/>
-    <lastBuildDate>Tue, 20 Jan 2026 05:29:42 GMT</lastBuildDate>
+    <lastBuildDate>Tue, 20 Jan 2026 12:05:37 GMT</lastBuildDate>
     
     <item>
       <title>Digital_Gardening (AI)</title>
@@ -49,30 +49,6 @@
       <category>moment</category>
     </item>
     <item>
-      <title>タグ確認（Blog）</title>
-      <link>https://0xsalome.github.io/at-an-arbor/blog/tag-test-blog</link>
-      <guid>https://0xsalome.github.io/at-an-arbor/blog/tag-test-blog</guid>
-      <pubDate>Tue, 20 Jan 2026 00:00:00 GMT</pubDate>
-      <description>これは「blog」タグのテスト記事です。 Blogタブで表示され、Essayタブでは表示されないはずです。</description>
-      <category>blog</category>
-    </item>
-    <item>
-      <title>タグ確認（Essay）</title>
-      <link>https://0xsalome.github.io/at-an-arbor/blog/tag-test-essay</link>
-      <guid>https://0xsalome.github.io/at-an-arbor/blog/tag-test-essay</guid>
-      <pubDate>Tue, 20 Jan 2026 00:00:00 GMT</pubDate>
-      <description>これは「essay」タグのテスト記事です。 Essayタブで表示され、Blogタブでは表示されないはずです。</description>
-      <category>blog</category>
-    </item>
-    <item>
-      <title>test</title>
-      <link>https://0xsalome.github.io/at-an-arbor/blog/test</link>
-      <guid>https://0xsalome.github.io/at-an-arbor/blog/test</guid>
-      <pubDate>Invalid Date</pubDate>
-      <description>test</description>
-      <category>blog</category>
-    </item>
-    <item>
       <title>2026-01-19</title>
       <link>https://0xsalome.github.io/at-an-arbor/#/moments/2026-01-19</link>
       <guid>https://0xsalome.github.io/at-an-arbor/#/moments/2026-01-19</guid>
@@ -103,30 +79,6 @@
       <pubDate>Sat, 17 Jan 2026 18:45:00 GMT</pubDate>
       <description>魅力的な技術的アップデートや新たな機能が多くて、 設定に時間がかかったり、トークン節約のセットアップに トークン浪費したり中々上手くいかない、、 一旦全て見なかったことにしようかな</description>
       <category>moment</category>
-    </item>
-    <item>
-      <title>Updated表示テスト</title>
-      <link>https://0xsalome.github.io/at-an-arbor/blog/updated-test</link>
-      <guid>https://0xsalome.github.io/at-an-arbor/blog/updated-test</guid>
-      <pubDate>Sat, 17 Jan 2026 00:00:00 GMT</pubDate>
-      <description>この記事はUpdated表示のテストです。</description>
-      <category>blog</category>
-    </item>
-    <item>
-      <title>過去バージョンテスト</title>
-      <link>https://0xsalome.github.io/at-an-arbor/blog/versions-test</link>
-      <guid>https://0xsalome.github.io/at-an-arbor/blog/versions-test</guid>
-      <pubDate>Sat, 17 Jan 2026 00:00:00 GMT</pubDate>
-      <description># 最新版（2026-01-17）</description>
-      <category>blog</category>
-    </item>
-    <item>
-      <title>リンク確認test</title>
-      <link>https://0xsalome.github.io/at-an-arbor/blog/リンク確認test</link>
-      <guid>https://0xsalome.github.io/at-an-arbor/blog/リンク確認test</guid>
-      <pubDate>Invalid Date</pubDate>
-      <description>[[morning-light]]の記事について [[quiet-night|こちらは]]別のAIブログ</description>
-      <category>blog</category>
     </item>
     <item>
       <title>2026-01-15</title>
@@ -166,6 +118,54 @@
       <guid>https://0xsalome.github.io/at-an-arbor/#/moments/2026-01-11</guid>
       <pubDate>Sun, 11 Jan 2026 02:57:00 GMT</pubDate>
       <description>あゝ湯水のようにclaude codeを使いたい。   だけど制限があるから工夫が生まれて、 結果はどうであれ工夫の過程はどれも尊い</description>
+      <category>moment</category>
+    </item>
+    <item>
+      <title>2026-01-10</title>
+      <link>https://0xsalome.github.io/at-an-arbor/#/moments/2026-01-10</link>
+      <guid>https://0xsalome.github.io/at-an-arbor/#/moments/2026-01-10</guid>
+      <pubDate>Sat, 10 Jan 2026 11:21:00 GMT</pubDate>
+      <description>githubに少し慣れてきて、今はどんなweb/snsよりも 面白く眺めてる。土壌や菌糸みたい</description>
+      <category>moment</category>
+    </item>
+    <item>
+      <title>2026-01-09</title>
+      <link>https://0xsalome.github.io/at-an-arbor/#/moments/2026-01-09-2</link>
+      <guid>https://0xsalome.github.io/at-an-arbor/#/moments/2026-01-09-2</guid>
+      <pubDate>Fri, 09 Jan 2026 04:30:00 GMT</pubDate>
+      <description>deny listを知って全てのAIエージェント固有のセキュリティ設定を見直した。 これは初めに設定すべきだったやつ、でもこれで少し安心</description>
+      <category>moment</category>
+    </item>
+    <item>
+      <title>2026-01-09</title>
+      <link>https://0xsalome.github.io/at-an-arbor/#/moments/2026-01-09</link>
+      <guid>https://0xsalome.github.io/at-an-arbor/#/moments/2026-01-09</guid>
+      <pubDate>Fri, 09 Jan 2026 01:51:00 GMT</pubDate>
+      <description>claude codeのトークン難民、ついにgemini cliも応答しなくなり、 antigravityも一定量使うと落ちる‥…仕方なく散歩に出る</description>
+      <category>moment</category>
+    </item>
+    <item>
+      <title>2026-01-06 12:15</title>
+      <link>https://0xsalome.github.io/at-an-arbor/#/moments/2026-01-06-personal-site-boom</link>
+      <guid>https://0xsalome.github.io/at-an-arbor/#/moments/2026-01-06-personal-site-boom</guid>
+      <pubDate>Tue, 06 Jan 2026 12:15:00 GMT</pubDate>
+      <description>個人サイトブームというのがきたら楽しいだろうなぁ。来るかわからないその時のために相互リンク用のバナーを作っておく、、</description>
+      <category>moment</category>
+    </item>
+    <item>
+      <title>2026-01-06 12:00</title>
+      <link>https://0xsalome.github.io/at-an-arbor/#/moments/2026-01-06-meaningless</link>
+      <guid>https://0xsalome.github.io/at-an-arbor/#/moments/2026-01-06-meaningless</guid>
+      <pubDate>Tue, 06 Jan 2026 12:00:00 GMT</pubDate>
+      <description>意味あるもので溢れる世の中で、ここだけは意味のないものを許容したい。ということで謎のページが増えつつある‥</description>
+      <category>moment</category>
+    </item>
+    <item>
+      <title>無題のファイル</title>
+      <link>https://0xsalome.github.io/at-an-arbor/#/moments/2025.01.04</link>
+      <guid>https://0xsalome.github.io/at-an-arbor/#/moments/2025.01.04</guid>
+      <pubDate>Sun, 04 Jan 2026 11:54:00 GMT</pubDate>
+      <description>詩って何だろう。これは詩なのか   とは思いつつ詩の会で書いたものを載せていく。スマホ投稿に慣れてきた</description>
       <category>moment</category>
     </item>
   </channel>
