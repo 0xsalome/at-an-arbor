@@ -9,6 +9,7 @@ const blogCollection = defineCollection({
     updated: z.coerce.date().optional().transform(d => d ? d.toISOString().slice(0, 10) : undefined),
     type: z.literal('blog'),
     unlisted: z.boolean().optional().default(false),
+    tags: z.array(z.string()).optional().default(['blog']),
     versions: z.array(z.object({
       date: z.string(),
       content: z.string(),

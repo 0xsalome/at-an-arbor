@@ -173,7 +173,7 @@ const Home: React.FC = () => {
                     onClick={() => window.location.href = `/at-an-arbor/blog/${blog.slug}`}
                   >
                     <div className="font-mono text-xs text-gray-400 dark:text-gray-500 mb-1">
-                      {blog.updated} <span className="mx-1">/</span> BLOG
+                      {blog.updated} <span className="mx-1">/</span> {blog.tags && blog.tags[0] ? blog.tags[0].toUpperCase() : 'BLOG'}
                       {blog.updated !== blog.date && (
                         <span> ᚛ Regrown</span>
                       )}

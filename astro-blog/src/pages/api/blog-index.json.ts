@@ -19,6 +19,7 @@ export const GET: APIRoute = async () => {
       title: entry.data.title,
       date: entry.data.date,
       updated: entry.data.updated || entry.data.date,
+      tags: entry.data.tags || ['blog'],
       type: 'blog',
       excerpt,
     };

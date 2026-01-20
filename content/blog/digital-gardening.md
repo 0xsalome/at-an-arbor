@@ -1,8 +1,10 @@
 ---
-title: "Digital_Gardening (AI)"
-date: 2025-10-05
-updated: 2025-10-05 15:30
-type: "blog"
+title: Digital_Gardening (AI)
+date: 2025-10-05T00:00:00.000Z
+updated: '2025-10-05 15:30'
+type: blog
+tags:
+  - blog
 ---
 
 ウェブサイトは建築ではなく、庭であるべきだ。

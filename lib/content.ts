@@ -3,9 +3,9 @@ import DOMPurify from 'dompurify';
 import type { ContentItem, ContentType } from '../types';
 
 // Simple frontmatter parser (no Node.js dependencies)
-function parseFrontmatter(raw: string): { data: Record<string, string>; content: string } {
+function parseFrontmatter(raw: string): { data: Record<string, any>; content: string } {
   const lines = raw.split('\n');
-  const data: Record<string, string> = {};
+  const data: Record<string, any> = {};
   let contentStart = 0;
 
   if (lines[0]?.trim() === '---') {
@@ -14,7 +14,17 @@ function parseFrontmatter(raw: string): { data: Record<string, string>; content:
         contentStart = i + 1;
         break;
       }
-      const match = lines[i]?.match(/^(\w+):\s*"?([^"]*)"?$/);
+      const line = lines[i]?.trim();
+      
+      // Handle tags array: tags: [blog, essay]
+      const tagsMatch = line?.match(/^tags:\s*\[(.*?)\]/);
+      if (tagsMatch) {
+        data['tags'] = tagsMatch[1].split(',').map(t => t.trim().replace(/['"]/g, ''));
+        continue;
+      }
+
+      // Handle standard key-value
+      const match = line?.match(/^(\w+):\s*"?([^"]*)"?$/);
       if (match) {
         data[match[1]] = match[2];
       }
@@ -114,6 +124,7 @@ function parseMarkdownFile(
     rawContent: content,
     images: images.length > 0 ? images : undefined,
     unlisted: data.unlisted === 'true' || data.unlisted === true,
+    tags: data.tags,
   };
 }
 

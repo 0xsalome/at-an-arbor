@@ -1,24 +1,26 @@
 ---
-title: "過去バージョンテスト"
-slug: "versions-test"
-date: 2024-01-15
-updated: 2026-01-17
+title: 過去バージョンテスト
+slug: versions-test
+date: 2024-01-15T00:00:00.000Z
+updated: 2026-01-17T00:00:00.000Z
 type: blog
 versions:
-  - date: "2024-01-15"
+  - date: '2024-01-15'
     content: |
       # 初版
 
       これは初版の内容です。
 
       初めて書いた記事なので、まだ短いです。
-  - date: "2025-06-10"
+  - date: '2025-06-10'
     content: |
       # 改訂版
 
       一部を書き直しました。
 
       内容を追加して、より詳しくなりました。
+tags:
+  - blog
 ---
 
 # 最新版（2026-01-17）
