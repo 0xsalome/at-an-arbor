@@ -62,14 +62,8 @@ renderer.image = ({ href, title, text }) => {
 // Helper to safely format date
 function safeFormatDate(dateStr: string | undefined): string {
   if (!dateStr) return '';
-  try {
-    const d = new Date(dateStr);
-    // Check if date is valid
-    if (isNaN(d.getTime())) return dateStr; 
-    return d.toISOString();
-  } catch (e) {
-    return dateStr || '';
-  }
+  // Return original string to preserve local time (avoid UTC conversion)
+  return dateStr;
 }
 
 function parseMarkdownFile(
