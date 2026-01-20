@@ -31,8 +31,8 @@ const PoemSection: React.FC<{ poem: ContentItem; onScrollReady?: (el: HTMLElemen
         <FadeIn className="h-[78%] md:h-full md:max-h-[80vh] w-max md:w-full md:max-w-4xl flex justify-start md:justify-center">
           <div className="writing-vertical h-full text-right select-none pr-8 md:pr-0">
             <div className="ml-8 md:ml-16 flex flex-col gap-4 text-xs font-mono text-gray-500 tracking-widest border-l border-gray-700 pl-2">
-              <span>{poem.updated}</span>
-              {poem.date && <span>{poem.date}</span>}
+              <span>{poem.updated.slice(0, 10)}</span>
+              {poem.date && <span>{poem.date.slice(0, 10)}</span>}
               <span>POEM</span>
             </div>
             <h1 className="text-3xl md:text-6xl font-serif font-bold ml-8 md:ml-24 leading-normal">
@@ -124,7 +124,7 @@ const ContentDetail: React.FC<ContentDetailProps> = ({ type }) => {
         <FadeIn>
           <header className={`mb-12 ${type !== 'moment' ? 'border-b border-gray-900 dark:border-gray-600 pb-8' : ''}`}>
             <div className="font-mono text-sm text-gray-500 mb-4">
-              {item.updated}
+              {type === 'moment' ? item.updated.slice(0, 16).replace('T', ' ') : item.updated.slice(0, 10)}
               <span className="mx-2">/</span>
               {type === 'moment' ? 'MOMENT' : 'BLOG'}
             </div>

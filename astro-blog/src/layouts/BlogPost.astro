@@ -121,12 +121,12 @@ const { title, date, updated, backlinks } = Astro.props;
       <!-- Main content -->
       <main class="w-full md:w-5/6 p-6 md:p-16 lg:p-24 max-w-4xl mx-auto">
         <header class="mb-12 border-b border-gray-900 dark:border-gray-600 pb-8">
-          <div class="font-mono text-sm text-gray-500 dark:text-gray-400 mb-4">
-            {updated}
-            {updated !== date && <span> (Published: {date})</span>}
-            <span class="mx-2">/</span>
+          <div class="font-mono text-sm text-gray-500 dark:text-gray-400 mb-4" data-astro-cid-bvzihdzo>
+            {updated.slice(0, 10)}
+            {updated > date && <span> (Published: {date.slice(0, 10)})</span>}
+            <span class="mx-2" data-astro-cid-bvzihdzo>/</span>
             BLOG
-            {updated !== date && <span> / ᚛ Regrown</span>}
+            {updated > date && <span> / ᚛ Regrown</span>}
           </div>
           <h1 class="text-3xl md:text-5xl font-serif font-bold leading-tight">{title}</h1>
         </header>
@@ -149,7 +149,7 @@ const { title, date, updated, backlinks } = Astro.props;
                   {Astro.props.versions.map((version: Version) => (
                     <div class="version border-l-2 border-gray-300 dark:border-gray-700 pl-6">
                       <h3 class="text-sm font-mono text-gray-500 dark:text-gray-400 mb-4">
-                        {version.date}
+                        {version.date.slice(0, 10)}
                         {version.date === date && ' (Original)'}
                       </h3>
                       <div
@@ -178,7 +178,7 @@ const { title, date, updated, backlinks } = Astro.props;
                   >
                     {link.title}
                   </a>
-                  <span class="text-sm text-gray-500 dark:text-gray-400 ml-2">({link.updated})</span>
+                  <span class="text-sm text-gray-500 dark:text-gray-400 ml-2">({link.updated.slice(0, 10)})</span>
                 </li>
               ))}
             </ul>
@@ -186,7 +186,7 @@ const { title, date, updated, backlinks } = Astro.props;
         )}
 
         <footer class="mt-16 pt-8 border-t border-gray-200 dark:border-gray-700 flex justify-between font-mono text-sm">
-          <a href="/at-an-arbor/" class="text-purple-600 dark:text-purple-300 hover:text-purple-700 dark:hover:text-purple-200 transition-colors">← BACK</a>
+          <a href="/at-an-arbor/blog/" class="text-purple-600 dark:text-purple-300 hover:text-purple-700 dark:hover:text-purple-200 transition-colors">← BACK</a>
           <span class="text-gray-500 dark:text-gray-400">END OF RECORD</span>
         </footer>
       </main>

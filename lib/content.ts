@@ -26,7 +26,7 @@ function parseFrontmatter(raw: string): { data: Record<string, any>; content: st
       // Handle standard key-value
       const match = line?.match(/^(\w+):\s*"?([^"]*)"?$/);
       if (match) {
-        data[match[1]] = match[2];
+        data[match[1]] = match[2].trim();
       }
     }
   }
@@ -58,6 +58,19 @@ const renderer = new marked.Renderer();
 renderer.image = ({ href, title, text }) => {
   return `<img src="${href}" alt="${text || ''}" title="${title || ''}" class="lazy-load" loading="lazy" decoding="async" />`;
 };
+
+// Helper to safely format date
+function safeFormatDate(dateStr: string | undefined): string {
+  if (!dateStr) return '';
+  try {
+    const d = new Date(dateStr);
+    // Check if date is valid
+    if (isNaN(d.getTime())) return dateStr; 
+    return d.toISOString();
+  } catch (e) {
+    return dateStr || '';
+  }
+}
 
 function parseMarkdownFile(
   filePath: string,
@@ -114,8 +127,8 @@ function parseMarkdownFile(
   return {
     slug,
     title: data.title || slug,
-    date: data.date || '',
-    updated: data.updated || data.date || '',
+    date: safeFormatDate(data.date),
+    updated: safeFormatDate(data.updated) || safeFormatDate(data.date),
     type,
     excerpt,
     content: DOMPurify.sanitize(marked.parse(content, { renderer, breaks: true }) as string, {
@@ -145,9 +158,9 @@ const allMoments = parseFiles(momentFiles, 'moment');
 // Sort by updated date (newest first)
 function sortByUpdated(items: ContentItem[]): ContentItem[] {
   return [...items].sort((a, b) => {
-    const dateA = new Date(a.updated).getTime();
-    const dateB = new Date(b.updated).getTime();
-    return dateB - dateA;
+    if (a.updated > b.updated) return -1;
+    if (a.updated < b.updated) return 1;
+    return 0;
   });
 }
 

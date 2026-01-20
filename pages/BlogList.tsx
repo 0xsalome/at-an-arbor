@@ -92,8 +92,8 @@ const BlogList: React.FC = () => {
                   >
                     <a href={`${import.meta.env.BASE_URL}blog/${post.slug}/`} className="block">
                         <div className="font-mono text-xs text-gray-500 mb-1">
-                        {post.updated || post.date} / {post.tags && post.tags[0] ? post.tags[0].toUpperCase() : 'BLOG'}
-                        {post.updated && post.updated !== post.date && (
+                        {(post.updated || post.date).slice(0, 10)} / {post.tags && post.tags[0] ? post.tags[0].toUpperCase() : 'BLOG'}
+                        {post.updated && post.updated.slice(0, 10) > post.date.slice(0, 10) && (
                             <span> / ᚛ Regrown</span>
                         )}
                         </div>

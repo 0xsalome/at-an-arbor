@@ -104,7 +104,7 @@ const Home: React.FC = () => {
                     onClick={() => navigate('/moments')}
                   >
                     <div className="font-mono text-xs text-gray-400 dark:text-gray-500 mb-1">
-                      {moment.updated} <span className="mx-1">/</span> MOMENT
+                      {moment.updated.slice(0, 16).replace('T', ' ')} <span className="mx-1">/</span> MOMENT
                     </div>
                     <p className="font-serif leading-relaxed text-gray-700 dark:text-gray-300 text-sm md:text-base group-hover:text-gray-900 dark:group-hover:text-gray-100 transition-colors">
                       {moment.excerpt}
@@ -173,8 +173,8 @@ const Home: React.FC = () => {
                     onClick={() => window.location.href = `${import.meta.env.BASE_URL}blog/${blog.slug}/`}
                   >
                     <div className="font-mono text-xs text-gray-400 dark:text-gray-500 mb-1">
-                      {blog.updated} <span className="mx-1">/</span> {blog.tags && blog.tags[0] ? blog.tags[0].toUpperCase() : 'BLOG'}
-                      {blog.updated !== blog.date && (
+                      {blog.updated.slice(0, 10)} <span className="mx-1">/</span> {blog.tags && blog.tags[0] ? blog.tags[0].toUpperCase() : 'BLOG'}
+                      {blog.updated.slice(0, 10) > blog.date.slice(0, 10) && (
                         <span> ᚛ Regrown</span>
                       )}
                     </div>

@@ -36,11 +36,11 @@ const SimplePage: React.FC<SimplePageProps> = ({ type }) => {
                   <li key={post.slug} className="group">
                     <a href={`/at-an-arbor/blog/${post.slug}`} className="block">
                       <div className="font-mono text-xs text-gray-500 mb-1">
-                        {post.updated}
-                        {post.updated !== post.date && (
+                        {post.updated.slice(0, 10)}
+                        {post.updated.slice(0, 10) !== post.date.slice(0, 10) && (
                           <span> / BLOG / ᚛ Regrown</span>
                         )}
-                        {post.updated === post.date && (
+                        {post.updated.slice(0, 10) === post.date.slice(0, 10) && (
                           <span> / BLOG</span>
                         )}
                       </div>
@@ -59,7 +59,7 @@ const SimplePage: React.FC<SimplePageProps> = ({ type }) => {
                 {POEMS.map(poem => (
                   <Link to={`/poems/${poem.slug}`} key={poem.slug} className="flex-shrink-0 w-48 md:w-auto block p-8 bg-ink-black text-text-inv group hover:scale-[1.02] transition-transform duration-500 snap-start">
                      <div className="writing-vertical h-48 w-full">
-                        <span className="font-mono text-xs text-gray-500 mb-4">{poem.updated}</span>
+                        <span className="font-mono text-xs text-gray-500 mb-4">{poem.updated.slice(0, 10)}</span>
                         <h2 className="text-xl font-serif font-bold border-l border-gray-600 pl-2 group-hover:border-white transition-colors">{poem.title}</h2>
                      </div>
                   </Link>
@@ -74,7 +74,7 @@ const SimplePage: React.FC<SimplePageProps> = ({ type }) => {
               <ul className="space-y-16">
                 {MOMENTS.map(moment => (
                   <li key={moment.slug} className="group border-b border-gray-100 dark:border-gray-800 pb-12 last:border-0">
-                    <div className="font-mono text-xs text-gray-400 mb-4">{moment.updated}</div>
+                    <div className="font-mono text-xs text-gray-400 mb-4">{moment.updated.slice(0, 16).replace('T', ' ')}</div>
                     <div 
                       className="prose prose-stone dark:prose-invert font-serif leading-loose text-gray-800 dark:text-gray-200"
                       dangerouslySetInnerHTML={{ __html: moment.content }}
