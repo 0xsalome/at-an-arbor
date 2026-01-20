@@ -58,14 +58,14 @@ export const StrataLayer: React.FC<StrataLayerProps> = ({ week, index, isActive,
   // Color logic
   let fill = "none";
   let stroke = "#1e293b";
-  let strokeWidth = 1;
-  
+  let strokeWidth = 2;
+
   if (isRich) {
     stroke = "#ffffff";
-    strokeWidth = 2;
+    strokeWidth = 4;
   } else if (!isEmpty) {
     stroke = "#4b5563";
-    strokeWidth = 1;
+    strokeWidth = 2;
   }
 
   return (
@@ -74,18 +74,19 @@ export const StrataLayer: React.FC<StrataLayerProps> = ({ week, index, isActive,
         onMouseEnter={onMouseEnter}
         onMouseLeave={onMouseLeave}
     >
-      <svg 
-        viewBox="0 0 1000 150" 
-        preserveAspectRatio="none" 
+      <svg
+        viewBox="0 0 1000 150"
+        preserveAspectRatio="none"
         className="w-full h-full drop-shadow-xl"
         style={{ filter: 'url(#displacementFilter)' }}
       >
-        <path 
-            d={pathData} 
-            fill="none" 
+        <path
+            d={pathData}
+            fill="none"
             stroke={stroke}
-            strokeWidth={isActive ? 3 : strokeWidth}
-            className="transition-all duration-300 opacity-80 hover:opacity-100"
+            strokeWidth={isActive ? strokeWidth * 1.5 : strokeWidth}
+            vectorEffect="non-scaling-stroke"
+            className="transition-all duration-300 opacity-90 hover:opacity-100"
         />
       </svg>
       
