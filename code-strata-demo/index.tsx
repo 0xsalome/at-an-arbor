@@ -1,10 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Link } from 'react-router-dom';
-import { StrataData } from '../lib/strata-types';
-import { fetchStrataData, analyzeStrata } from '../lib/github-strata';
-import { NoiseFilter } from '../components/underground/NoiseFilter';
-import { StrataLayer } from '../components/underground/StrataLayer';
-import { GeologicalReport } from '../components/underground/GeologicalReport';
+import { StrataData } from './lib/strata-types';
+import { fetchStrataData, analyzeStrata } from './lib/github-strata';
+import { NoiseFilter } from './components/NoiseFilter';
+import { StrataLayer } from './components/StrataLayer';
+import { GeologicalReport } from './components/GeologicalReport';
 
 const Underground: React.FC = () => {
   const [username, setUsername] = useState('0xsalome'); // Default to project owner
@@ -65,8 +64,15 @@ const Underground: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-black text-white selection:bg-white/20 selection:text-white font-mono overflow-x-hidden">
+    <div className="min-h-screen relative text-white selection:bg-white/20 selection:text-white font-mono overflow-x-hidden">
       <NoiseFilter />
+
+      {/* === Background with Grain === */}
+      <div className="fixed inset-0 bg-black -z-10" />
+      <div
+        className="fixed inset-0 bg-neutral-900 opacity-100 -z-10"
+        style={{ filter: 'url(#grainFilter)' }}
+      />
 
       {/* === Retro Terminal Effects === */}
 
@@ -88,10 +94,10 @@ const Underground: React.FC = () => {
          <div className="pointer-events-auto opacity-80 hover:opacity-100 transition-opacity">
              <pre className="font-mono text-[6px] md:text-[8px] leading-[1.1] text-white/90 whitespace-pre drop-shadow-[0_0_10px_rgba(255,255,255,0.5)]">
 {`
-  ____ ___  ____  _____   ____ _____ ____      _  _____  _
- / ___/ _ \\|  _ \\| ____| / ___|_   _|  _ \\    / \\|_   _|/ \\
-| |  | | | | | | |  _|   \\___ \\ | | | |_) |  / _ \\ | | / _ \\
-| |__| |_| | |_| | |___   ___) || | |  _ <  / ___ \\| |/ ___ \\
+  ____ ___  ____  _____   ____ _____ ____      _  _____  _    
+ / ___/ _ \\|  _ \\| ____| / ___|_   _|  _ \\    / \\|_   _|/ \\   
+| |  | | | | | | |  _|   \\___ \\ | | | |_) |  / _ \\ | | / _ \\  
+| |__| |_| | |_| | |___   ___) || | |  _ <  / ___ \\| |/ ___ \\ 
  \\____\\___/|____/|_____| |____/ |_| |_| \\_\\/_/   \\_\\_/_/   \\_\\
 `}
              </pre>
@@ -102,23 +108,10 @@ const Underground: React.FC = () => {
                  <p className="mt-1 text-[10px] font-mono text-white/60 tracking-widest uppercase">
                      {'>>'} Excavation Site: {data?.username || 'UNKNOWN'}
                  </p>
-                 <p className="mt-3 text-[9px] font-mono text-white/30 tracking-[0.4em] uppercase border-t border-white/10 pt-2">
-                     [ DEMO VERSION ]
-                 </p>
              </div>
          </div>
 
-         {/* Home Button */}
-         <Link
-           to="/"
-           className="pointer-events-auto opacity-60 hover:opacity-100 transition-opacity group"
-         >
-           <pre className="font-mono text-[8px] md:text-[10px] leading-none text-white/80 whitespace-pre border border-white/20 px-3 py-2 hover:border-white/40 hover:bg-white/5 transition-all">
-{`┌─────────┐
-│ ← HOME  │
-└─────────┘`}
-           </pre>
-         </Link>
+         {/* Right side form removed per user request */}
       </header>
 
       {/* Main Visualization Area */}
