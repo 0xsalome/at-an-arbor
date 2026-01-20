@@ -10,8 +10,10 @@ const blogCollection = defineCollection({
     type: z.literal('blog'),
     unlisted: z.boolean().optional().default(false),
     tags: z.array(z.string()).optional().default(['blog']),
+    latestLog: z.string().optional(),
     versions: z.array(z.object({
       date: z.string(),
+      summary: z.string().optional(),
       content: z.string(),
     })).optional(),
   }),

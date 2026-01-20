@@ -4,6 +4,7 @@ slug: versions-test
 date: 2024-01-15T00:00:00.000Z
 updated: 2026-01-17T00:00:00.000Z
 type: blog
+latestLog: "最新のライブラリの変更に合わせて、コードブロックの第2引数を修正。"
 versions:
   - date: '2024-01-15'
     content: |
@@ -13,6 +14,7 @@ versions:
 
       初めて書いた記事なので、まだ短いです。
   - date: '2025-06-10'
+    summary: "導入文をより分かりやすく書き換え。"
     content: |
       # 改訂版
 

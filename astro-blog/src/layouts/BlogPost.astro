@@ -5,6 +5,7 @@ import '../styles/global.css';
 
 interface Version {
   date: string;
+  summary?: string;
   content: string;
 }
 
@@ -14,9 +15,10 @@ interface Props {
   updated: string;
   backlinks: Backlink[];
   versions?: Version[];
+  latestLog?: string;
 }
 
-const { title, date, updated, backlinks } = Astro.props;
+const { title, date, updated, backlinks, latestLog } = Astro.props;
 ---
 
 <!DOCTYPE html>
@@ -131,35 +133,62 @@ const { title, date, updated, backlinks } = Astro.props;
           <h1 class="text-3xl md:text-5xl font-serif font-bold leading-tight">{title}</h1>
         </header>
 
+        {/* Change Log Section */}
+        <div class="mb-12 font-mono text-sm bg-gray-50 dark:bg-gray-900/50 p-6 rounded-sm border-l-2 border-gray-300 dark:border-gray-700">
+          <h2 class="font-bold mb-4 text-gray-500 dark:text-gray-400">᚛ Log</h2>
+          <ul class="space-y-3 text-gray-700 dark:text-gray-300">
+            {/* Latest Log */}
+            {latestLog && updated > date && (
+              <li class="grid grid-cols-[max-content_1fr] gap-4">
+                <span class="text-gray-500">{updated.slice(0, 10)}:</span>
+                <span>{latestLog}</span>
+              </li>
+            )}
+            
+            {/* Past Versions Logs */}
+            {Astro.props.versions && [...Astro.props.versions].reverse().map((version: Version) => (
+              version.summary && (
+                <li class="grid grid-cols-[max-content_1fr] gap-4">
+                  <span class="text-gray-500">{version.date.slice(0, 10)}:</span>
+                  <span>{version.summary}</span>
+                </li>
+              )
+            ))}
+
+            {/* Initial Commit */}
+            <li class="grid grid-cols-[max-content_1fr] gap-4">
+              <span class="text-gray-500">{date.slice(0, 10)}:</span>
+              <span>初版公開。</span>
+            </li>
+          </ul>
+        </div>
+
         <article class="prose prose-stone dark:prose-invert prose-lg font-serif leading-loose">
           <slot />
         </article>
 
         {Astro.props.versions && Astro.props.versions.length > 0 && (
           <>
-            <hr class="my-8 border-gray-300 dark:border-gray-700" />
+            <section class="past-versions mt-16 pt-8">
+              <h2 class="text-sm font-mono text-gray-500 dark:text-gray-400 mb-8 tracking-wider">
+                📜 PAST VERSIONS ({Astro.props.versions.length})
+              </h2>
 
-            <section class="past-versions">
-              <details>
-                <summary class="cursor-pointer text-sm font-mono text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200 transition-colors">
-                  📜 Past Versions ({Astro.props.versions.length})
-                </summary>
-
-                <div class="mt-6 space-y-8">
-                  {Astro.props.versions.map((version: Version) => (
-                    <div class="version border-l-2 border-gray-300 dark:border-gray-700 pl-6">
-                      <h3 class="text-sm font-mono text-gray-500 dark:text-gray-400 mb-4">
-                        {version.date.slice(0, 10)}
-                        {version.date === date && ' (Original)'}
-                      </h3>
-                      <div
-                        class="prose prose-stone dark:prose-invert prose-sm"
-                        set:html={marked(version.content)}
-                      />
-                    </div>
-                  ))}
-                </div>
-              </details>
+              <div class="space-y-12">
+                {Astro.props.versions.map((version: Version) => (
+                  <div class="version">
+                    <hr class="border-gray-300 dark:border-gray-700 mb-8" />
+                    <h3 class="font-mono text-gray-500 dark:text-gray-400 mb-6">
+                      {version.date.slice(0, 10)}
+                      {version.date === date && ' (Original)'}
+                    </h3>
+                    <div
+                      class="prose prose-stone dark:prose-invert prose-sm opacity-80"
+                      set:html={marked(version.content)}
+                    />
+                  </div>
+                ))}
+              </div>
             </section>
           </>
         )}
