@@ -31,6 +31,20 @@
   margin-top: 2em !important;
 }
 
+/**
+ * コードブロックと水平線の前後に大きな余白
+ * Obsidianで意図的に入れた空白を視覚的に再現
+ */
+.prose pre {
+  margin-top: 3em !important;
+  margin-bottom: 3em !important;
+}
+
+.prose hr {
+  margin-top: 3em !important;
+  margin-bottom: 3em !important;
+}
+
 /* ========================================
    リンク統一スタイル
    ======================================== */
