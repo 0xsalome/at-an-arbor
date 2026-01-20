@@ -28,3 +28,6 @@ dist-ssr
 PROJECT_CONTEXT.md
 repomix-output.md
 .astro
+
+# Inventory symlink (contains local environment info)
+INVENTORY.md

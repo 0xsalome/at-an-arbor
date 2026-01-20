@@ -55,18 +55,24 @@ npm run publish ~/my-vault/drafts/new-post.md blog
 # - Referenced images (![[image.png]]) → content/blog/images/
 ```
 
-## Skills
+## AI Partner Protocol
 
-### Agent Memory
-- Location: `.claude/skills/agent-memory/`
-- Purpose: Persistent memory space for storing knowledge that survives across conversations
-- Usage: Save research findings, codebase patterns, architectural decisions, and in-progress work
-- See `.claude/skills/agent-memory/SKILL.md` for detailed instructions
+**Important:** Claude acts as a development partner, automatically suggesting optimal tools, skills, and subagents based on context.
+
+- Detailed settings: See `agent.md`
+- Available tools inventory: See `INVENTORY.md` (auto-loaded at startup)
+
+### Required Protocols
+1. **Surgical Edit**: Apply 3-step process (Diagnosis → Approval → Surgery) for all code modifications
+2. **Gemini Workflow**: Role division - Claude (architecture) ⇔ Gemini (implementation)
+3. **Security Protocol**: Always perform XSS checks for input processing (WikiLink, etc.)
+
+## Project-Specific Skills
 
 ### Design System
 - Location: `.claude/skills/design-system/`
-- Purpose: サイト全体の一貫したUIコンポーネント定義（リンクスタイル、カラーパレットなど）
-- Usage: 新しいコンポーネント作成時に参照。リンクスタイルは自動適用される
+- Purpose: Consistent UI component definitions across the site (link styles, color palette, etc.)
+- Usage: Reference when creating new components. Link styles are auto-applied
 - See `.claude/skills/design-system/SKILL.md` for detailed specifications
 
 ## Efficiency Guidelines
@@ -90,55 +96,55 @@ npm run publish ~/my-vault/drafts/new-post.md blog
 - Content workflow: Edit in Obsidian → Copy to content/ folder → git push
 - Hosted on GitHub Pages (https://0xsalome.github.io/at-an-arbor/)
 
-## Astro + React ハイブリッド構成
+## Astro + React Hybrid Architecture
 
-### アーキテクチャ
-- **ブログ詳細ページ**: Astroで静的HTML生成（SEO最適化、WikiLink、バックリンク）
-- **ホーム/一覧ページ**: React SPA（インタラクティブなUI）
-- **Poem/Moment**: React SPA（既存のまま）
+### Architecture
+- **Blog detail pages**: Static HTML generation with Astro (SEO optimized, WikiLink, backlinks)
+- **Home/list pages**: React SPA (interactive UI)
+- **Poem/Moment**: React SPA (unchanged)
 
-### ビルドコマンド
+### Build Commands
 ```bash
-npm run build       # フルビルド（Astro + React + マージ + RSS + Sitemap）
-npm run dev         # React開発サーバー
-npm run dev:astro   # Astro開発サーバー
-npm run preview     # ビルド結果のプレビュー
+npm run build       # Full build (Astro + React + merge + RSS + Sitemap)
+npm run dev         # React dev server
+npm run dev:astro   # Astro dev server
+npm run preview     # Preview build output
 ```
 
-### WikiLink機能
-記事内で`[[slug]]`または`[[slug|表示テキスト]]`と書くと、自動的に`/at-an-arbor/blog/slug`へのリンクに変換されます。
+### WikiLink Feature
+Writing `[[slug]]` or `[[slug|display text]]` in articles automatically converts to links to `/at-an-arbor/blog/slug`.
 
-**例**:
+**Example**:
 ```markdown
-詳しくは[[digital-gardening]]を参照。
-[[terminology|用語集]]もご覧ください。
+See [[digital-gardening]] for details.
+Check out [[terminology|glossary]] as well.
 ```
 
-### バックリンク
-各記事の末尾に「📎 REFERENCED BY」セクションが自動生成され、その記事を参照している他の記事が表示されます。
+### Backlinks
+A "📎 REFERENCED BY" section is auto-generated at the end of each article, showing other articles that reference it.
 
-### unlisted記事
-frontmatterに`unlisted: true`を設定すると、メモ/リファレンス記事として扱われます。
+### Unlisted Articles
+Setting `unlisted: true` in frontmatter treats articles as memo/reference content.
 
-**動作**:
-- ホーム画面に非表示
-- RSS配信されない
-- 直リンク（`/at-an-arbor/blog/slug`）でアクセス可能
-- WikiLinkで参照可能
-- バックリンクに表示される
+**Behavior**:
+- Hidden from home screen
+- Not included in RSS feed
+- Accessible via direct link (`/at-an-arbor/blog/slug`)
+- Referenceable via WikiLink
+- Displayed in backlinks
 
-**例**:
+**Example**:
 ```yaml
 ---
-title: 用語集
+title: Glossary
 unlisted: true
 ---
 ```
 
-### ディレクトリ構造
+### Directory Structure
 ```
 /Users/r/src/at-an-arbor/
-├── astro-blog/           # Astroプロジェクト
+├── astro-blog/           # Astro project
 │   ├── src/
 │   │   ├── pages/blog/[slug].astro
 │   │   ├── layouts/BlogPost.astro
@@ -147,9 +153,9 @@ unlisted: true
 │   │       └── backlinks.ts
 │   └── astro.config.ts
 ├── src/                  # React SPA
-├── content/              # Markdown（共有）
-├── public/               # 静的ファイル（共有）
+├── content/              # Markdown (shared)
+├── public/               # Static files (shared)
 ├── scripts/
-│   └── merge-builds.js   # ビルド統合
-└── dist/                 # 最終出力
+│   └── merge-builds.js   # Build integration
+└── dist/                 # Final output
 ```

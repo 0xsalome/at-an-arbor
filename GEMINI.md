@@ -1,88 +1,81 @@
 # GEMINI.md
 
-## Communication
-- Respond in Japanese
-- Explain in a way that is easy for non-engineers to understand
-- Add brief explanations when using technical terms
-- Briefly explain the reason ("why") for each change
+> Gemini-specific AI configuration for at-an-arbor Digital Garden
 
-## Workflow
-- Prioritize security above all else
-- Propose options as needed and explain briefly
-- Explain what you will do before taking action, and proceed only after my approval
-- When possible, show demo pages or previews as we progress
-- Do not proceed based on assumptions; ask questions if anything is unclear
-- Break down complex tasks and confirm each step
+## 🎯 AI Partner Protocol (Gemini)
 
-## Safety Rules
-- Do not directly touch production environments or production data
-- Never commit or expose `.env` files or secrets
-- Always confirm before deleting or overwriting files
-- Break large changes into smaller steps and proceed incrementally
-- Confirm with me before adding external packages
-- Confirm with me before making API calls or sending data externally
+**Important:** At startup, reference these files:
+- `CLAUDE.md` - Project overview, communication rules, architecture, commands
+- `agent.md` - AI partner protocols (Surgical Edit, Security, token optimization)
+- `INVENTORY.md` - Available tools, skills, subagents, and plugins
 
-## Project Information
+### Required Protocols (from agent.md)
+1. **Surgical Edit**: Apply 3-step process (Diagnosis → Approval → Surgery) for all code modifications
+2. **Security Protocol**: Always perform XSS checks for input processing
+3. **Gemini Workflow**: Receive tasks from Claude, handoff architectural issues back to Claude
 
-- **Project purpose**: Digital Garden - A personal site for organically growing thoughts through blogs, poetry, and moments
-- **Technologies used**:
-  - React 19 / TypeScript / Vite
-  - react-router-dom (routing)
-  - gray-matter, marked (Markdown processing)
-- **Main folder structure**:
-  - `components/` - Shared UI components (Nav, FadeIn, Comet, CompostCanvas)
-  - `pages/` - Page components (Home, ContentDetail, SimplePage, etc.)
-  - `content/` - Markdown content (blog/, moments/, poem/)
-  - `public/` - Static files
-  - `scripts/` - Build scripts (RSS generation)
-- **Files/folders not to touch**:
-  - `node_modules/`, `dist/`, `.git/`
-  - Markdown files in `content/` (managed by Obsidian, do not edit unless instructed)
+## 🎨 Your Role (Gemini)
 
-## Development Commands
+### Primary Responsibilities
+- **UI component implementation**: Create/update React components with TypeScript
+- **Styling**: CSS, animations, responsive design (Tailwind CSS)
+- **Test creation**: Unit tests, integration tests for components and utilities
+- **Documentation**: Code comments, user-facing documentation generation
 
-```bash
-npm run dev      # Start development server
-npm run build    # Generate RSS + sitemap + build
-npm run preview  # Preview build output
-npm run publish <file> <type>  # Publish article with images (e.g., npm run publish ~/draft/post.md blog)
-```
-
-## Your Role (Gemini)
-
-As Gemini, you are responsible for:
-- **Component implementation**: Creating new React components, updating existing ones
-- **Styling**: CSS, animations, responsive design
-- **Test creation**: Writing tests for components and utilities
-- **Documentation**: Generating code comments and user-facing docs
-
-Leave these tasks to Claude:
-- Architecture and design decisions
+### Leave to Claude
+- Architecture decisions
 - Security review
 - Performance optimization strategies
-- Complex logic (RSS generation, routing structure)
-
-## AI Collaboration
-
-### Shared Context
-- **Agent Memory**: Read `.claude/skills/agent-memory/memories/` for project context, decisions, and background
-- Before starting work, check `memories/project-context/` for optimization plan and user intentions
-- Claude's instructions are in `CLAUDE.md`
-
-### Handoff Protocol
-1. Read agent-memory for context
-2. Update "Current Progress" section when completing tasks
-3. Add notes to "Development History" for significant changes
-
-## Notes
-
-- Content workflow: Edit in Obsidian (private vault) → `npm run publish` → git push
-- Hosted on GitHub Pages (https://0xsalome.github.io/at-an-arbor/)
-- Site philosophy: "Private garden that happens to be public" - avoid metrics, comments, over-categorization
+- Complex logic (RSS generation, routing structure, WikiLink parsing, backlinks)
 
 ---
 
-## Current Progress (2026-01-18)
+## 🚀 Auto-Suggestion Policy (Gemini)
+
+Proactively suggest optimal tools based on task context from INVENTORY.md:
+
+### Implementation Tasks
+- **Component creation** → `document-skills:frontend-design` skill for production-grade UI
+- **TypeScript types** → `javascript-typescript:typescript-pro` subagent for complex types
+- **Testing** → `javascript-testing-patterns` skill for comprehensive test strategies
+
+### CSS/Animation Tasks
+- **Performance optimization** → Suggest CSS best practices and bundle optimization
+- **Responsive design** → Reference `.claude/skills/design-system/` for consistency
+
+### Handoff to Claude When
+- **Architectural issues detected** → Use `workflows` skill to structure handoff
+- **Security concerns found** → Report to Claude immediately
+- **Performance bottlenecks identified** → Delegate to Claude for optimization strategy
+- **Complex logic required** → Beyond UI implementation scope
+
+### Suggestion Transparency
+All suggestions must include:
+- **Reason**: Why this tool is appropriate
+- **Benefit**: What will improve (quality, speed, maintainability)
+- **Confirmation**: Request user approval
+
+---
+
+## 🔄 Handoff Protocol
+
+### Receiving Tasks from Claude
+1. Check "Next Tasks" section in this file (updated by Claude)
+2. Read `.claude/skills/agent-memory/memories/` for context
+3. Implement assigned tasks following Surgical Edit protocol
+4. Update "Current Progress" when complete
+
+### Handing Off to Claude
+1. Use `workflows` skill to structure the handoff
+2. Document issue/task in "Next Tasks" section
+3. Notify user of handoff reason and scope
+4. Examples:
+   - "Detected routing architecture issue → Handing off to Claude"
+   - "WikiLink parsing logic needs security review → Escalating to Claude"
+
+---
+
+## 📊 Current Progress (2026-01-18)
 
 ### Completed by Claude & Gemini
 - **Astro Migration Project - Phase 1 (Completed)**
@@ -100,7 +93,7 @@ Leave these tasks to Claude:
 
 ---
 
-## Next Tasks
+## 📋 Next Tasks
 
 ### 1. Image Optimization (Assigned to Gemini - LOW PRIORITY)
 Compress large images to improve page load:
@@ -125,7 +118,7 @@ Add `stage` field to frontmatter and display badges in UI.
 
 ---
 
-## Development History
+## 📜 Development History
 
 ### 2026-01-18: Astro Migration Phase 1 (Gemini)
 - Migrated blog detail pages to Astro (Static HTML)
