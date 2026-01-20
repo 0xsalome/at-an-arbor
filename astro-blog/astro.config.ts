@@ -3,6 +3,7 @@ import react from '@astrojs/react';
 import tailwind from '@astrojs/tailwind';
 import mdx from '@astrojs/mdx';
 import remarkBreaks from 'remark-breaks';
+import rehypeExternalLinks from 'rehype-external-links';
 import { remarkWikiLinks } from './src/utils/wikilinks';
 
 export default defineConfig({
@@ -17,6 +18,15 @@ export default defineConfig({
   ],
   markdown: {
     remarkPlugins: [remarkBreaks, remarkWikiLinks],
+    rehypePlugins: [
+      [
+        rehypeExternalLinks,
+        {
+          target: '_blank',
+          rel: ['noopener', 'noreferrer'],
+        },
+      ],
+    ],
     gfm: true, // GitHub Flavored Markdown を有効化
   },
   build: {
