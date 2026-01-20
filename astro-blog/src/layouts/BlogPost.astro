@@ -134,64 +134,67 @@ const { title, date, updated, backlinks, latestLog } = Astro.props;
         </header>
 
         {/* Change Log Section */}
-        <div class="mb-12 font-mono text-sm bg-gray-50 dark:bg-gray-900/50 p-6 rounded-sm border-l-2 border-gray-300 dark:border-gray-700">
-          <h2 class="font-bold mb-4 text-gray-500 dark:text-gray-400">᚛ Log</h2>
-          <ul class="space-y-3 text-gray-700 dark:text-gray-300">
-            {/* Latest Log */}
-            {latestLog && updated > date && (
-              <li class="grid grid-cols-[max-content_1fr] gap-4">
-                <span class="text-gray-500">{updated.slice(0, 10)}:</span>
-                <span>{latestLog}</span>
-              </li>
-            )}
-            
-            {/* Past Versions Logs */}
-            {Astro.props.versions && [...Astro.props.versions].reverse().map((version: Version) => (
-              version.summary && (
-                <li class="grid grid-cols-[max-content_1fr] gap-4">
-                  <span class="text-gray-500">{version.date.slice(0, 10)}:</span>
-                  <span>{version.summary}</span>
+        {updated > date && (
+          <div class="mb-12 font-mono text-sm bg-gray-50 dark:bg-gray-800 p-6 rounded-sm border-l-2 border-gray-300 dark:border-gray-600">
+            <h2 class="font-bold mb-4 text-gray-500 dark:text-gray-400">᚛ Log</h2>
+            <ul class="flex flex-col text-gray-700 dark:text-gray-300 max-h-[7.5rem] overflow-y-auto pr-2 custom-scrollbar">
+              {/* Latest Log */}
+              {latestLog && (
+                <li class="grid grid-cols-[max-content_1fr] gap-4 py-1">
+                  <a href={`#version-${updated.slice(0, 10)}`} class="text-gray-500 dark:text-gray-400 hover:underline">
+                    {updated.slice(0, 10)}:
+                  </a>
+                  <span>{latestLog}</span>
                 </li>
-              )
-            ))}
+              )}
+              
+              {/* Past Versions Logs */}
+              {Astro.props.versions && [...Astro.props.versions].sort((a, b) => b.date.localeCompare(a.date)).map((version: Version) => (
+                version.summary && (
+                  <li class="grid grid-cols-[max-content_1fr] gap-4 py-1">
+                    <a href={`#version-${version.date.slice(0, 10)}`} class="text-gray-500 dark:text-gray-400 hover:underline">
+                      {version.date.slice(0, 10)}:
+                    </a>
+                    <span>{version.summary}</span>
+                  </li>
+                )
+              ))}
 
-            {/* Initial Commit */}
-            <li class="grid grid-cols-[max-content_1fr] gap-4">
-              <span class="text-gray-500">{date.slice(0, 10)}:</span>
-              <span>初版公開。</span>
-            </li>
-          </ul>
-        </div>
-
-        <article class="prose prose-stone dark:prose-invert prose-lg font-serif leading-loose">
-          <slot />
-        </article>
-
-        {Astro.props.versions && Astro.props.versions.length > 0 && (
-          <>
-            <section class="past-versions mt-16 pt-8">
-              <h2 class="text-sm font-mono text-gray-500 dark:text-gray-400 mb-8 tracking-wider">
-                📜 PAST VERSIONS ({Astro.props.versions.length})
-              </h2>
-
-              <div class="space-y-12">
-                {Astro.props.versions.map((version: Version) => (
-                  <div class="version">
-                    <hr class="border-gray-300 dark:border-gray-700 mb-8" />
-                    <h3 class="font-mono text-gray-500 dark:text-gray-400 mb-6">
-                      {version.date.slice(0, 10)}
-                      {version.date === date && ' (Original)'}
-                    </h3>
-                    <div
-                      class="prose prose-stone dark:prose-invert prose-sm opacity-80"
-                      set:html={marked(version.content)}
-                    />
-                  </div>
-                ))}
-              </div>
-            </section>
-          </>
+              {/* Initial Commit */}
+              <li class="grid grid-cols-[max-content_1fr] gap-4 py-1">
+                <a href={`#version-${date.slice(0, 10)}`} class="text-gray-500 dark:text-gray-400 hover:underline">
+                  {date.slice(0, 10)}:
+                </a>
+                <span>初版公開。</span>
+              </li>
+            </ul>
+          </div>
         )}
+
+        {/* Content Flow: Latest to Oldest */}
+        <div class="space-y-16">
+          {/* Latest Version */}
+          <div id={`version-${updated.slice(0, 10)}`}>
+            <article class="prose prose-stone dark:prose-invert prose-lg font-serif leading-loose">
+              <slot />
+            </article>
+          </div>
+
+          {/* Past Versions */}
+          {Astro.props.versions && [...Astro.props.versions].sort((a, b) => b.date.localeCompare(a.date)).map((version: Version) => (
+            <div class="version" id={`version-${version.date.slice(0, 10)}`}>
+              <hr class="border-gray-300 dark:border-gray-700 mb-12" />
+              <h3 class="font-mono text-gray-500 dark:text-gray-400 mb-8">
+                {version.date.slice(0, 10)}
+                {version.date === date && ' (Original)'}
+              </h3>
+              <div
+                class="prose prose-stone dark:prose-invert prose-lg font-serif leading-loose"
+                set:html={marked(version.content)}
+              />
+            </div>
+          ))}
+        </div>
 
         {backlinks.length > 0 && (
           <section class="mt-12 pt-8 border-t border-gray-200 dark:border-gray-700">
