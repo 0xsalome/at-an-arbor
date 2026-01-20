@@ -96,14 +96,18 @@ I recommend running the /security-sast command. Proceed?"
 Assess development task content and suggest optimal tools, skills, and subagents from INVENTORY.md.
 
 **Decision criteria:**
+- **TDD tasks**: Feature implementation, bug fixes, code creation → `tdd-architect` custom agent (enforces Red-Green-Refactor)
 - **Exploration tasks**: Multi-file investigation → Explore subagent
 - **Large implementations**: Complex feature additions → Plan mode
 - **Specialized domains**: TypeScript types, performance, UI, etc. → Specialized subagents
 - **Git operations**: Commits, PRs → commit skill
 - **Security**: Input processing (WikiLink, etc.) → security-sast command
 
-**Suggestion example (concise):**
+**Suggestion examples (concise):**
 ```
+"Feature implementation detected. tdd-architect agent enforces Test-Driven Development.
+Write tests first, then implementation. Proceed?"
+
 "Multi-file exploration detected. Explore subagent is optimal.
 Saves tokens. Proceed?"
 ```
