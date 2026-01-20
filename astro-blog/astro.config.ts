@@ -2,6 +2,7 @@ import { defineConfig } from 'astro/config';
 import react from '@astrojs/react';
 import tailwind from '@astrojs/tailwind';
 import mdx from '@astrojs/mdx';
+import remarkBreaks from 'remark-breaks';
 import { remarkWikiLinks } from './src/utils/wikilinks';
 
 export default defineConfig({
@@ -15,9 +16,8 @@ export default defineConfig({
     mdx(),
   ],
   markdown: {
-    remarkPlugins: [remarkWikiLinks],
+    remarkPlugins: [remarkBreaks, remarkWikiLinks],
     gfm: true, // GitHub Flavored Markdown を有効化
-    breaks: true, // Obsidianスタイルの改行を有効化
   },
   build: {
     format: 'directory',
