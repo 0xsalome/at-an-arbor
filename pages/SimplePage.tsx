@@ -35,7 +35,15 @@ const SimplePage: React.FC<SimplePageProps> = ({ type }) => {
                 {BLOG_POSTS.map(post => (
                   <li key={post.slug} className="group">
                     <a href={`/at-an-arbor/blog/${post.slug}`} className="block">
-                      <div className="font-mono text-xs text-gray-500 mb-1">{post.updated}</div>
+                      <div className="font-mono text-xs text-gray-500 mb-1">
+                        {post.updated}
+                        {post.updated !== post.date && (
+                          <span> / BLOG / ᚛ Regrown</span>
+                        )}
+                        {post.updated === post.date && (
+                          <span> / BLOG</span>
+                        )}
+                      </div>
                       <h2 className="text-2xl font-serif font-bold group-hover:underline decoration-1 underline-offset-4">{post.title}</h2>
                     </a>
                   </li>

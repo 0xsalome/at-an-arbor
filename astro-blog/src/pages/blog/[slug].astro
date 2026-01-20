@@ -27,6 +27,7 @@ const { Content } = await entry.render();
   date={entry.data.date}
   updated={entry.data.updated || entry.data.date}
   backlinks={backlinks}
+  versions={entry.data.versions}
 >
   <Content />
 </BlogPost>

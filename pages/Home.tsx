@@ -174,6 +174,9 @@ const Home: React.FC = () => {
                   >
                     <div className="font-mono text-xs text-gray-400 dark:text-gray-500 mb-1">
                       {blog.updated} <span className="mx-1">/</span> BLOG
+                      {blog.updated !== blog.date && (
+                        <span> ᚛ Regrown</span>
+                      )}
                     </div>
                     <h2 className="text-lg md:text-xl font-serif font-semibold mb-2 group-hover:underline decoration-1 underline-offset-4 text-text-main dark:text-text-inv">
                       {blog.title}
