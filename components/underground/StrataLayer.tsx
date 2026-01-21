@@ -91,21 +91,41 @@ export const StrataLayer: React.FC<StrataLayerProps> = ({ week, index, isActive,
         />
       </svg>
 
-      {/* Mobile SVG - with displacement filter but thicker lines */}
+      {/* Mobile SVG - multiple overlapping strokes for texture */}
       <svg
         viewBox="0 0 1000 150"
         preserveAspectRatio="none"
-        className="block md:hidden w-full h-full drop-shadow-xl"
-        style={{ filter: 'url(#displacementFilter)' }}
+        className="block md:hidden w-full h-full"
       >
+        {/* Base thick line for visibility */}
         <path
             d={pathData}
             fill="none"
             stroke={stroke}
-            strokeWidth={isRich ? 6 : 3}
+            strokeWidth={isRich ? 8 : 5}
             strokeLinecap="round"
             strokeLinejoin="round"
-            className="transition-all duration-300 opacity-95"
+            opacity="0.4"
+        />
+        {/* Medium line for body */}
+        <path
+            d={pathData}
+            fill="none"
+            stroke={stroke}
+            strokeWidth={isRich ? 5 : 3}
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            opacity="0.6"
+        />
+        {/* Thin line for definition */}
+        <path
+            d={pathData}
+            fill="none"
+            stroke={stroke}
+            strokeWidth={isRich ? 2 : 1}
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            opacity="0.9"
         />
       </svg>
       
