@@ -74,10 +74,11 @@ export const StrataLayer: React.FC<StrataLayerProps> = ({ week, index, isActive,
         onMouseEnter={onMouseEnter}
         onMouseLeave={onMouseLeave}
     >
+      {/* Desktop SVG with displacement filter */}
       <svg
         viewBox="0 0 1000 150"
         preserveAspectRatio="none"
-        className="w-full h-full drop-shadow-xl"
+        className="hidden md:block w-full h-full drop-shadow-xl"
         style={{ filter: 'url(#displacementFilter)' }}
       >
         <path
@@ -87,6 +88,24 @@ export const StrataLayer: React.FC<StrataLayerProps> = ({ week, index, isActive,
             strokeWidth={isActive ? strokeWidth * 1.5 : strokeWidth}
             vectorEffect="non-scaling-stroke"
             className="transition-all duration-300 opacity-90 hover:opacity-100"
+        />
+      </svg>
+
+      {/* Mobile SVG - no filter, thicker lines, brighter */}
+      <svg
+        viewBox="0 0 1000 150"
+        preserveAspectRatio="none"
+        className="block md:hidden w-full h-full"
+      >
+        <path
+            d={pathData}
+            fill="none"
+            stroke={isRich ? "#ffffff" : (isEmpty ? "#1e293b" : "#6b7280")}
+            strokeWidth={isRich ? 8 : 4}
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            className="transition-all duration-300"
+            style={{ opacity: 1 }}
         />
       </svg>
       
