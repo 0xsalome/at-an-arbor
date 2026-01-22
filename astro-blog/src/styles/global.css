@@ -62,7 +62,8 @@
 .prose a,
 .prose .wikilink {
   color: #7c3aed !important;
-  text-decoration: none;
+  text-decoration: underline;
+  text-underline-offset: 3px;
   font-weight: 500;
   transition: all 0.2s ease;
 }
@@ -70,6 +71,7 @@
 .prose a:hover,
 .prose .wikilink:hover {
   color: #6d28d9 !important;
+  text-decoration: underline;
   background-color: rgba(124, 58, 237, 0.1);
   padding: 0 4px;
   border-radius: 3px;
@@ -79,10 +81,12 @@
 .dark .prose a,
 .dark .prose .wikilink {
   color: #c4b5fd !important;
+  text-decoration: underline;
 }
 
 .dark .prose a:hover,
 .dark .prose .wikilink:hover {
   color: #e9d5ff !important;
+  text-decoration: underline;
   background-color: rgba(196, 181, 253, 0.15);
 }
