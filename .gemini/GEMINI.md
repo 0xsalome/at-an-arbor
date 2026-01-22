@@ -95,6 +95,7 @@ npm run dev      # Start development server
 npm run build    # Generate RSS + sitemap + build
 npm run preview  # Preview build output
 npm run publish <file> <type>  # Publish article with images (e.g., npm run publish ~/draft/post.md blog)
+npm run announce <message>   # Add a new announcement to WhisperBar (auto-adds date and ID)
 ```
 
 ## Your Role (Gemini)

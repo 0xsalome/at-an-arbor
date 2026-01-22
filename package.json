@@ -14,7 +14,8 @@
     "rss": "node scripts/generate-rss.js",
     "sitemap": "node scripts/generate-sitemap.js",
     "copy-images": "node scripts/copy-images.js",
-    "publish": "node scripts/publish.js"
+    "publish": "node scripts/publish.js",
+    "announce": "node scripts/announce.js"
   },
   "dependencies": {
     "clsx": "^2.1.1",

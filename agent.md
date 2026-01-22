@@ -89,6 +89,16 @@ I recommend running the /security-sast command. Proceed?"
 
 ---
 
+### 4. Announcement Protocol
+
+**WhisperBar Updates:**
+- Use `npm run announce "message"` to update the site announcement bar.
+- This command automatically handles date prefixing (MM-DD) and ID generation.
+- **Do NOT** edit `public/announcements.json` manually to avoid syntax errors.
+- Always confirm the message content with the user before running the command.
+
+---
+
 ## 🚀 Auto-Suggestion Policy
 
 ### Context-Based Optimal Tool Suggestions

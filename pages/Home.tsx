@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { BLOG_POSTS, MOMENTS, POEMS } from '../lib/content';
 import FadeIn from '../components/FadeIn';
 import Nav from '../components/Nav';
+import WhisperBar from '../components/WhisperBar';
 import type { ContentItem } from '../types';
 
 const DarkModeToggle: React.FC = () => {
@@ -95,6 +96,7 @@ const Home: React.FC = () => {
           </div>
 
           <div className="flex-grow flex flex-col justify-end pb-20 md:pb-8 max-w-2xl relative z-10">
+            <WhisperBar />
             <FadeIn>
               <div className="space-y-6">
                 {recentMoments.map((moment) => (
