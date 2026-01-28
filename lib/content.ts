@@ -58,6 +58,11 @@ const renderer = new marked.Renderer();
 renderer.image = ({ href, title, text }) => {
   return `<img src="${href}" alt="${text || ''}" title="${title || ''}" class="lazy-load" loading="lazy" decoding="async" />`;
 };
+renderer.link = ({ href, title, text }) => {
+  const isExternal = href.startsWith('http') && !href.includes('0xsalome.github.io/at-an-arbor');
+  const targetAttr = isExternal ? ' target="_blank" rel="noopener noreferrer"' : '';
+  return `<a href="${href}" title="${title || ''}"${targetAttr}>${text}</a>`;
+};
 
 // Helper to safely format date
 function safeFormatDate(dateStr: string | undefined): string {
@@ -82,8 +87,17 @@ function parseMarkdownFile(
     const lines = content.trim().split('\n').filter(l => l.trim());
     const firstTwoLines = lines.slice(0, 2).join('\n');
     excerpt = firstTwoLines + (lines.length > 2 ? '：' : '');
+  } else if (type === 'moment') {
+    // For moments: first paragraph converted to HTML (inline) to preserve links
+    const firstParagraph = content.trim().split('\n\n')[0] || '';
+    // Remove Obsidian wiki-link images from excerpt
+    const textWithoutImages = firstParagraph.replace(/!\[\[.*?\]\]/g, '').trim();
+    // Parse inline to avoid wrapping in <p> tags, allowing usage inside <p> in Home.tsx
+    excerpt = DOMPurify.sanitize(marked.parseInline(textWithoutImages, { renderer, breaks: true }) as string, {
+        ADD_ATTR: ['target', 'rel'], // Allow target and rel attributes for links
+    });
   } else {
-    // For blog/moments: first paragraph (remove image references)
+    // For blog: first paragraph (remove image references) - Plain Text
     const firstParagraph = content.trim().split('\n\n')[0] || '';
     // Remove Obsidian wiki-link images from excerpt
     const excerptWithoutImages = firstParagraph.replace(/!\[\[.*?\]\]/g, '').trim();
@@ -126,7 +140,7 @@ function parseMarkdownFile(
     type,
     excerpt,
     content: DOMPurify.sanitize(marked.parse(content, { renderer, breaks: true }) as string, {
-      ADD_ATTR: ['loading', 'decoding', 'class'],
+      ADD_ATTR: ['loading', 'decoding', 'class', 'target', 'rel'],
     }),
     rawContent: content,
     images: images.length > 0 ? images : undefined,
