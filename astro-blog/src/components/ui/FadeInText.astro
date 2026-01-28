@@ -1,0 +1,60 @@
+---
+/**
+ * FadeInText.astro
+ * ロード時に要素をふわっと浮き上がらせるコンポーネント。
+ * GSAPを使用。
+ */
+interface Props {
+  delay?: number;
+  duration?: number;
+  yOffset?: number;
+  className?: string;
+}
+
+const { 
+  delay = 0, 
+  duration = 1.2, 
+  yOffset = 20, 
+  className = "" 
+} = Astro.props;
+---
+
+<div 
+  class={`fade-in-text opacity-0 ${className}`} 
+  data-delay={delay} 
+  data-duration={duration} 
+  data-yoffset={yOffset}
+>
+  <slot />
+</div>
+
+<script>
+  import { gsap } from "gsap";
+
+  // ページ内のすべての FadeInText 要素を対象にする
+  const elements = document.querySelectorAll('.fade-in-text');
+  
+  elements.forEach((el) => {
+    // HTML要素の data 属性から設定を取得
+    const delay = parseFloat(el.getAttribute('data-delay') || '0');
+    const duration = parseFloat(el.getAttribute('data-duration') || '1.2');
+    const yOffset = parseFloat(el.getAttribute('data-yoffset') || '20');
+
+    gsap.fromTo(el, 
+      { 
+        opacity: 0, 
+        y: yOffset,
+        filter: "blur(10px)"
+      }, 
+      { 
+        opacity: 1, 
+        y: 0, 
+        filter: "blur(0px)",
+        duration: duration,
+        delay: delay,
+        ease: "power2.out",
+        clearProps: "filter" // アニメーション終了後にblurフィルタをクリア
+      }
+    );
+  });
+</script>

@@ -55,38 +55,33 @@ All suggestions must include:
 - **Benefit**: What will improve (quality, speed, maintainability)
 - **Confirmation**: Request user approval
 
----
+### 🔄 Handoff Protocol
 
-## 🔄 Handoff Protocol
-
-### Receiving Tasks from Claude
-1. Check "Next Tasks" section in this file (updated by Claude)
-2. Read `.claude/skills/agent-memory/memories/` for context
-3. Implement assigned tasks following Surgical Edit protocol
-4. Update "Current Progress" when complete
-
-### Handing Off to Claude
-1. Use `workflows` skill to structure the handoff
-2. Document issue/task in "Next Tasks" section
-3. Notify user of handoff reason and scope
-4. Examples:
-   - "Detected routing architecture issue → Handing off to Claude"
-   - "WikiLink parsing logic needs security review → Escalating to Claude"
+... (省略) ...
 
 ---
 
-## 📊 Current Progress (2026-01-18)
+## 🎭 Dynamic Articles (GSAP + MDX)
 
-### Completed by Claude & Gemini
-- **Astro Migration Project - Phase 1 (Completed)**
-  - ✅ Setup Astro project with React, Tailwind, MDX
-  - ✅ Implemented static blog detail pages with WikiLink and Backlinks support
-  - ✅ Created `blog-index.json` API
-  - ✅ Updated React SPA to use `BrowserRouter` and MPA navigation for blogs
-  - ✅ Integrated build pipeline (Astro + React merge)
-  - ✅ Fixed RSS/Sitemap URLs (removed hash, excluded unlisted)
-  - ✅ Updated GitHub Actions workflow
-  - ✅ Verified all features with tests
+MDX記事にアニメーションを導入する際は、以下の「Astroコンポーネントパターン」を推奨します。
+
+### 基本ワークフロー
+1. **部品作成**: `astro-blog/src/components/ui/` に `.astro` ファイルを作成し、`<script>` タグ内で GSAP をインポートしてアニメーションを記述する。
+2. **記事で使用**: ルートの `content/blog/` 内の `.mdx` ファイルで、作成した部品をインポートして配置する。
+
+### 注意事項
+- **インポートパス**: ルートの `.mdx` からインポートする場合、パスは `../../astro-blog/src/components/ui/ComponentName.astro` となる（シンボリックリンクの実体からの相対パス）。
+- **非React**: 複雑な状態管理が不要な演出（フェードイン等）には、React (.tsx) よりも Astro (.astro) コンポーネントの方が軽量で安定する。
+
+### 既存の部品
+- `FadeInText.astro`: テキストや要素をふわっと浮かび上がらせる。
+
+---
+
+## 📊 Current Progress (2026-01-28)
+- ✅ Enabled external links in Moments (open in new tab).
+- ✅ Integrated GSAP and MDX for dynamic blog articles.
+- ✅ Established "Astro Component Pattern" for animations to avoid CSP/MDX parsing issues.
 
 ### Pending
 - **Image Optimization**: `public/images/ogp.png` (1.5MB) and `contour.jpg` (1.5MB) need compression to < 200KB each
