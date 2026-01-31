@@ -1,0 +1,36 @@
+---
+---
+<button
+  id="theme-toggle"
+  class="fixed top-6 left-6 z-50 text-xl md:text-2xl font-serif text-text-main dark:text-text-inv hover:opacity-60 transition-opacity cursor-pointer p-2 select-none"
+  aria-label="Toggle dark mode"
+>
+  <span id="theme-toggle-light-icon" class="hidden">○</span>
+  <span id="theme-toggle-dark-icon" class="hidden">●</span>
+</button>
+
+<script>
+  const toggle = document.getElementById('theme-toggle');
+  const lightIcon = document.getElementById('theme-toggle-light-icon');
+  const darkIcon = document.getElementById('theme-toggle-dark-icon');
+
+  // Set initial state
+  const isDark = document.documentElement.classList.contains('dark');
+  updateIcon(isDark);
+
+  toggle?.addEventListener('click', () => {
+    const isDarkNow = document.documentElement.classList.toggle('dark');
+    localStorage.setItem('darkMode', String(isDarkNow));
+    updateIcon(isDarkNow);
+  });
+
+  function updateIcon(isDark: boolean) {
+    if (isDark) {
+      lightIcon?.classList.remove('hidden');
+      darkIcon?.classList.add('hidden');
+    } else {
+      lightIcon?.classList.add('hidden');
+      darkIcon?.classList.remove('hidden');
+    }
+  }
+</script>
