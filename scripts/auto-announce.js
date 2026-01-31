@@ -53,7 +53,8 @@ try {
       newAnnouncements.push({
         id: `auto-${slug}-${data.date}`,
         date: new Date(data.date).toISOString().split('T')[0],
-        text: announcementText
+        text: announcementText,
+        path: `/blog/${slug}` // Add link path
       });
     }
   }

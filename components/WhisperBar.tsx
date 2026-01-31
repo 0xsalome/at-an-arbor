@@ -5,6 +5,7 @@ interface Announcement {
   date: string;
   text: string;
   link?: string;
+  path?: string; // Add path support
 }
 
 const WhisperBar: React.FC = () => {
@@ -33,6 +34,24 @@ const WhisperBar: React.FC = () => {
   const latest = announcements[0];
   const history = announcements.slice(1, 8); // Max 7 past items
 
+  const renderAnnouncementText = (item: Announcement) => {
+    const targetPath = item.path || item.link;
+    if (!targetPath) return <span>{item.text}</span>;
+
+    return (
+      <span className="flex items-center gap-2">
+        {item.text}
+        <a 
+          href={`/at-an-arbor${targetPath}`}
+          className="text-gray-400 dark:text-gray-500 hover:text-blue-500 dark:hover:text-blue-400 transition-colors ml-1"
+          onClick={(e) => e.stopPropagation()} // Prevent history toggle
+        >
+          [→]
+        </a>
+      </span>
+    );
+  };
+
   return (
     <div 
       className="mb-6 font-mono text-xs select-none"
@@ -45,7 +64,7 @@ const WhisperBar: React.FC = () => {
         onClick={() => setIsOpen(!isOpen)}
       >
         <span>᚛</span>
-        <span>{latest.text}</span>
+        {renderAnnouncementText(latest)}
       </div>
 
       {/* History (Scrollable) */}
@@ -55,7 +74,7 @@ const WhisperBar: React.FC = () => {
         <ul className="pl-4 space-y-1 border-l border-gray-200 dark:border-gray-800 ml-[5px]">
           {history.map((item) => (
             <li key={item.id} className="text-gray-400 dark:text-gray-500 hover:text-gray-600 dark:hover:text-gray-300 transition-colors">
-              {item.text}
+              {renderAnnouncementText(item)}
             </li>
           ))}
           {history.length === 0 && (
