@@ -112,7 +112,6 @@ const { title, date, updated, backlinks, latestLog } = Astro.props;
     </style>
   </head>
   <body class="min-h-screen bg-paper-white dark:bg-ink-black text-text-main dark:text-text-inv transition-colors">
-    <ThemeToggle />
     <div class="flex flex-col md:flex-row">
       <!-- Sidebar -->
       <aside class="w-full md:w-1/6 p-6 md:p-12 border-b md:border-b-0 md:border-r border-gray-200 dark:border-gray-700">
@@ -121,6 +120,7 @@ const { title, date, updated, backlinks, latestLog } = Astro.props;
           <div class="text-xs font-mono text-gray-500 dark:text-gray-400">
             at an arbor
           </div>
+          <ThemeToggle />
         </nav>
       </aside>
 
