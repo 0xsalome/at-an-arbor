@@ -45,8 +45,8 @@ try {
     const displayDate = getDisplayDate(data.date);
     const announcementText = `${displayDate} ${typeLabel}を更新しました：${data.title}`;
     
-    // Check if this article is already announced (by checking if the text exists in the list)
-    // We only check the last 10 items to see if it's "recent"
+    // Check if this article is already announced
+    // We search the entire announcement history for the article title
     const alreadyAnnounced = announcements.some(a => a.text.includes(data.title));
 
     if (!alreadyAnnounced) {
