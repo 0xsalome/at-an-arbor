@@ -35,33 +35,33 @@ const Nav: React.FC<NavProps> = ({ showDarkModeToggle = false }) => {
   };
 
   return (
-    <nav className="flex flex-col gap-6 text-xl md:text-2xl font-serif text-text-main dark:text-text-inv select-none relative">
-      <Link to="/" className="hover:opacity-60 transition-opacity cursor-pointer p-2" aria-label="Home">
+    <nav className="flex flex-col items-start gap-6 text-xl md:text-2xl font-serif text-text-main dark:text-text-inv select-none relative">
+      <Link to="/" className="w-fit hover:opacity-60 transition-opacity cursor-pointer p-1" aria-label="Home">
         ⁂
       </Link>
-      <Link to="/moments" className="hover:opacity-60 transition-opacity cursor-pointer p-2" aria-label="Moments">
+      <Link to="/moments" className="w-fit hover:opacity-60 transition-opacity cursor-pointer p-1" aria-label="Moments">
         ∵
       </Link>
-      <Link to="/blog" className="hover:opacity-60 transition-opacity cursor-pointer p-2" aria-label="Blog">
+      <Link to="/blog" className="w-fit hover:opacity-60 transition-opacity cursor-pointer p-1" aria-label="Blog">
         ∴
       </Link>
-      <Link to="/poems" className="hover:opacity-60 transition-opacity cursor-pointer p-2" aria-label="Poems">
+      <Link to="/poems" className="w-fit hover:opacity-60 transition-opacity cursor-pointer p-1" aria-label="Poems">
         ∵
       </Link>
       {showDarkModeToggle && (
         <button
           onClick={toggleDarkMode}
-          className="hover:opacity-60 transition-opacity cursor-pointer p-2"
+          className="w-fit hover:opacity-60 transition-opacity cursor-pointer p-1"
           aria-label="Toggle dark mode"
         >
           {isDark ? '○' : '●'}
         </button>
       )}
       {/* Hamburger Menu */}
-      <div className="relative">
+      <div className="relative w-fit">
         <button
           onClick={() => setMenuOpen(!menuOpen)}
-          className="hover:opacity-60 transition-opacity cursor-pointer p-2 text-gray-400 dark:text-gray-500"
+          className="w-fit hover:opacity-60 transition-opacity cursor-pointer p-1 text-gray-400 dark:text-gray-500"
           aria-label="Menu"
         >
           ☰
