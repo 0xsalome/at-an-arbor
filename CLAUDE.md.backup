@@ -1,13 +1,24 @@
 # CLAUDE.md
 
-## 📚 Reference Files
+## Communication
+- Respond in Japanese
+- Explain in a way that is easy for non-engineers to understand
+- Add brief explanations when using technical terms
+- Briefly explain the reason ("why") for each change
 
-**Important:** The common AI partner protocol for this project is documented in `AGENT.md`. Please refer to it first.
+## Workflow
+- Prioritize security above all else
+- Propose options as needed and explain briefly
+- Explain what you will do before taking action, and proceed only after my approval
+- When possible, show demo pages or previews as we progress
 
-- `AGENT.md` - Common AI protocol for all AIs
-- `README.md` - Project overview, technologies used, setup instructions
-
----
+## Safety Rules
+- Do not directly touch production environments or production data
+- Never commit or expose `.env` files or secrets
+- Always confirm before deleting or overwriting files
+- Break large changes into smaller steps and proceed incrementally
+- Confirm with me before adding external packages
+- Confirm with me before making API calls or sending data externally
 
 ## Project Information
 
@@ -24,8 +35,6 @@
   - `dist/`
   - `.git/`
   - Markdown files in `content/` (managed by Obsidian, do not edit unless instructed)
-
----
 
 ## Development Commands
 
@@ -46,34 +55,17 @@ npm run publish ~/my-vault/drafts/new-post.md blog
 # - Referenced images (![[image.png]]) → content/blog/images/
 ```
 
----
+## AI Partner Protocol
 
-## Gemini Collaboration
+**Important:** Claude acts as a development partner, automatically suggesting optimal tools, skills, and subagents based on context.
 
-- Gemini operates in a Docker environment
-- Consider the Docker environment when instructing Gemini on tasks
-- Gemini cannot execute `git push` or `npm run dev` (humans execute these)
-- Receive reports from Gemini and instruct next steps
+- Detailed settings: See `agent.md`
+- Available tools inventory: See `INVENTORY.md` (auto-loaded at startup)
 
----
-
-## AI Role Assignment (Claude + Gemini Collaboration)
-
-### Claude's Responsibilities
-
-- Architecture decisions
-- Security reviews
-- Performance optimization
-- Complex logic (RSS generation, routing structure, WikiLink parsing, backlinks)
-
-### Gemini's Responsibilities
-
-- UI component implementation
-- CSS/animations
-- Test case creation
-- Documentation generation
-
----
+### Required Protocols
+1. **Surgical Edit**: Apply 3-step process (Diagnosis → Approval → Surgery) for all code modifications
+2. **Gemini Workflow**: Role division - Claude (architecture) ⇔ Gemini (implementation)
+3. **Security Protocol**: Always perform XSS checks for input processing (WikiLink, etc.)
 
 ## Project-Specific Skills
 
@@ -82,8 +74,6 @@ npm run publish ~/my-vault/drafts/new-post.md blog
 - Purpose: Consistent UI component definitions across the site (link styles, color palette, etc.)
 - Usage: Reference when creating new components. Link styles are auto-applied
 - See `.claude/skills/design-system/SKILL.md` for detailed specifications
-
----
 
 ## Efficiency Guidelines
 
@@ -101,7 +91,10 @@ npm run publish ~/my-vault/drafts/new-post.md blog
 - **Claude**: Architecture decisions, security review, performance optimization, complex logic (RSS generation, routing)
 - **Gemini**: Component implementation, CSS/animations, test creation, documentation generation
 
----
+## Notes
+
+- Content workflow: Edit in Obsidian → Copy to content/ folder → git push
+- Hosted on GitHub Pages (https://0xsalome.github.io/at-an-arbor/)
 
 ## Astro + React Hybrid Architecture
 
@@ -166,10 +159,3 @@ unlisted: true
 │   └── merge-builds.js   # Build integration
 └── dist/                 # Final output
 ```
-
----
-
-## Notes
-
-- Content workflow: Edit in Obsidian → Copy to content/ folder → git push
-- Hosted on GitHub Pages (https://0xsalome.github.io/at-an-arbor/)

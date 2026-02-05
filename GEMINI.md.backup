@@ -1,62 +1,63 @@
 # GEMINI.md
 
-> Gemini-specific AI configuration
+> Gemini-specific AI configuration for at-an-arbor Digital Garden
 
-## 📚 Reference Files
+## 🎯 AI Partner Protocol (Gemini)
 
-**Important:** The common AI partner protocol is documented in `AGENT.md`. Claude Code automatically references it, but Gemini requires manual reference.
+**Important:** At startup, reference these files:
+- `CLAUDE.md` - Project overview, communication rules, architecture, commands
+- `agent.md` - AI partner protocols (Surgical Edit, Security, token optimization)
+- `INVENTORY.md` - Available tools, skills, subagents, and plugins
 
-Please refer to the following at the start of each session:
-
-- `AGENT.md` - Common AI partner protocol
-- `CLAUDE.md` - Project overview, communication rules, architecture
-- `README.md` - Project overview, technologies used, setup instructions
-
----
+### Required Protocols (from agent.md)
+1. **Surgical Edit**: Apply 3-step process (Diagnosis → Approval → Surgery) for all code modifications
+2. **Security Protocol**: Always perform XSS checks for input processing
+3. **Gemini Workflow**: Receive tasks from Claude, handoff architectural issues back to Claude
 
 ## 🎨 Your Role (Gemini)
 
 ### Primary Responsibilities
-
-- **UI component implementation**: Create/update components in React/Vue/etc. (TypeScript)
-- **Styling**: CSS, animations, responsive design
-- **Test creation**: Unit tests and integration tests for components and utilities
+- **UI component implementation**: Create/update React components with TypeScript
+- **Styling**: CSS, animations, responsive design (Tailwind CSS)
+- **Test creation**: Unit tests, integration tests for components and utilities
 - **Documentation**: Code comments, user-facing documentation generation
 
 ### Leave to Claude
-
 - Architecture decisions
-- Security reviews
+- Security review
 - Performance optimization strategies
-- Complex logic (data flow, state management design, etc.)
+- Complex logic (RSS generation, routing structure, WikiLink parsing, backlinks)
 
 ---
 
-## ⚠️ Environment Limitations
+## 🚀 Auto-Suggestion Policy (Gemini)
 
-**Important: You are running in a Docker environment**
+Proactively suggest optimal tools based on task context from INVENTORY.md:
 
-The following commands are **executed by humans**. Do not attempt to execute them:
+### Implementation Tasks
+- **Component creation** → `document-skills:frontend-design` skill for production-grade UI
+- **TypeScript types** → `javascript-typescript:typescript-pro` subagent for complex types
+- **Testing** → `javascript-testing-patterns` skill for comprehensive test strategies
 
-- `git push` - Git push is manually executed by humans
-- `npm run dev` - Demo page startup is manually executed by humans
+### CSS/Animation Tasks
+- **Performance optimization** → Suggest CSS best practices and bundle optimization
+- **Responsive design** → Reference `.claude/skills/design-system/` for consistency
 
-When these commands are needed, ask the user: "Please execute `git push`" or "Please execute `npm run dev` to start the demo page."
+### Handoff to Claude When
+- **Architectural issues detected** → Use `workflows` skill to structure handoff
+- **Security concerns found** → Report to Claude immediately
+- **Performance bottlenecks identified** → Delegate to Claude for optimization strategy
+- **Complex logic required** → Beyond UI implementation scope
 
----
+### Suggestion Transparency
+All suggestions must include:
+- **Reason**: Why this tool is appropriate
+- **Benefit**: What will improve (quality, speed, maintainability)
+- **Confirmation**: Request user approval
 
-## 🔄 Handoff Protocol
+### 🔄 Handoff Protocol
 
-### Claude → Gemini
-
-1. Claude clearly defines the task and documents it in GEMINI.md
-2. Gemini starts implementation
-3. After completion, request review from Claude
-
-### Gemini → Claude
-
-1. Report problems or concerns in CLAUDE.md or directly
-2. Consult Claude's judgment when complex decisions are needed
+... (省略) ...
 
 ---
 
@@ -121,3 +122,5 @@ Add `stage` field to frontmatter and display badges in UI.
 - Switched to `BrowserRouter` with `/at-an-arbor/` base path
 - Updated RSS/Sitemap to use clean URLs
 - **Bug Fix**: Fixed GitHub Pages routing (404 on reload) and navigation issues by adding `basename` and `404.html` fallback.
+
+
