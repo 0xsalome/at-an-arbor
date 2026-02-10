@@ -1,12 +1,20 @@
 import { defineCollection, z } from 'astro:content';
 
+// Helper: ローカル時間でYYYY-MM-DD形式に変換（タイムゾーン問題を回避）
+const toLocalDateString = (d: Date): string => {
+  const year = d.getFullYear();
+  const month = String(d.getMonth() + 1).padStart(2, '0');
+  const day = String(d.getDate()).padStart(2, '0');
+  return `${year}-${month}-${day}`;
+};
+
 const blogCollection = defineCollection({
   type: 'content',
   schema: z.object({
     title: z.string(),
-    // Allow date or string, convert to YYYY-MM-DD string
-    date: z.coerce.date().transform(d => d.toISOString().slice(0, 10)),
-    updated: z.coerce.date().optional().transform(d => d ? d.toISOString().slice(0, 10) : undefined),
+    // Allow date or string, convert to YYYY-MM-DD string (local time)
+    date: z.coerce.date().transform(d => toLocalDateString(d)),
+    updated: z.coerce.date().optional().transform(d => d ? toLocalDateString(d) : undefined),
     type: z.literal('blog'),
     unlisted: z.boolean().optional().default(false),
     tags: z.array(z.string()).optional().default(['blog']),

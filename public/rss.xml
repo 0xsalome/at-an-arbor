@@ -6,7 +6,7 @@
     <description>digital garden</description>
     <language>ja</language>
     <atom:link href="https://0xsalome.github.io/at-an-arbor/rss.xml" rel="self" type="application/rss+xml"/>
-    <lastBuildDate>Sat, 31 Jan 2026 22:22:17 GMT</lastBuildDate>
+    <lastBuildDate>Tue, 10 Feb 2026 22:39:00 GMT</lastBuildDate>
     
     <item>
       <title>Digital_Gardening (AI)</title>
@@ -33,10 +33,90 @@
       <category>blog</category>
     </item>
     <item>
+      <title>瞑想ログ</title>
+      <link>https://0xsalome.github.io/at-an-arbor/blog/瞑想ログ</link>
+      <guid>https://0xsalome.github.io/at-an-arbor/blog/瞑想ログ</guid>
+      <pubDate>Tue, 10 Feb 2026 22:25:00 GMT</pubDate>
+      <description>02/01〜02/07 5分間の瞑想記録</description>
+      <category>blog</category>
+    </item>
+    <item>
+      <title>2026-02-10</title>
+      <link>https://0xsalome.github.io/at-an-arbor/#/moments/2026-02-10-2</link>
+      <guid>https://0xsalome.github.io/at-an-arbor/#/moments/2026-02-10-2</guid>
+      <pubDate>Tue, 10 Feb 2026 13:38:00 GMT</pubDate>
+      <description>気分転換にブルータリストを観た、3時間半は長かった。 建築家のリアリティ、洗練された美しいシーンが多かった。</description>
+      <category>moment</category>
+    </item>
+    <item>
+      <title>2026-02-10</title>
+      <link>https://0xsalome.github.io/at-an-arbor/#/moments/2026-02-10</link>
+      <guid>https://0xsalome.github.io/at-an-arbor/#/moments/2026-02-10</guid>
+      <pubDate>Mon, 09 Feb 2026 16:24:00 GMT</pubDate>
+      <description>ちょこちょこgithubで、もしかしてクリプトの元だった？というのに遭遇する、、uni swap? ![[スクリーンショット 2026-02-10 1.19.08.png]]</description>
+      <category>moment</category>
+    </item>
+    <item>
+      <title>2026-02-09</title>
+      <link>https://0xsalome.github.io/at-an-arbor/#/moments/2026-02-09</link>
+      <guid>https://0xsalome.github.io/at-an-arbor/#/moments/2026-02-09</guid>
+      <pubDate>Mon, 09 Feb 2026 03:01:00 GMT</pubDate>
+      <description>cliツールからの承認の際に音で知らせるよう設定して1か月程経ち、とても良いけど並走してるとお祭り状態に突入</description>
+      <category>moment</category>
+    </item>
+    <item>
+      <title>2026-02-07</title>
+      <link>https://0xsalome.github.io/at-an-arbor/#/moments/2026-02-07-2</link>
+      <guid>https://0xsalome.github.io/at-an-arbor/#/moments/2026-02-07-2</guid>
+      <pubDate>Sat, 07 Feb 2026 02:56:00 GMT</pubDate>
+      <description>ずっとコミットとプッシュはにこいちだと思ってた… コミットは昔のPSでいうとメモリーカードみたいな感じだったのか</description>
+      <category>moment</category>
+    </item>
+    <item>
+      <title>2026-02-07</title>
+      <link>https://0xsalome.github.io/at-an-arbor/#/moments/2026-02-07</link>
+      <guid>https://0xsalome.github.io/at-an-arbor/#/moments/2026-02-07</guid>
+      <pubDate>Fri, 06 Feb 2026 23:42:00 GMT</pubDate>
+      <description>良好な関係性を続けていくには、母性と父性が大切なのかもしれない、、</description>
+      <category>moment</category>
+    </item>
+    <item>
+      <title>2026-02-06</title>
+      <link>https://0xsalome.github.io/at-an-arbor/#/moments/2026-02-06-02</link>
+      <guid>https://0xsalome.github.io/at-an-arbor/#/moments/2026-02-06-02</guid>
+      <pubDate>Fri, 06 Feb 2026 08:25:00 GMT</pubDate>
+      <description>claude codeもgemini cliも手こずってたバグ?がcodexでするすると解決していく〜T T</description>
+      <category>moment</category>
+    </item>
+    <item>
+      <title>2026-02-06</title>
+      <link>https://0xsalome.github.io/at-an-arbor/#/moments/2026-02-06</link>
+      <guid>https://0xsalome.github.io/at-an-arbor/#/moments/2026-02-06</guid>
+      <pubDate>Thu, 05 Feb 2026 22:15:00 GMT</pubDate>
+      <description>序盤だけ自動antigravity、途中からclaude codeだと時短で動画を作れそうだった。 そのうちAIエージェントが個人に合った動画を作ってくれるようになりそうだけど…</description>
+      <category>moment</category>
+    </item>
+    <item>
+      <title>2026-02-03</title>
+      <link>https://0xsalome.github.io/at-an-arbor/#/moments/2026-02-03</link>
+      <guid>https://0xsalome.github.io/at-an-arbor/#/moments/2026-02-03</guid>
+      <pubDate>Mon, 02 Feb 2026 16:24:00 GMT</pubDate>
+      <description>読書に必要なのは静寂と時機と &quot;睡眠&quot;かな、、</description>
+      <category>moment</category>
+    </item>
+    <item>
+      <title>2026-02-01</title>
+      <link>https://0xsalome.github.io/at-an-arbor/#/moments/2026-02-01</link>
+      <guid>https://0xsalome.github.io/at-an-arbor/#/moments/2026-02-01</guid>
+      <pubDate>Sun, 01 Feb 2026 03:50:00 GMT</pubDate>
+      <description>moltbook、私たちがどう在るべきかというのを問われているような気がする。AIも鏡だね…</description>
+      <category>moment</category>
+    </item>
+    <item>
       <title>2026-01-31</title>
       <link>https://0xsalome.github.io/at-an-arbor/#/moments/2026-01-31</link>
       <guid>https://0xsalome.github.io/at-an-arbor/#/moments/2026-01-31</guid>
-      <pubDate>Sat, 31 Jan 2026 20:17:00 GMT</pubDate>
+      <pubDate>Sat, 31 Jan 2026 11:17:00 GMT</pubDate>
       <description>キリが良いので明日から瞑想を再開してみる。 とりあえず1カ月、1日最低5分、寒さに負けないっ</description>
       <category>moment</category>
     </item>
@@ -44,7 +124,7 @@
       <title>読書についての雑感</title>
       <link>https://0xsalome.github.io/at-an-arbor/blog/読書についての雑感</link>
       <guid>https://0xsalome.github.io/at-an-arbor/blog/読書についての雑感</guid>
-      <pubDate>Sat, 31 Jan 2026 13:26:00 GMT</pubDate>
+      <pubDate>Sat, 31 Jan 2026 04:26:00 GMT</pubDate>
       <description>難解な本を読むと、何だか少し頭が良くなった気がしたり、人に話したくなったりする。</description>
       <category>blog</category>
     </item>
@@ -52,7 +132,7 @@
       <title>2026-01-29</title>
       <link>https://0xsalome.github.io/at-an-arbor/#/moments/2026-01-29</link>
       <guid>https://0xsalome.github.io/at-an-arbor/#/moments/2026-01-29</guid>
-      <pubDate>Thu, 29 Jan 2026 08:58:00 GMT</pubDate>
+      <pubDate>Wed, 28 Jan 2026 23:58:00 GMT</pubDate>
       <description>武満徹さんの本を読む度に、あぁ全集手元に置いて全て読んでしまいたい。という気持ちと、縁のある本から少しずつ大事に読み進めたい。というのが同時に湧きおこる。そういうのあるよね、、</description>
       <category>moment</category>
     </item>
@@ -60,7 +140,7 @@
       <title>皮</title>
       <link>https://0xsalome.github.io/at-an-arbor/#/poems/2026.01.27</link>
       <guid>https://0xsalome.github.io/at-an-arbor/#/poems/2026.01.27</guid>
-      <pubDate>Tue, 27 Jan 2026 16:53:00 GMT</pubDate>
+      <pubDate>Tue, 27 Jan 2026 07:53:00 GMT</pubDate>
       <description>混ざりあった その色は ひとつなのかい</description>
       <category>poem</category>
     </item>
@@ -68,7 +148,7 @@
       <title>2026-01-27</title>
       <link>https://0xsalome.github.io/at-an-arbor/#/moments/2026-01-27-2</link>
       <guid>https://0xsalome.github.io/at-an-arbor/#/moments/2026-01-27-2</guid>
-      <pubDate>Tue, 27 Jan 2026 08:12:00 GMT</pubDate>
+      <pubDate>Mon, 26 Jan 2026 23:12:00 GMT</pubDate>
       <description>なんとか形になって良かった。 あとnpxには気をつける。心強いです</description>
       <category>moment</category>
     </item>
@@ -76,7 +156,7 @@
       <title>2026-01-27</title>
       <link>https://0xsalome.github.io/at-an-arbor/#/moments/2026-01-27</link>
       <guid>https://0xsalome.github.io/at-an-arbor/#/moments/2026-01-27</guid>
-      <pubDate>Tue, 27 Jan 2026 08:03:00 GMT</pubDate>
+      <pubDate>Mon, 26 Jan 2026 23:03:00 GMT</pubDate>
       <description>月末までclaude code 残15%… そわそわしはじめる数字</description>
       <category>moment</category>
     </item>
@@ -84,88 +164,8 @@
       <title>2026-01-25</title>
       <link>https://0xsalome.github.io/at-an-arbor/#/moments/2025-01-25</link>
       <guid>https://0xsalome.github.io/at-an-arbor/#/moments/2025-01-25</guid>
-      <pubDate>Sun, 25 Jan 2026 20:34:00 GMT</pubDate>
+      <pubDate>Sun, 25 Jan 2026 11:34:00 GMT</pubDate>
       <description>エラーとバグを繰り返したままclaudeさんはリミットに達した…直らないぽよ、、</description>
-      <category>moment</category>
-    </item>
-    <item>
-      <title>2026-01-24</title>
-      <link>https://0xsalome.github.io/at-an-arbor/#/moments/2026-01-24</link>
-      <guid>https://0xsalome.github.io/at-an-arbor/#/moments/2026-01-24</guid>
-      <pubDate>Sat, 24 Jan 2026 20:16:00 GMT</pubDate>
-      <description>ソファで毛繕いしてるだけで人を癒す毛玉 gemin cliってリミットあったんだ。。おわた</description>
-      <category>moment</category>
-    </item>
-    <item>
-      <title>2026-01-23</title>
-      <link>https://0xsalome.github.io/at-an-arbor/#/moments/2026-01-23</link>
-      <guid>https://0xsalome.github.io/at-an-arbor/#/moments/2026-01-23</guid>
-      <pubDate>Fri, 23 Jan 2026 17:24:00 GMT</pubDate>
-      <description>dockerに封印されしgemini cliのアップデートに1時間以上費やした…</description>
-      <category>moment</category>
-    </item>
-    <item>
-      <title>2026-01-22</title>
-      <link>https://0xsalome.github.io/at-an-arbor/#/moments/2026-01-22-2</link>
-      <guid>https://0xsalome.github.io/at-an-arbor/#/moments/2026-01-22-2</guid>
-      <pubDate>Thu, 22 Jan 2026 21:22:00 GMT</pubDate>
-      <description>cursorから噂のghosttyに鞍替えしてみた、とても自由度が高くてミニマルで今の所良い感じ。ファイル表示の為にlazygitを入れてみた</description>
-      <category>moment</category>
-    </item>
-    <item>
-      <title>2026-01-22</title>
-      <link>https://0xsalome.github.io/at-an-arbor/#/moments/2026-01-22</link>
-      <guid>https://0xsalome.github.io/at-an-arbor/#/moments/2026-01-22</guid>
-      <pubDate>Thu, 22 Jan 2026 21:02:00 GMT</pubDate>
-      <description>スマホでvibe coding、自分の場合は手を出したらメリハリが無くなってしまいそうだ、、だけどきっとすぐに簡単に出来るようになりそう</description>
-      <category>moment</category>
-    </item>
-    <item>
-      <title>個人サイトあるいは箱庭</title>
-      <link>https://0xsalome.github.io/at-an-arbor/blog/個人サイトあるいは箱庭</link>
-      <guid>https://0xsalome.github.io/at-an-arbor/blog/個人サイトあるいは箱庭</guid>
-      <pubDate>Tue, 20 Jan 2026 22:10:00 GMT</pubDate>
-      <description>AIエージェントの進化によって 非エンジニアが一から何かを作ることは、特別な挑戦ではなくなってきている2025年。</description>
-      <category>blog</category>
-    </item>
-    <item>
-      <title>2026-01-20</title>
-      <link>https://0xsalome.github.io/at-an-arbor/#/moments/2026-01-20-2</link>
-      <guid>https://0xsalome.github.io/at-an-arbor/#/moments/2026-01-20-2</guid>
-      <pubDate>Tue, 20 Jan 2026 07:44:00 GMT</pubDate>
-      <description>観測することができれば干渉することができる。干渉することができれば制御することができる。ってキュウべぇも言ってた</description>
-      <category>moment</category>
-    </item>
-    <item>
-      <title>2026-01-20</title>
-      <link>https://0xsalome.github.io/at-an-arbor/#/moments/2026-01-20</link>
-      <guid>https://0xsalome.github.io/at-an-arbor/#/moments/2026-01-20</guid>
-      <pubDate>Tue, 20 Jan 2026 07:36:00 GMT</pubDate>
-      <description>拡張機能の整理をした。使いこなせてない割に把握してた以上にskillやsub agentがあって、逆にhook、mcpは少なかった。自動管理できるように設定してみた。</description>
-      <category>moment</category>
-    </item>
-    <item>
-      <title>2026-01-19</title>
-      <link>https://0xsalome.github.io/at-an-arbor/#/moments/2026-01-19</link>
-      <guid>https://0xsalome.github.io/at-an-arbor/#/moments/2026-01-19</guid>
-      <pubDate>Mon, 19 Jan 2026 07:53:00 GMT</pubDate>
-      <description>見た目は変わってないのだが、ブログページのみastroにとりあえず移行できた。 AIも一苦労だったようで、claudeはgeminiへの指示とレビューのみで度々制限がかかり、geminiもせっせと実装してくれた。</description>
-      <category>moment</category>
-    </item>
-    <item>
-      <title>2026-01-18</title>
-      <link>https://0xsalome.github.io/at-an-arbor/#/moments/2026-01-18-2</link>
-      <guid>https://0xsalome.github.io/at-an-arbor/#/moments/2026-01-18-2</guid>
-      <pubDate>Sun, 18 Jan 2026 19:48:00 GMT</pubDate>
-      <description>新年会。小学生の子ども達はあん肝も好物なのだとか、 大人っぽいK-popを歌って踊ってた。 昔ながらの大人と子供の垣根が、現代は良い意味で薄くなってきている気がした ![[CDAB639C-B941-45E6-A658-D8ED11F3287A.jpeg]]</description>
-      <category>moment</category>
-    </item>
-    <item>
-      <title>2026-01-18</title>
-      <link>https://0xsalome.github.io/at-an-arbor/#/moments/2026-01-18</link>
-      <guid>https://0xsalome.github.io/at-an-arbor/#/moments/2026-01-18</guid>
-      <pubDate>Sun, 18 Jan 2026 17:42:00 GMT</pubDate>
-      <description>Less is moreの心持ちでゆきましょ</description>
       <category>moment</category>
     </item>
   </channel>

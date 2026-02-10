@@ -79,6 +79,30 @@ const { title, date, updated, backlinks, latestLog } = Astro.props;
         margin-bottom: 1em;
         line-height: 1.3333333;
       }
+      .prose :where(h3):not(:where([class~="not-prose"] *)) {
+        color: #111827;
+        font-weight: 600;
+        font-size: 1.25em;
+        margin-top: 1.6em;
+        margin-bottom: 0.6em;
+        line-height: 1.6;
+      }
+      .prose :where(ul):not(:where([class~="not-prose"] *)) {
+        list-style-type: disc;
+        margin-top: 1.25em;
+        margin-bottom: 1.25em;
+        padding-left: 1.625em;
+      }
+      .prose :where(ol):not(:where([class~="not-prose"] *)) {
+        list-style-type: decimal;
+        margin-top: 1.25em;
+        margin-bottom: 1.25em;
+        padding-left: 1.625em;
+      }
+      .prose :where(li):not(:where([class~="not-prose"] *)) {
+        margin-top: 0.5em;
+        margin-bottom: 0.5em;
+      }
       .prose :where(code):not(:where([class~="not-prose"] *)) {
         color: #111827;
         font-weight: 600;
@@ -106,7 +130,8 @@ const { title, date, updated, backlinks, latestLog } = Astro.props;
         color: #f9fafb;
       }
       :global(.dark) .prose :where(h1):not(:where([class~="not-prose"] *)),
-      :global(.dark) .prose :where(h2):not(:where([class~="not-prose"] *)) {
+      :global(.dark) .prose :where(h2):not(:where([class~="not-prose"] *)),
+      :global(.dark) .prose :where(h3):not(:where([class~="not-prose"] *)) {
         color: #f9fafb;
       }
     </style>
