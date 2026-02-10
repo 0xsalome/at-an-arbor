@@ -10,12 +10,21 @@ const PROJECT_ROOT = path.resolve(__dirname, '..');
 const BLOG_DIR = path.join(PROJECT_ROOT, 'content/blog');
 const ANNOUNCEMENTS_PATH = path.join(PROJECT_ROOT, 'public/announcements.json');
 
-// Helper to format date as MM-DD
+// Helper to format date as MM-DD (local time to avoid timezone issues)
 const getDisplayDate = (date) => {
   const d = new Date(date);
   const month = String(d.getMonth() + 1).padStart(2, '0');
   const day = String(d.getDate()).padStart(2, '0');
   return `${month}-${day}`;
+};
+
+// Helper to get YYYY-MM-DD string (local time)
+const toLocalDateString = (date) => {
+  const d = new Date(date);
+  const year = d.getFullYear();
+  const month = String(d.getMonth() + 1).padStart(2, '0');
+  const day = String(d.getDate()).padStart(2, '0');
+  return `${year}-${month}-${day}`;
 };
 
 try {
@@ -33,28 +42,34 @@ try {
     const filePath = path.join(BLOG_DIR, file);
     const fileContent = fs.readFileSync(filePath, 'utf-8');
     const { data } = matter(fileContent);
-    
+
     if (!data.date || data.unlisted === true) continue;
 
     const slug = file.replace('.md', '');
     const isEssay = data.tags && data.tags.includes('essay');
     const typeLabel = isEssay ? 'エッセイ' : 'ブログ';
-    
-    // Create a unique marker for this article announcement
-    // Format: "MM-DD [Type] Title"
-    const displayDate = getDisplayDate(data.date);
-    const announcementText = `${displayDate} ${typeLabel}を更新しました：${data.title}`;
-    
-    // Check if this article is already announced
-    // We search the entire announcement history for the article title
-    const alreadyAnnounced = announcements.some(a => a.text.includes(data.title));
+
+    const dateStr = toLocalDateString(data.date);
+    const updatedStr = data.updated ? toLocalDateString(data.updated) : dateStr;
+    const isUpdated = updatedStr > dateStr;
+
+    // Use updated date for display if article was updated
+    const displayDate = getDisplayDate(isUpdated ? data.updated : data.date);
+    const actionText = isUpdated ? '更新' : '公開';
+    const announcementText = `${displayDate} ${typeLabel}を${actionText}しました：${data.title}`;
+
+    // Create unique ID based on the relevant date (updated or date)
+    const announcementId = `auto-${slug}-${isUpdated ? updatedStr : dateStr}`;
+
+    // Check if this specific version is already announced
+    const alreadyAnnounced = announcements.some(a => a.id === announcementId);
 
     if (!alreadyAnnounced) {
       newAnnouncements.push({
-        id: `auto-${slug}-${data.date}`,
-        date: new Date(data.date).toISOString().split('T')[0],
+        id: announcementId,
+        date: isUpdated ? updatedStr : dateStr,
         text: announcementText,
-        path: `/blog/${slug}` // Add link path
+        path: `/blog/${slug}`
       });
     }
   }
