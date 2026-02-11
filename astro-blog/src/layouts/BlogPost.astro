@@ -271,6 +271,59 @@ const { title, date, updated, backlinks, latestLog } = Astro.props;
           </script>
         )}
 
+        {/* Obsidian-style callouts and highlights */}
+        <script>
+          document.addEventListener('DOMContentLoaded', () => {
+            const article = document.querySelector('article.prose');
+            if (!article) return;
+
+            // Convert > [!type] to callout boxes
+            const blockquotes = article.querySelectorAll('blockquote');
+            blockquotes.forEach(bq => {
+              const text = bq.innerHTML;
+              const calloutMatch = text.match(/^\s*<p>\s*\[!(note|tip|warning|important|quote)\]\s*(.*?)<\/p>/i);
+              if (calloutMatch) {
+                const type = calloutMatch[1].toLowerCase();
+                const title = calloutMatch[2] || type.charAt(0).toUpperCase() + type.slice(1);
+                const content = text.replace(calloutMatch[0], '').trim();
+
+                bq.className = `callout callout-${type}`;
+                bq.innerHTML = `
+                  <div class="callout-title">${title}</div>
+                  <div class="callout-content">${content}</div>
+                `;
+              }
+            });
+
+            // Convert ==text== to <mark>text</mark>
+            const walker = document.createTreeWalker(article, NodeFilter.SHOW_TEXT);
+            const nodesToReplace = [];
+            while (walker.nextNode()) {
+              if (walker.currentNode.textContent.includes('==')) {
+                nodesToReplace.push(walker.currentNode);
+              }
+            }
+            nodesToReplace.forEach(node => {
+              if (node.parentElement.tagName === 'CODE' || node.parentElement.tagName === 'PRE') return;
+              const newHTML = node.textContent.replace(/==([^=]+)==/g, '<mark>$1</mark>');
+              if (newHTML !== node.textContent) {
+                const span = document.createElement('span');
+                span.innerHTML = newHTML;
+                node.parentNode.replaceChild(span, node);
+              }
+            });
+
+            // Style task list items
+            const listItems = article.querySelectorAll('li');
+            listItems.forEach(li => {
+              const checkbox = li.querySelector('input[type="checkbox"]');
+              if (checkbox) {
+                li.classList.add('task-list-item');
+              }
+            });
+          });
+        </script>
+
         {backlinks.length > 0 && (
           <section class="mt-12 pt-8 border-t border-gray-200 dark:border-gray-700">
             <h2 class="text-sm font-mono text-gray-500 dark:text-gray-400 mb-4 tracking-wider">

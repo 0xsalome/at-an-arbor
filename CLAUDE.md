@@ -130,6 +130,112 @@ Check out [[terminology|glossary]] as well.
 ### Backlinks
 A "📎 REFERENCED BY" section is auto-generated at the end of each article, showing other articles that reference it.
 
+### Obsidian互換マークダウン記法
+
+ブログ記事で以下のObsidian記法が使用できます。
+
+#### 見出し
+```markdown
+## h2見出し（大きめ）
+### h3見出し（中程度）
+#### h4見出し（小さめ）
+```
+
+#### リスト
+```markdown
+- 箇条書き
+- ビュレットポイント付き
+
+1. 番号付きリスト
+2. 自動で番号表示
+```
+
+#### コールアウト（注意書きボックス）
+```markdown
+> [!note] メモ
+> 補足情報を書く
+
+> [!tip] ヒント
+> 便利な情報
+
+> [!warning] 注意
+> 気をつけること
+
+> [!important] 重要
+> 必ず読んでほしいこと
+
+> [!quote] 引用
+> 誰かの言葉
+```
+
+#### ハイライト
+```markdown
+==強調したいテキスト==
+```
+
+#### タスクリスト
+```markdown
+- [ ] 未完了のタスク
+- [x] 完了したタスク
+```
+
+#### 引用
+```markdown
+> 引用文
+> 複数行もOK
+```
+
+#### テーブル
+```markdown
+| 列1 | 列2 | 列3 |
+|-----|-----|-----|
+| A   | B   | C   |
+| D   | E   | F   |
+```
+
+#### インラインコード・コードブロック
+```markdown
+`インラインコード`
+
+\`\`\`javascript
+// コードブロック
+const x = 1;
+\`\`\`
+```
+
+#### WikiLink（内部リンク）
+```markdown
+[[記事スラッグ]]
+[[記事スラッグ|表示テキスト]]
+```
+
+#### 画像（Obsidian形式）
+```markdown
+![[画像ファイル名.png]]
+```
+
+#### 記事の更新（Regrown機能）
+記事を更新する場合：
+1. frontmatterの`updated`を更新
+2. 更新内容と初版の間に`---`を2つ連続で書く
+
+```yaml
+---
+title: 記事タイトル
+date: 2026-02-01
+updated: 2026-02-11
+type: blog
+---
+更新後の内容...
+
+---
+---
+
+初版の内容...
+```
+
+これにより自動的に「᚛ 初版 / 日付」ヘッダーが挿入されます。
+
 ### Unlisted Articles
 Setting `unlisted: true` in frontmatter treats articles as memo/reference content.
 

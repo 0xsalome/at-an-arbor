@@ -155,3 +155,185 @@
   margin-top: 0.5em !important;
   margin-bottom: 0.5em !important;
 }
+
+/* ========================================
+   引用スタイル（Obsidian互換）
+   ======================================== */
+
+.prose blockquote {
+  border-left: 4px solid #9ca3af !important;
+  padding-left: 1em !important;
+  margin: 1.5em 0 !important;
+  font-style: italic;
+  color: #6b7280;
+  background: linear-gradient(to right, rgba(156, 163, 175, 0.1), transparent);
+  padding: 1em 1em 1em 1.5em !important;
+  border-radius: 0 8px 8px 0;
+}
+
+.dark .prose blockquote {
+  border-left-color: #6b7280 !important;
+  color: #9ca3af;
+  background: linear-gradient(to right, rgba(107, 114, 128, 0.15), transparent);
+}
+
+/* ========================================
+   コールアウト（Obsidian互換）
+   ======================================== */
+
+.prose .callout {
+  border-radius: 8px;
+  padding: 1em 1.25em;
+  margin: 1.5em 0;
+  border-left: 4px solid;
+}
+
+.prose .callout-title {
+  font-weight: 600;
+  margin-bottom: 0.5em;
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+}
+
+.prose .callout-content {
+  font-style: normal;
+}
+
+/* Note - 青 */
+.prose .callout-note {
+  background-color: rgba(59, 130, 246, 0.1);
+  border-color: #3b82f6;
+}
+.prose .callout-note .callout-title { color: #3b82f6; }
+.prose .callout-note .callout-title::before { content: "📝 "; }
+
+/* Tip - 緑 */
+.prose .callout-tip {
+  background-color: rgba(34, 197, 94, 0.1);
+  border-color: #22c55e;
+}
+.prose .callout-tip .callout-title { color: #22c55e; }
+.prose .callout-tip .callout-title::before { content: "💡 "; }
+
+/* Warning - 黄 */
+.prose .callout-warning {
+  background-color: rgba(234, 179, 8, 0.1);
+  border-color: #eab308;
+}
+.prose .callout-warning .callout-title { color: #ca8a04; }
+.prose .callout-warning .callout-title::before { content: "⚠️ "; }
+
+/* Important - 赤 */
+.prose .callout-important {
+  background-color: rgba(239, 68, 68, 0.1);
+  border-color: #ef4444;
+}
+.prose .callout-important .callout-title { color: #ef4444; }
+.prose .callout-important .callout-title::before { content: "🔥 "; }
+
+/* Quote - 紫 */
+.prose .callout-quote {
+  background-color: rgba(168, 85, 247, 0.1);
+  border-color: #a855f7;
+}
+.prose .callout-quote .callout-title { color: #a855f7; }
+.prose .callout-quote .callout-title::before { content: "💬 "; }
+
+/* ========================================
+   ハイライト（==text==）
+   ======================================== */
+
+.prose mark {
+  background: linear-gradient(120deg, #fef08a 0%, #fde047 100%);
+  padding: 0.1em 0.3em;
+  border-radius: 3px;
+  color: inherit;
+}
+
+.dark .prose mark {
+  background: linear-gradient(120deg, rgba(253, 224, 71, 0.4) 0%, rgba(250, 204, 21, 0.4) 100%);
+}
+
+/* ========================================
+   タスクリスト（- [ ] / - [x]）
+   ======================================== */
+
+.prose .task-list-item {
+  list-style: none !important;
+  margin-left: -1.5em !important;
+}
+
+.prose .task-list-item input[type="checkbox"] {
+  margin-right: 0.5em;
+  width: 1.1em;
+  height: 1.1em;
+  accent-color: #7c3aed;
+}
+
+/* ========================================
+   テーブルスタイル（Obsidian互換）
+   ======================================== */
+
+.prose table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 2em 0;
+  font-size: 0.9em;
+}
+
+.prose th {
+  background-color: #f3f4f6;
+  font-weight: 600;
+  text-align: left;
+  padding: 0.75em 1em;
+  border-bottom: 2px solid #d1d5db;
+}
+
+.prose td {
+  padding: 0.75em 1em;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.prose tr:hover {
+  background-color: rgba(124, 58, 237, 0.05);
+}
+
+.dark .prose th {
+  background-color: #374151;
+  border-bottom-color: #4b5563;
+}
+
+.dark .prose td {
+  border-bottom-color: #374151;
+}
+
+.dark .prose tr:hover {
+  background-color: rgba(124, 58, 237, 0.1);
+}
+
+/* ========================================
+   コードブロック強化
+   ======================================== */
+
+.prose code:not(pre code) {
+  background-color: #f3f4f6;
+  padding: 0.2em 0.4em;
+  border-radius: 4px;
+  font-size: 0.875em;
+  color: #be185d;
+}
+
+.dark .prose code:not(pre code) {
+  background-color: #374151;
+  color: #f472b6;
+}
+
+.prose pre {
+  border-radius: 8px !important;
+  border: 1px solid #e5e7eb;
+}
+
+.dark .prose pre {
+  border-color: #374151;
+}
