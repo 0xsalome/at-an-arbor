@@ -204,12 +204,15 @@ const { title, date, updated, backlinks, latestLog } = Astro.props;
         <div class="space-y-16">
           {/* Latest Version */}
           <div id={`version-${updated.slice(0, 10)}`}>
-            <article class="prose prose-stone dark:prose-invert prose-lg font-serif leading-loose">
+            <article
+              class="prose prose-stone dark:prose-invert prose-lg font-serif leading-loose"
+              data-original-date={updated > date ? date : undefined}
+            >
               <slot />
             </article>
           </div>
 
-          {/* Past Versions */}
+          {/* Past Versions (from frontmatter versions array) */}
           {Astro.props.versions && [...Astro.props.versions].sort((a, b) => b.date.localeCompare(a.date)).map((version: Version) => (
             <div class="version" id={`version-${version.date.slice(0, 10)}`}>
               <hr class="border-gray-300 dark:border-gray-700 mb-12" />
@@ -224,6 +227,49 @@ const { title, date, updated, backlinks, latestLog } = Astro.props;
             </div>
           ))}
         </div>
+
+        {/* Auto-insert original version marker at double <hr> (--- ---) */}
+        {updated > date && (
+          <script define:vars={{ originalDate: date.slice(0, 10) }}>
+            document.addEventListener('DOMContentLoaded', () => {
+              const article = document.querySelector('article[data-original-date]');
+              if (!article) return;
+
+              // Find consecutive <hr> elements (double line = boundary)
+              const hrs = article.querySelectorAll('hr');
+              let boundaryHr = null;
+
+              for (let i = 0; i < hrs.length - 1; i++) {
+                const hr1 = hrs[i];
+                const hr2 = hrs[i + 1];
+                // Check if hr2 is the immediate next sibling of hr1
+                if (hr1.nextElementSibling === hr2) {
+                  boundaryHr = hr1;
+                  // Remove the second hr (we'll replace both with the marker)
+                  hr2.remove();
+                  break;
+                }
+              }
+
+              if (!boundaryHr) return;
+
+              // Create version marker
+              const marker = document.createElement('div');
+              marker.id = `version-${originalDate}`;
+              marker.className = 'original-version-marker mt-16 mb-8';
+              marker.innerHTML = `
+                <div class="border-t-2 border-b-2 border-gray-400 dark:border-gray-500 py-4 my-8">
+                  <p class="font-mono text-sm text-gray-500 dark:text-gray-400 text-center tracking-wider">
+                    ᚛ 初版 / ${originalDate}
+                  </p>
+                </div>
+              `;
+
+              // Replace the first <hr> with the marker
+              boundaryHr.replaceWith(marker);
+            });
+          </script>
+        )}
 
         {backlinks.length > 0 && (
           <section class="mt-12 pt-8 border-t border-gray-200 dark:border-gray-700">

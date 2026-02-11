@@ -2,29 +2,16 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Nav from '../components/Nav';
 import FadeIn from '../components/FadeIn';
+import { BLOG_POSTS } from '../lib/content';
 
 type TabType = 'all' | 'blog' | 'essay';
 
-interface BlogPost {
-  slug: string;
-  title: string;
-  date: string;
-  updated?: string;
-  tags: string[];
-  unlisted: boolean;
-}
-
 const BlogList: React.FC = () => {
   const [activeTab, setActiveTab] = useState<TabType>('all');
-  const [blogPosts, setBlogPosts] = React.useState<BlogPost[]>([]);
   const navigate = useNavigate();
 
-  // blog-index.json を取得
-  React.useEffect(() => {
-    fetch('/at-an-arbor/api/blog-index.json')
-      .then(res => res.json())
-      .then(data => setBlogPosts(data));
-  }, []);
+  // lib/content.ts から直接データを使用（ビルド時に解決）
+  const blogPosts = BLOG_POSTS;
 
   // タブによるフィルタリング
   const filteredPosts = blogPosts.filter(post => {
