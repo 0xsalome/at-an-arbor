@@ -78,7 +78,7 @@ const Home: React.FC = () => {
           onClick={() => navigate('/fieldwork')}
         >
           <span className="font-mono text-[10px] text-text-main/30 dark:text-text-inv/30 group-hover:text-text-main/60 dark:group-hover:text-text-inv/60 transition-opacity tracking-wider">
-            fieldwork
+            fieldwork🌸
           </span>
           <span
             className="text-text-main/20 dark:text-text-inv/20 group-hover:text-text-main/40 dark:group-hover:text-text-inv/40 transition-opacity inline-block"
