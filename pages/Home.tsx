@@ -74,7 +74,7 @@ const Home: React.FC = () => {
         </div>
         {/* Fieldwork link - positioned on white side, line pointing toward 470 (5 o'clock direction) */}
         <div
-          className="absolute z-20 left-[48%] top-[45%] cursor-pointer group flex items-center gap-1"
+          className="absolute z-20 left-[48%] top-[32%] md:top-[45%] cursor-pointer group flex items-center gap-1"
           onClick={() => navigate('/fieldwork')}
         >
           <span className="font-mono text-[10px] text-text-main/30 dark:text-text-inv/30 group-hover:text-text-main/60 dark:group-hover:text-text-inv/60 transition-opacity tracking-wider">
