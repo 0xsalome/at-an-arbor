@@ -5,6 +5,7 @@ import mdx from '@astrojs/mdx';
 import remarkBreaks from 'remark-breaks';
 import rehypeExternalLinks from 'rehype-external-links';
 import { remarkWikiLinks } from './src/utils/wikilinks';
+import { remarkPreserveBlankLines } from './src/utils/remark-preserve-blank-lines';
 
 export default defineConfig({
   base: '/at-an-arbor/',
@@ -17,7 +18,7 @@ export default defineConfig({
     mdx(),
   ],
   markdown: {
-    remarkPlugins: [remarkBreaks, remarkWikiLinks],
+    remarkPlugins: [remarkPreserveBlankLines, remarkBreaks, remarkWikiLinks],
     rehypePlugins: [
       [
         rehypeExternalLinks,

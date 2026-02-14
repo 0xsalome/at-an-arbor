@@ -7,6 +7,8 @@ function parseFrontmatter(raw: string): { data: Record<string, any>; content: st
   const lines = raw.split('\n');
   const data: Record<string, any> = {};
   let contentStart = 0;
+  let inTagsArray = false;
+  const tagsArray: string[] = [];
 
   if (lines[0]?.trim() === '---') {
     for (let i = 1; i < lines.length; i++) {
@@ -14,20 +16,45 @@ function parseFrontmatter(raw: string): { data: Record<string, any>; content: st
         contentStart = i + 1;
         break;
       }
-      const line = lines[i]?.trim();
-      
-      // Handle tags array: tags: [blog, essay]
-      const tagsMatch = line?.match(/^tags:\s*\[(.*?)\]/);
+      const line = lines[i];
+      const trimmedLine = line?.trim();
+
+      // Handle YAML array items (  - value)
+      if (inTagsArray) {
+        const arrayItemMatch = trimmedLine?.match(/^-\s*(.+)$/);
+        if (arrayItemMatch && line?.startsWith('  ')) {
+          tagsArray.push(arrayItemMatch[1].replace(/['"]/g, '').trim());
+          continue;
+        } else {
+          // End of tags array
+          inTagsArray = false;
+          data['tags'] = tagsArray;
+        }
+      }
+
+      // Handle tags array start: tags:
+      if (trimmedLine === 'tags:') {
+        inTagsArray = true;
+        continue;
+      }
+
+      // Handle inline tags array: tags: [blog, essay]
+      const tagsMatch = trimmedLine?.match(/^tags:\s*\[(.*?)\]/);
       if (tagsMatch) {
         data['tags'] = tagsMatch[1].split(',').map(t => t.trim().replace(/['"]/g, ''));
         continue;
       }
 
       // Handle standard key-value
-      const match = line?.match(/^(\w+):\s*"?([^"]*)"?$/);
+      const match = trimmedLine?.match(/^(\w+):\s*"?([^"]*)"?$/);
       if (match) {
         data[match[1]] = match[2].trim();
       }
+    }
+
+    // Handle case where tags array is at the end of frontmatter
+    if (inTagsArray && tagsArray.length > 0) {
+      data['tags'] = tagsArray;
     }
   }
 
