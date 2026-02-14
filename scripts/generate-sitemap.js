@@ -46,8 +46,8 @@ function readMarkdownFiles(dir, type) {
     // URL mapping based on type
     const urlMap = {
       blog: `${SITE_URL}/blog/${slug}`,
-      poem: `${SITE_URL}/#/poems/${slug}`,
-      moment: `${SITE_URL}/#/moments/${slug}`,
+      poem: `${SITE_URL}/poems/${slug}`,
+      moment: `${SITE_URL}/moments/${slug}`,
     };
 
     return {
@@ -74,16 +74,16 @@ function generateSitemap(items) {
     <loc>${SITE_URL}/</loc>
   </url>
   <url>
-    <loc>${SITE_URL}/#/blog</loc>
+    <loc>${SITE_URL}/blog</loc>
   </url>
   <url>
-    <loc>${SITE_URL}/#/poems</loc>
+    <loc>${SITE_URL}/poems</loc>
   </url>
   <url>
-    <loc>${SITE_URL}/#/moments</loc>
+    <loc>${SITE_URL}/moments</loc>
   </url>
   <url>
-    <loc>${SITE_URL}/#/compost</loc>
+    <loc>${SITE_URL}/compost</loc>
   </url>${urlsXml}
 </urlset>`;
 }

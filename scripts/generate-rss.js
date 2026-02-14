@@ -51,8 +51,8 @@ function readMarkdownFiles(dir, type) {
     // URL mapping based on type
     const urlMap = {
       blog: `${SITE_URL}/blog/${slug}`,
-      poem: `${SITE_URL}/#/poems/${slug}`,
-      moment: `${SITE_URL}/#/moments/${slug}`,
+      poem: `${SITE_URL}/poems/${slug}`,
+      moment: `${SITE_URL}/moments/${slug}`,
     };
 
     return {
