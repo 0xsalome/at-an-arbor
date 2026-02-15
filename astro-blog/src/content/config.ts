@@ -17,6 +17,7 @@ const blogCollection = defineCollection({
     updated: z.coerce.date().optional().transform(d => d ? toLocalDateString(d) : undefined),
     type: z.literal('blog'),
     unlisted: z.boolean().optional().default(false),
+    noindex: z.boolean().optional().default(false),
     tags: z.array(z.string()).optional().default(['blog']),
     latestLog: z.string().optional(),
     versions: z.array(z.object({

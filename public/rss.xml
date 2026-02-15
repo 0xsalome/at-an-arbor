@@ -6,7 +6,7 @@
     <description>digital garden</description>
     <language>ja</language>
     <atom:link href="https://0xsalome.github.io/at-an-arbor/rss.xml" rel="self" type="application/rss+xml"/>
-    <lastBuildDate>Sat, 14 Feb 2026 16:59:18 GMT</lastBuildDate>
+    <lastBuildDate>Sun, 15 Feb 2026 09:04:07 GMT</lastBuildDate>
     
     <item>
       <title>Digital_Gardening (AI)</title>
@@ -31,6 +31,14 @@
       <pubDate>Invalid Date</pubDate>
       <description>ランプの光が机を照らす。コーヒーの香りが漂う。</description>
       <category>blog</category>
+    </item>
+    <item>
+      <title>2026-02-15</title>
+      <link>https://0xsalome.github.io/at-an-arbor/moments/2026-02-15</link>
+      <guid>https://0xsalome.github.io/at-an-arbor/moments/2026-02-15</guid>
+      <pubDate>Sat, 14 Feb 2026 17:17:00 GMT</pubDate>
+      <description>謎のお花見会場が出現🌸githubの芝生機能を桜の木に見立てて。自分や誰かのgithub名を入力すると、手を動かした分の景色が…</description>
+      <category>moment</category>
     </item>
     <item>
       <title>アルゴリズムのはずれに</title>
@@ -159,14 +167,6 @@
       <pubDate>Tue, 27 Jan 2026 07:53:00 GMT</pubDate>
       <description>混ざりあった その色は ひとつなのかい</description>
       <category>poem</category>
-    </item>
-    <item>
-      <title>2026-01-27</title>
-      <link>https://0xsalome.github.io/at-an-arbor/moments/2026-01-27-2</link>
-      <guid>https://0xsalome.github.io/at-an-arbor/moments/2026-01-27-2</guid>
-      <pubDate>Mon, 26 Jan 2026 23:12:00 GMT</pubDate>
-      <description>なんとか形になって良かった。 あとnpxには気をつける。心強いです</description>
-      <category>moment</category>
     </item>
   </channel>
 </rss>
