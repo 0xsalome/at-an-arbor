@@ -1,3 +1,72 @@
 ---
+import { getCollection } from 'astro:content';
+
+const posts = (await getCollection('blog'))
+  .sort((a, b) => (b.data.updated || b.data.date).localeCompare(a.data.updated || a.data.date));
 ---
-<h1>Hello World</h1>
+
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>at an arbor / Astro Portal</title>
+    <style>
+      body {
+        margin: 0;
+        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+        background: #fafaf9;
+        color: #292524;
+      }
+      main {
+        max-width: 880px;
+        margin: 0 auto;
+        padding: 48px 20px;
+      }
+      h1 {
+        margin: 0 0 8px;
+        font-size: 28px;
+      }
+      p {
+        margin: 0 0 28px;
+        color: #57534e;
+      }
+      ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        border-top: 1px solid #d6d3d1;
+      }
+      li {
+        padding: 12px 0;
+        border-bottom: 1px solid #e7e5e4;
+      }
+      a {
+        color: #1f2937;
+        text-decoration: none;
+      }
+      a:hover {
+        text-decoration: underline;
+      }
+      .meta {
+        font-size: 12px;
+        color: #78716c;
+        margin-right: 8px;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Astro Portal</h1>
+      <p>このプレビューは Astro 側です。記事を選択してください。</p>
+      <ul>
+        {posts.map((post) => (
+          <li>
+            <span class="meta">{(post.data.updated || post.data.date).slice(0, 10)}</span>
+            <a href={`/at-an-arbor/blog/${post.slug}/`}>{post.data.title}</a>
+          </li>
+        ))}
+      </ul>
+    </main>
+  </body>
+</html>

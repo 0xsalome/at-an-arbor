@@ -6,7 +6,7 @@
     <description>digital garden</description>
     <language>ja</language>
     <atom:link href="https://0xsalome.github.io/at-an-arbor/rss.xml" rel="self" type="application/rss+xml"/>
-    <lastBuildDate>Sun, 15 Feb 2026 09:04:07 GMT</lastBuildDate>
+    <lastBuildDate>Mon, 16 Feb 2026 08:26:37 GMT</lastBuildDate>
     
     <item>
       <title>Digital_Gardening (AI)</title>
@@ -33,6 +33,22 @@
       <category>blog</category>
     </item>
     <item>
+      <title>瞑想ログ</title>
+      <link>https://0xsalome.github.io/at-an-arbor/blog/瞑想ログ</link>
+      <guid>https://0xsalome.github.io/at-an-arbor/blog/瞑想ログ</guid>
+      <pubDate>Mon, 16 Feb 2026 04:30:00 GMT</pubDate>
+      <description>二週目 （2/8-2/14）</description>
+      <category>blog</category>
+    </item>
+    <item>
+      <title>2026-02-15</title>
+      <link>https://0xsalome.github.io/at-an-arbor/moments/2026-02-15-2</link>
+      <guid>https://0xsalome.github.io/at-an-arbor/moments/2026-02-15-2</guid>
+      <pubDate>Sun, 15 Feb 2026 08:52:00 GMT</pubDate>
+      <description>桜を愛でる方は気になってしまったかもしれないけど、実際は桜の花→葉っぱの順なんですよね。新緑に癒されたいため実際の成長過程とは異なる設定です…</description>
+      <category>moment</category>
+    </item>
+    <item>
       <title>2026-02-15</title>
       <link>https://0xsalome.github.io/at-an-arbor/moments/2026-02-15</link>
       <guid>https://0xsalome.github.io/at-an-arbor/moments/2026-02-15</guid>
@@ -55,14 +71,6 @@
       <pubDate>Wed, 11 Feb 2026 01:40:00 GMT</pubDate>
       <description>ブルータリズム調の建築に十字架…？と色々と気にかかる所はあったけど。言葉にできない余韻が続くと、映画を観てよかったといつも思う。</description>
       <category>moment</category>
-    </item>
-    <item>
-      <title>瞑想ログ</title>
-      <link>https://0xsalome.github.io/at-an-arbor/blog/瞑想ログ</link>
-      <guid>https://0xsalome.github.io/at-an-arbor/blog/瞑想ログ</guid>
-      <pubDate>Tue, 10 Feb 2026 22:25:00 GMT</pubDate>
-      <description>02/01〜02/07 5分間の瞑想記録</description>
-      <category>blog</category>
     </item>
     <item>
       <title>2026-02-10</title>
@@ -159,14 +167,6 @@
       <pubDate>Wed, 28 Jan 2026 23:58:00 GMT</pubDate>
       <description>武満徹さんの本を読む度に、あぁ全集手元に置いて全て読んでしまいたい。という気持ちと、縁のある本から少しずつ大事に読み進めたい。というのが同時に湧きおこる。そういうのあるよね、、</description>
       <category>moment</category>
-    </item>
-    <item>
-      <title>皮</title>
-      <link>https://0xsalome.github.io/at-an-arbor/poems/2026.01.27</link>
-      <guid>https://0xsalome.github.io/at-an-arbor/poems/2026.01.27</guid>
-      <pubDate>Tue, 27 Jan 2026 07:53:00 GMT</pubDate>
-      <description>混ざりあった その色は ひとつなのかい</description>
-      <category>poem</category>
     </item>
   </channel>
 </rss>

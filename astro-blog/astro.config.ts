@@ -10,6 +10,10 @@ import { remarkPreserveBlankLines } from './src/utils/remark-preserve-blank-line
 export default defineConfig({
   base: '/at-an-arbor/',
   outDir: 'dist',
+  server: {
+    host: '0.0.0.0',
+    port: 4321,
+  },
   integrations: [
     react(),
     tailwind({

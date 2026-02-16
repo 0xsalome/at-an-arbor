@@ -175,40 +175,28 @@ const ogImageUrl = `${siteUrl}/images/ogp.png`;
 
         {/* Change Log Section */}
         {updated > date && (
-          <div class="mb-12 font-mono text-sm bg-gray-50 dark:bg-gray-800 p-6 rounded-sm border-l-2 border-gray-300 dark:border-gray-600">
-            <h2 class="font-bold mb-4 text-gray-500 dark:text-gray-400">᚛ Log</h2>
-            <ul class="flex flex-col text-gray-700 dark:text-gray-300 max-h-[7.5rem] overflow-y-auto pr-2 custom-scrollbar">
-              {/* Latest Log */}
-              {latestLog && (
-                <li class="grid grid-cols-[max-content_1fr] gap-4 py-1">
-                  <a href={`#version-${updated.slice(0, 10)}`} class="text-gray-500 dark:text-gray-400 hover:underline">
-                    {updated.slice(0, 10)}:
-                  </a>
-                  <span>{latestLog}</span>
-                </li>
-              )}
-              
-              {/* Past Versions Logs */}
-              {Astro.props.versions && [...Astro.props.versions].sort((a, b) => b.date.localeCompare(a.date)).map((version: Version) => (
-                version.summary && (
-                  <li class="grid grid-cols-[max-content_1fr] gap-4 py-1">
-                    <a href={`#version-${version.date.slice(0, 10)}`} class="text-gray-500 dark:text-gray-400 hover:underline">
-                      {version.date.slice(0, 10)}:
-                    </a>
-                    <span>{version.summary}</span>
-                  </li>
-                )
-              ))}
-
-              {/* Initial Commit */}
-              <li class="grid grid-cols-[max-content_1fr] gap-4 py-1">
-                <a href={`#version-${date.slice(0, 10)}`} class="text-gray-500 dark:text-gray-400 hover:underline">
+          <details class="group mb-12 font-mono text-sm bg-gray-50 dark:bg-gray-800 p-6 rounded-sm border-l-2 border-gray-300 dark:border-gray-600">
+            <summary class="list-none cursor-pointer font-bold mb-4 text-gray-500 dark:text-gray-400 select-none">
+              ᚛ Log <span class="font-normal text-xs opacity-80">(hover / clickで展開)</span>
+            </summary>
+            <ul
+              id="change-log-list"
+              class="flex flex-col text-gray-700 dark:text-gray-300 max-h-[4.5rem] overflow-hidden pr-2 transition-[max-height] duration-300 group-hover:max-h-80 group-hover:overflow-y-auto group-open:max-h-80 group-open:overflow-y-auto custom-scrollbar"
+            >
+              <li class="grid grid-cols-[max-content_1fr] gap-4 py-1" data-log-kind="latest">
+                <a href={`#version-${updated.slice(0, 10)}`} class="text-gray-500 dark:text-gray-400 hover:underline">
+                  {updated.slice(0, 10)}:
+                </a>
+                <span class="log-label">{latestLog || '最新の更新'}</span>
+              </li>
+              <li class="grid grid-cols-[max-content_1fr] gap-4 py-1" data-log-kind="original">
+                <a href="#version-original" class="text-gray-500 dark:text-gray-400 hover:underline">
                   {date.slice(0, 10)}:
                 </a>
-                <span>初版公開。</span>
+                <span>はじめの投稿</span>
               </li>
             </ul>
-          </div>
+          </details>
         )}
 
         {/* Content Flow: Latest to Oldest */}
@@ -241,43 +229,157 @@ const ogImageUrl = `${siteUrl}/images/ogp.png`;
 
         {/* Auto-insert original version marker at double <hr> (--- ---) */}
         {updated > date && (
-          <script define:vars={{ originalDate: date.slice(0, 10) }}>
+          <script define:vars={{ originalDate: date.slice(0, 10), latestDate: updated.slice(0, 10) }}>
             document.addEventListener('DOMContentLoaded', () => {
               const article = document.querySelector('article[data-original-date]');
               if (!article) return;
+              const logList = document.getElementById('change-log-list');
 
-              // Find consecutive <hr> elements (double line = boundary)
-              const hrs = article.querySelectorAll('hr');
-              let boundaryHr = null;
+              const formatDate = (year, month, day) => {
+                const m = String(Number(month)).padStart(2, '0');
+                const d = String(Number(day)).padStart(2, '0');
+                return `${year}-${m}-${d}`;
+              };
 
+              const parseDateString = (dateStr) => {
+                const normalized = dateStr.replace(/\//g, '-');
+                const parsed = new Date(`${normalized}T00:00:00`);
+                return Number.isNaN(parsed.getTime()) ? null : parsed;
+              };
+
+              const resolveMonthDayDate = (month, day, upperBoundDate) => {
+                const m = Number(month);
+                const d = Number(day);
+                if (!m || !d) return null;
+
+                const bound = parseDateString(upperBoundDate);
+                if (!bound) return null;
+
+                const year = bound.getFullYear();
+                const candidates = [
+                  new Date(year, m - 1, d),
+                  new Date(year - 1, m - 1, d),
+                ];
+
+                const valid = candidates.filter((candidate) => candidate <= bound);
+                const picked = valid.length > 0
+                  ? valid.sort((a, b) => b.getTime() - a.getTime())[0]
+                  : candidates[0];
+
+                return formatDate(picked.getFullYear(), picked.getMonth() + 1, picked.getDate());
+              };
+
+              const normalizeText = (value) => (
+                value
+                  .replace(/[０-９]/g, (char) => String.fromCharCode(char.charCodeAt(0) - 65248))
+                  .replace(/[／]/g, '/')
+                  .replace(/[．。]/g, '.')
+                  .replace(/[～〜]/g, '~')
+              );
+
+              const extractDateFromSectionText = (text, upperBoundDate) => {
+                const normalized = normalizeText(text);
+
+                const iso = normalized.match(/\b(20\d{2})[-/.](\d{1,2})[-/.](\d{1,2})\b/);
+                if (iso) return formatDate(iso[1], iso[2], iso[3]);
+
+                const ranges = normalized.match(/(\d{1,2})\s*[-/.]\s*(\d{1,2})\s*[~\-–]\s*(\d{1,2})\s*[-/.]\s*(\d{1,2})/);
+                if (ranges) {
+                  return resolveMonthDayDate(ranges[3], ranges[4], upperBoundDate);
+                }
+
+                const monthDays = normalized.match(/\b(\d{1,2})\s*[-/.]\s*(\d{1,2})\b/);
+                if (monthDays) {
+                  return resolveMonthDayDate(monthDays[1], monthDays[2], upperBoundDate);
+                }
+
+                return null;
+              };
+
+              const collectSectionText = (startNode, endNode) => {
+                let text = '';
+                let node = startNode;
+                while (node && node !== endNode) {
+                  if (node.tagName !== 'HR') {
+                    text += ` ${node.textContent || ''}`;
+                  }
+                  node = node.nextElementSibling;
+                }
+                return text;
+              };
+
+              // Find all consecutive <hr> elements (double line = boundary)
+              const hrs = Array.from(article.querySelectorAll('hr'));
+              const boundaries = [];
               for (let i = 0; i < hrs.length - 1; i++) {
                 const hr1 = hrs[i];
                 const hr2 = hrs[i + 1];
-                // Check if hr2 is the immediate next sibling of hr1
                 if (hr1.nextElementSibling === hr2) {
-                  boundaryHr = hr1;
-                  // Remove the second hr (we'll replace both with the marker)
-                  hr2.remove();
-                  break;
+                  boundaries.push([hr1, hr2]);
+                  i += 1;
                 }
               }
 
-              if (!boundaryHr) return;
+              const totalPosts = boundaries.length + 1;
+              if (logList) {
+                const latestLabel = logList.querySelector('[data-log-kind="latest"] .log-label');
+                if (latestLabel) {
+                  latestLabel.textContent = `最新の更新（第${totalPosts}回）`;
+                }
+              }
 
-              // Create version marker
-              const marker = document.createElement('div');
-              marker.id = `version-${originalDate}`;
-              marker.className = 'original-version-marker mt-16 mb-8';
-              marker.innerHTML = `
-                <div class="border-t-2 border-b-2 border-gray-400 dark:border-gray-500 py-4 my-8">
-                  <p class="font-mono text-sm text-gray-500 dark:text-gray-400 text-center tracking-wider">
-                    ᚛ 初版 / ${originalDate}
-                  </p>
-                </div>
-              `;
+              if (boundaries.length === 0) {
+                const originalLink = logList?.querySelector('[data-log-kind="original"] a');
+                if (originalLink) {
+                  originalLink.setAttribute('href', `#version-${latestDate}`);
+                }
+                return;
+              }
 
-              // Replace the first <hr> with the marker
-              boundaryHr.replaceWith(marker);
+              let upperBoundDate = latestDate;
+              boundaries.forEach(([hr1, hr2], index) => {
+                const nextBoundary = boundaries[index + 1];
+                const sectionStart = hr2.nextElementSibling;
+                const sectionEnd = nextBoundary ? nextBoundary[0] : null;
+                const sectionText = collectSectionText(sectionStart, sectionEnd);
+                hr2.remove();
+                const postNumber = totalPosts - (index + 1);
+                const isOriginal = index === boundaries.length - 1;
+                const markerId = isOriginal ? 'version-original' : `version-update-${postNumber}`;
+
+                const marker = document.createElement('div');
+                marker.id = markerId;
+                marker.className = 'original-version-marker mt-16 mb-8';
+                marker.innerHTML = `
+                  <div class="border-t-2 border-b-2 border-gray-400 dark:border-gray-500 py-4 my-8">
+                    <p class="font-mono text-sm text-gray-500 dark:text-gray-400 text-center tracking-wider">
+                      ${isOriginal ? `᚛ はじめの投稿 / ${originalDate}` : `᚛ 第${postNumber}回の投稿`}
+                    </p>
+                  </div>
+                `;
+                hr1.replaceWith(marker);
+
+                if (!isOriginal && logList) {
+                  const detectedDate = extractDateFromSectionText(sectionText, upperBoundDate);
+                  if (detectedDate) upperBoundDate = detectedDate;
+                  const row = document.createElement('li');
+                  row.className = 'grid grid-cols-[max-content_1fr] gap-4 py-1';
+                  row.setAttribute('data-log-kind', 'auto');
+                  row.innerHTML = `
+                    <a href="#${markerId}" class="text-gray-500 dark:text-gray-400 hover:underline">
+                      ${detectedDate || `第${postNumber}回`}:
+                    </a>
+                    <span>第${postNumber}回</span>
+                  `;
+
+                  const originalRow = logList.querySelector('[data-log-kind="original"]');
+                  if (originalRow) {
+                    logList.insertBefore(row, originalRow);
+                  } else {
+                    logList.appendChild(row);
+                  }
+                }
+              });
             });
           </script>
         )}
