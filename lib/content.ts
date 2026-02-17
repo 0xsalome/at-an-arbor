@@ -159,6 +159,11 @@ function parseMarkdownFile(
     images.push(match[1]);
   }
 
+  const renderedContent = type === 'poem'
+    // Preserve original line breaks by rendering line-by-line.
+    ? content.split('\n').map(line => marked.parseInline(line, { renderer }) as string).join('<br>')
+    : marked.parse(content, { renderer, breaks: true }) as string;
+
   return {
     slug,
     title: data.title || slug,
@@ -166,7 +171,7 @@ function parseMarkdownFile(
     updated: safeFormatDate(data.updated) || safeFormatDate(data.date),
     type,
     excerpt,
-    content: DOMPurify.sanitize(marked.parse(content, { renderer, breaks: true }) as string, {
+    content: DOMPurify.sanitize(renderedContent, {
       ADD_ATTR: ['loading', 'decoding', 'class', 'target', 'rel'],
     }),
     rawContent: content,
