@@ -4,8 +4,8 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "node scripts/copy-images.js && vite",
-    "dev:astro": "cd astro-blog && npm run dev",
+    "dev": "node scripts/copy-images.js --watch & vite",
+    "dev:astro": "node scripts/copy-images.js --watch & cd astro-blog && npm run dev",
     "build:astro": "cd astro-blog && npm run build",
     "build:react": "vite build --outDir dist-react",
     "build:merge": "node scripts/merge-builds.js",

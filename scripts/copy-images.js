@@ -165,4 +165,77 @@ async function main() {
   }
 }
 
-main().catch(console.error);
+function shouldTriggerCopy(filename = '') {
+  if (!filename) return true;
+  if (filename.endsWith('.md')) return true;
+  return /\.(jpe?g|png|webp|gif|svg|heic|avif)$/i.test(filename);
+}
+
+function watchAndCopy() {
+  const watchTargets = [
+    path.join(CONTENT_ROOT, 'blog'),
+    path.join(CONTENT_ROOT, 'moments'),
+    path.join(CONTENT_ROOT, 'poem'),
+    path.join(CONTENT_ROOT, 'images'),
+  ];
+
+  const watchers = [];
+  let timer = null;
+  let running = false;
+  let queued = false;
+
+  const runCopy = async () => {
+    if (running) {
+      queued = true;
+      return;
+    }
+
+    running = true;
+    try {
+      await main();
+    } catch (error) {
+      console.error(error);
+    } finally {
+      running = false;
+      if (queued) {
+        queued = false;
+        void runCopy();
+      }
+    }
+  };
+
+  const onChange = (filename) => {
+    if (!shouldTriggerCopy(filename)) return;
+    if (timer) clearTimeout(timer);
+    timer = setTimeout(() => {
+      console.log(`[watch] Change detected: ${filename || '(unknown file)'}`);
+      void runCopy();
+    }, 200);
+  };
+
+  for (const target of watchTargets) {
+    if (!fs.existsSync(target)) continue;
+
+    try {
+      watchers.push(fs.watch(target, { recursive: true }, (_eventType, filename) => onChange(filename)));
+      console.log(`[watch] Watching ${target} (recursive)`);
+    } catch {
+      watchers.push(fs.watch(target, (_eventType, filename) => onChange(filename)));
+      console.log(`[watch] Watching ${target}`);
+    }
+  }
+
+  process.on('SIGINT', () => {
+    watchers.forEach((watcher) => watcher.close());
+    process.exit(0);
+  });
+
+  console.log('[watch] Image sync is active');
+  void runCopy();
+}
+
+if (process.argv.includes('--watch')) {
+  watchAndCopy();
+} else {
+  main().catch(console.error);
+}

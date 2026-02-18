@@ -26,6 +26,7 @@ const { Content } = await entry.render();
   title={entry.data.title}
   date={entry.data.date}
   updated={entry.data.updated || entry.data.date}
+  tags={entry.data.tags}
   backlinks={backlinks}
   versions={entry.data.versions}
   latestLog={entry.data.latestLog}

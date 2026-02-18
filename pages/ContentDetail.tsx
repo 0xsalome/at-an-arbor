@@ -84,6 +84,12 @@ const ContentDetail: React.FC<ContentDetailProps> = ({ type }) => {
     );
   }
 
+  const contentLabel = type === 'moment'
+    ? 'MOMENT'
+    : item.tags?.includes('essay')
+      ? 'ESSAY'
+      : 'BLOG';
+
   // Poem layout (dark, vertical writing) - 全詩を縦スクロールで表示
   if (type === 'poem') {
     return (
@@ -126,7 +132,7 @@ const ContentDetail: React.FC<ContentDetailProps> = ({ type }) => {
             <div className="font-mono text-sm text-gray-500 mb-4">
               {type === 'moment' ? item.updated.slice(0, 16).replace('T', ' ') : item.updated.slice(0, 10)}
               <span className="mx-2">/</span>
-              {type === 'moment' ? 'MOMENT' : 'BLOG'}
+              {contentLabel}
             </div>
             {type !== 'moment' && (
               <h1 className="text-3xl md:text-5xl font-serif font-bold leading-tight">{item.title}</h1>

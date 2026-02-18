@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://0xsalome.github.io/at-an-arbor/sitemap.xml

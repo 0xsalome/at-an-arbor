@@ -16,13 +16,15 @@ interface Props {
   title: string;
   date: string;
   updated: string;
+  tags?: string[];
   backlinks: Backlink[];
   versions?: Version[];
   latestLog?: string;
   noindex?: boolean;
 }
 
-const { title, date, updated, backlinks, latestLog, noindex } = Astro.props;
+const { title, date, updated, tags = ['blog'], backlinks, latestLog, noindex } = Astro.props;
+const postLabel = tags.includes('essay') ? 'ESSAY' : 'BLOG';
 const siteUrl = 'https://0xsalome.github.io/at-an-arbor';
 const ogImageUrl = `${siteUrl}/images/ogp.png`;
 ---
@@ -167,7 +169,7 @@ const ogImageUrl = `${siteUrl}/images/ogp.png`;
             {updated.slice(0, 10)}
             {updated > date && <span> (Published: {date.slice(0, 10)})</span>}
             <span class="mx-2" data-astro-cid-bvzihdzo>/</span>
-            BLOG
+            {postLabel}
             {updated > date && <span> / ᚛ Regrown</span>}
           </div>
           <h1 class="text-3xl md:text-5xl font-serif font-bold leading-tight">{title}</h1>
