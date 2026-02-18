@@ -27,6 +27,8 @@ const { title, date, updated, tags = ['blog'], backlinks, latestLog, noindex } =
 const postLabel = tags.includes('essay') ? 'ESSAY' : 'BLOG';
 const siteUrl = 'https://0xsalome.github.io/at-an-arbor';
 const ogImageUrl = `${siteUrl}/images/ogp.png`;
+const renderedSlotHtml = await Astro.slots.render('default');
+const normalizedSlotHtml = convertWikiLinksInHTML(renderedSlotHtml);
 ---
 
 <!DOCTYPE html>
@@ -208,9 +210,8 @@ const ogImageUrl = `${siteUrl}/images/ogp.png`;
             <article
               class="prose prose-stone dark:prose-invert prose-lg font-serif leading-loose"
               data-original-date={updated > date ? date : undefined}
-            >
-              <slot />
-            </article>
+              set:html={normalizedSlotHtml}
+            />
           </div>
 
           {/* Past Versions (from frontmatter versions array) */}
@@ -389,8 +390,20 @@ const ogImageUrl = `${siteUrl}/images/ogp.png`;
         {/* Obsidian-style callouts and highlights */}
         <script>
           document.addEventListener('DOMContentLoaded', () => {
-            const article = document.querySelector('article.prose');
-            if (!article) return;
+            const articles = Array.from(document.querySelectorAll('article.prose'));
+            if (articles.length === 0) return;
+
+            // Fallback: convert Obsidian image wikilinks left in rendered HTML.
+            const imageWikiRegex = /!\[\[(.*?)\]\]/g;
+            articles.forEach((article) => {
+              article.innerHTML = article.innerHTML.replace(imageWikiRegex, (_match, rawName) => {
+                const imageName = (rawName || '').trim();
+                const encodedName = encodeURIComponent(imageName);
+                return `<img src="/at-an-arbor/images/blog/${encodedName}" alt="" loading="lazy" decoding="async">`;
+              });
+            });
+
+            const article = articles[0];
 
             // Convert > [!type] to callout boxes
             const blockquotes = article.querySelectorAll('blockquote');

@@ -12,7 +12,7 @@
  */
 
 import { visit } from 'unist-util-visit';
-import type { Root, Text, Link, Parent } from 'mdast';
+import type { Root, Text, Link, Image, Parent } from 'mdast';
 
 const BASE_PATH = '/at-an-arbor';
 
@@ -22,25 +22,21 @@ export function remarkWikiLinks() {
       if (!parent || index === null) return;
 
       const text = node.value;
-
-      // WikiLink [[slug]] または [[slug|display]] のパターン
-      // 画像の ![[image]] は除外するため、前に!がないことを確認
+      const imageWikiRegex = /!\[\[(.*?)\]\]/g;
       const wikiLinkRegex = /(?<!!)(\[\[([^\]|]+?)(?:\|([^\]]+?))?\]\])/g;
 
-      // WikiLinkが含まれているかチェック
-      if (!wikiLinkRegex.test(text)) return;
-
-      // 正規表現をリセット
+      // 画像 or 通常WikiLinkが含まれていない場合は何もしない
+      if (!imageWikiRegex.test(text) && !wikiLinkRegex.test(text)) return;
+      imageWikiRegex.lastIndex = 0;
       wikiLinkRegex.lastIndex = 0;
 
-      const newNodes: Array<Text | Link> = [];
+      const tokenRegex = /!\[\[(.*?)\]\]|(?<!!)(\[\[([^\]|]+?)(?:\|([^\]]+?))?\]\])/g;
+      const newNodes: Array<Text | Link | Image> = [];
       let lastIndex = 0;
       let match: RegExpExecArray | null;
 
-      while ((match = wikiLinkRegex.exec(text)) !== null) {
-        const fullMatch = match[0];  // [[slug]] または [[slug|display]]
-        const slug = match[2].trim();
-        const displayText = match[3] ? match[3].trim() : slug;
+      while ((match = tokenRegex.exec(text)) !== null) {
+        const fullMatch = match[0];
         const offset = match.index;
 
         // マッチの前のテキストを追加
@@ -51,23 +47,40 @@ export function remarkWikiLinks() {
           });
         }
 
-        // WikiLinkをリンクノードに変換
-        newNodes.push({
-          type: 'link',
-          url: `${BASE_PATH}/blog/${slug}`,
-          title: null,
-          children: [
-            {
-              type: 'text',
-              value: displayText,
+        // ![[image.ext]] を画像ノードに変換
+        if (fullMatch.startsWith('![[')) {
+          const imageName = (match[1] || '').trim();
+          if (imageName) {
+            const encodedName = encodeURIComponent(imageName);
+            newNodes.push({
+              type: 'image',
+              url: `${BASE_PATH}/images/blog/${encodedName}`,
+              alt: '',
+              title: null,
+            } as Image);
+          }
+        } else {
+          const slug = match[3].trim();
+          const displayText = match[4] ? match[4].trim() : slug;
+
+          // WikiLinkをリンクノードに変換
+          newNodes.push({
+            type: 'link',
+            url: `${BASE_PATH}/blog/${slug}`,
+            title: null,
+            children: [
+              {
+                type: 'text',
+                value: displayText,
+              },
+            ],
+            data: {
+              hProperties: {
+                className: ['wikilink'],
+              },
             },
-          ],
-          data: {
-            hProperties: {
-              className: ['wikilink'],
-            },
-          },
-        } as Link);
+          } as Link);
+        }
 
         lastIndex = offset + fullMatch.length;
       }
@@ -96,11 +109,17 @@ export function remarkWikiLinks() {
  * @returns WikiLinkが変換されたHTML文字列
  */
 export function convertWikiLinksInHTML(html: string): string {
+  const imageWikiRegex = /!\[\[(.*?)\]\]/g;
   // WikiLink [[slug]] または [[slug|display]] のパターン
   // 画像の ![[image]] は除外するため、前に!がないことを確認
   const wikiLinkRegex = /(?<!!)(\[\[([^\]|]+?)(?:\|([^\]]+?))?\]\])/g;
 
-  return html.replace(wikiLinkRegex, (match, full, slug, displayText) => {
+  const withImages = html.replace(imageWikiRegex, (_match, imageName) => {
+    const encodedName = encodeURIComponent((imageName || '').trim());
+    return `<img src="${BASE_PATH}/images/blog/${encodedName}" alt="" loading="lazy" decoding="async" />`;
+  });
+
+  return withImages.replace(wikiLinkRegex, (match, full, slug, displayText) => {
     const text = displayText ? displayText.trim() : slug.trim();
     const normalizedSlug = slug.trim();
     return `<a href="${BASE_PATH}/blog/${normalizedSlug}" class="wikilink">${text}</a>`;
