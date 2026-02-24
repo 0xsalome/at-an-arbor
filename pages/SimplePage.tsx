@@ -15,7 +15,9 @@ const SimplePage: React.FC<SimplePageProps> = ({ type }) => {
 
   const mainClasses = type === 'compost' 
     ? "w-full md:w-5/6 p-6 md:p-16 lg:p-24" // Compost: フル幅（制限なし）、パディングあり
-    : "w-full md:w-5/6 p-6 md:p-16 lg:p-24 max-w-3xl"; // 通常: 幅制限あり
+    : type === 'moment-list'
+      ? "w-full md:w-5/6 px-4 py-6 md:px-8 md:py-10 lg:px-10 lg:py-12 max-w-2xl"
+      : "w-full md:w-5/6 p-6 md:p-16 lg:p-24 max-w-3xl"; // 通常: 幅制限あり
 
   return (
     <div className="min-h-screen bg-paper-white dark:bg-ink-black text-text-main dark:text-text-inv flex flex-col md:flex-row">
@@ -70,17 +72,17 @@ const SimplePage: React.FC<SimplePageProps> = ({ type }) => {
 
           {type === 'moment-list' && (
             <>
-              <h1 className="text-4xl font-mono font-bold mb-12">Moments</h1>
-              <ul className="space-y-16">
+              <h1 className="text-4xl font-mono font-bold mb-6">Moments</h1>
+              <ul className="divide-y divide-gray-100 dark:divide-gray-800">
                 {MOMENTS.map(moment => (
-                  <li key={moment.slug} className="group border-b border-gray-100 dark:border-gray-800 pb-12 last:border-0">
-                    <div className="font-mono text-xs text-gray-400 mb-4">{moment.updated.slice(0, 16).replace('T', ' ')}</div>
+                  <li key={moment.slug} className="group py-6 first:pt-0">
+                    <div className="font-mono text-xs text-gray-400 mb-3 tracking-wide">{moment.updated.slice(0, 16).replace('T', ' ')}</div>
                     <div 
-                      className="prose prose-stone dark:prose-invert font-serif leading-loose text-gray-800 dark:text-gray-200"
+                      className="prose prose-sm md:prose-base prose-stone dark:prose-invert max-w-none font-serif leading-relaxed text-gray-800 dark:text-gray-200"
                       dangerouslySetInnerHTML={{ __html: moment.content }}
                     />
-                    <div className="mt-6">
-                      <Link to={`/moments/${moment.slug}`} className="text-xs font-mono text-gray-400 hover:text-text-main dark:hover:text-text-inv transition-colors">
+                    <div className="mt-4">
+                      <Link to={`/moments/${moment.slug}`} className="text-[11px] font-mono text-gray-400 hover:text-text-main dark:hover:text-text-inv transition-colors tracking-wide">
                         [PERMALINK]
                       </Link>
                     </div>
