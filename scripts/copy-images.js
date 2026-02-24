@@ -80,7 +80,8 @@ async function processImage(srcPath, destPath) {
        return true;
     }
 
-    let pipeline = sharp(srcPath);
+    // Apply EXIF orientation before resize/compress so portrait photos stay portrait.
+    let pipeline = sharp(srcPath).rotate();
     const metadata = await pipeline.metadata();
 
     // Resize if width is larger than 1920px (Safe for 4K screens while reducing file size)

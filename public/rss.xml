@@ -6,7 +6,7 @@
     <description>digital garden</description>
     <language>ja</language>
     <atom:link href="https://0xsalome.github.io/at-an-arbor/rss.xml" rel="self" type="application/rss+xml"/>
-    <lastBuildDate>Tue, 24 Feb 2026 00:12:11 GMT</lastBuildDate>
+    <lastBuildDate>Tue, 24 Feb 2026 00:19:42 GMT</lastBuildDate>
     
     <item>
       <title>Digital_Gardening (AI)</title>
@@ -31,6 +31,14 @@
       <pubDate>Invalid Date</pubDate>
       <description>ランプの光が机を照らす。コーヒーの香りが漂う。</description>
       <category>blog</category>
+    </item>
+    <item>
+      <title>2026-02-24</title>
+      <link>https://0xsalome.github.io/at-an-arbor/moments/2026-02-24</link>
+      <guid>https://0xsalome.github.io/at-an-arbor/moments/2026-02-24</guid>
+      <pubDate>Tue, 24 Feb 2026 00:02:00 GMT</pubDate>
+      <description>Cliツールで作りたい物は山ほどあるのだが、思うようにいかない。完全に私がボトルネック… 詰まりが解ける時って大体ちょっとしたコツなんだけどなぁ〜</description>
+      <category>moment</category>
     </item>
     <item>
       <title>芸術祭と地方</title>
@@ -158,14 +166,6 @@
       <guid>https://0xsalome.github.io/at-an-arbor/moments/2026-02-07</guid>
       <pubDate>Fri, 06 Feb 2026 23:42:00 GMT</pubDate>
       <description>良好な関係性を続けていくには、母性と父性が大切なのかもしれない、、</description>
-      <category>moment</category>
-    </item>
-    <item>
-      <title>2026-02-06</title>
-      <link>https://0xsalome.github.io/at-an-arbor/moments/2026-02-06-02</link>
-      <guid>https://0xsalome.github.io/at-an-arbor/moments/2026-02-06-02</guid>
-      <pubDate>Fri, 06 Feb 2026 08:25:00 GMT</pubDate>
-      <description>claude codeもgemini cliも手こずってたバグ?がcodexでするすると解決していく〜T T</description>
       <category>moment</category>
     </item>
   </channel>
