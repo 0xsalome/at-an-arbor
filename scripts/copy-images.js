@@ -5,6 +5,7 @@ import sharp from 'sharp';
 const CONTENT_ROOT = path.join(process.cwd(), 'content');
 const CONTENT_DIRS = ['moments', 'blog', 'poem'];
 const TARGET_BASE_DIR = path.join(process.cwd(), 'public', 'images');
+const QUIET_MODE = process.argv.includes('--quiet');
 
 // Ensure target base dir exists
 if (!fs.existsSync(TARGET_BASE_DIR)) {
@@ -162,7 +163,9 @@ async function main() {
       }
     }
     
-    console.log(`Processed ${processedCount} image(s) for ${type}`);
+    if (!QUIET_MODE || processedCount > 0) {
+      console.log(`Processed ${processedCount} image(s) for ${type}`);
+    }
   }
 }
 
@@ -173,17 +176,10 @@ function shouldTriggerCopy(filename = '') {
 }
 
 function watchAndCopy() {
-  const watchTargets = [
-    path.join(CONTENT_ROOT, 'blog'),
-    path.join(CONTENT_ROOT, 'moments'),
-    path.join(CONTENT_ROOT, 'poem'),
-    path.join(CONTENT_ROOT, 'images'),
-  ];
-
-  const watchers = [];
-  let timer = null;
+  const POLL_INTERVAL_MS = 2000;
   let running = false;
   let queued = false;
+  let intervalId = null;
 
   const runCopy = async () => {
     if (running) {
@@ -205,34 +201,16 @@ function watchAndCopy() {
     }
   };
 
-  const onChange = (filename) => {
-    if (!shouldTriggerCopy(filename)) return;
-    if (timer) clearTimeout(timer);
-    timer = setTimeout(() => {
-      console.log(`[watch] Change detected: ${filename || '(unknown file)'}`);
-      void runCopy();
-    }, 200);
-  };
-
-  for (const target of watchTargets) {
-    if (!fs.existsSync(target)) continue;
-
-    try {
-      watchers.push(fs.watch(target, { recursive: true }, (_eventType, filename) => onChange(filename)));
-      console.log(`[watch] Watching ${target} (recursive)`);
-    } catch {
-      watchers.push(fs.watch(target, (_eventType, filename) => onChange(filename)));
-      console.log(`[watch] Watching ${target}`);
-    }
-  }
-
   process.on('SIGINT', () => {
-    watchers.forEach((watcher) => watcher.close());
+    if (intervalId) clearInterval(intervalId);
     process.exit(0);
   });
 
-  console.log('[watch] Image sync is active');
+  console.log(`[watch] Image sync polling is active (${POLL_INTERVAL_MS}ms interval)`);
   void runCopy();
+  intervalId = setInterval(() => {
+    void runCopy();
+  }, POLL_INTERVAL_MS);
 }
 
 if (process.argv.includes('--watch')) {

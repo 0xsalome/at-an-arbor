@@ -2,6 +2,8 @@ import { spawn } from 'node:child_process';
 
 const npmCmd = process.platform === 'win32' ? 'npm.cmd' : 'npm';
 const children = [];
+const SPA_PORT = '3000';
+const ASTRO_PORT = '4321';
 
 function run(name, command, args, options = {}) {
   const child = spawn(command, args, {
@@ -38,9 +40,8 @@ process.on('SIGINT', () => shutdown(0));
 process.on('SIGTERM', () => shutdown(0));
 
 console.log('[dev-unified] starting copy-images watcher, Astro dev, and Vite dev...');
-console.log('[dev-unified] SPA: http://127.0.0.1:3000/at-an-arbor/');
-console.log('[dev-unified] Blog: http://127.0.0.1:4321/at-an-arbor/blog/');
+console.log(`[dev-unified] Demo URL: http://127.0.0.1:${SPA_PORT}/at-an-arbor/`);
 
-run('copy-images', 'node', ['scripts/copy-images.js', '--watch']);
-run('astro-dev', npmCmd, ['run', 'dev', '--prefix', 'astro-blog']);
-run('vite-dev', npmCmd, ['run', 'dev:vite']);
+run('copy-images', 'node', ['scripts/copy-images.js', '--watch', '--quiet']);
+run('astro-dev', npmCmd, ['run', 'dev', '--prefix', 'astro-blog', '--', '--host', '127.0.0.1', '--port', ASTRO_PORT, '--strictPort']);
+run('vite-dev', npmCmd, ['run', 'dev:vite', '--', '--host', '127.0.0.1', '--port', SPA_PORT, '--strictPort']);
