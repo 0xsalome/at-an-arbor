@@ -82,7 +82,18 @@ const momentFiles = import.meta.glob('../content/moments/*.md', {
 
 // Configure marked renderer for lazy loading
 const renderer = new marked.Renderer();
+const VIDEO_EXT_REGEX = /\.(mp4|mov|webm|m4v|ogg)(\?.*)?$/i;
+
+function isVideoPath(href: string): boolean {
+  return VIDEO_EXT_REGEX.test(href);
+}
+
 renderer.image = ({ href, title, text }) => {
+  if (isVideoPath(href)) {
+    const safeTitle = title || '';
+    const safeLabel = text || '';
+    return `<video src="${href}" title="${safeTitle}" aria-label="${safeLabel}" class="lazy-load" controls playsinline preload="metadata"></video>`;
+  }
   return `<img src="${href}" alt="${text || ''}" title="${title || ''}" class="lazy-load" loading="lazy" decoding="async" />`;
 };
 renderer.link = ({ href, title, text }) => {
@@ -172,7 +183,8 @@ function parseMarkdownFile(
     type,
     excerpt,
     content: DOMPurify.sanitize(renderedContent, {
-      ADD_ATTR: ['loading', 'decoding', 'class', 'target', 'rel'],
+      ADD_TAGS: ['video'],
+      ADD_ATTR: ['loading', 'decoding', 'class', 'target', 'rel', 'controls', 'playsinline', 'preload', 'aria-label'],
     }),
     rawContent: content,
     images: images.length > 0 ? images : undefined,

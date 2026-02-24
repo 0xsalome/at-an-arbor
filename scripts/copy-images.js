@@ -169,7 +169,7 @@ async function main() {
 function shouldTriggerCopy(filename = '') {
   if (!filename) return true;
   if (filename.endsWith('.md')) return true;
-  return /\.(jpe?g|png|webp|gif|svg|heic|avif)$/i.test(filename);
+  return /\.(jpe?g|png|webp|gif|svg|heic|avif|mp4|mov|webm|m4v|ogg)$/i.test(filename);
 }
 
 function watchAndCopy() {
