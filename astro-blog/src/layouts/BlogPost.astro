@@ -63,7 +63,8 @@ const normalizedSlotHtml = convertWikiLinksInHTML(renderedSlotHtml);
       /* Proseスタイル（Tailwind Typography互換） */
       .prose {
         color: #374151;
-        max-width: 65ch;
+        max-width: 78ch;
+        line-break: strict;
       }
       .prose :where(p):not(:where([class~="not-prose"] *)) {
         margin-top: 1.25em;
@@ -165,7 +166,7 @@ const normalizedSlotHtml = convertWikiLinksInHTML(renderedSlotHtml);
       </aside>
 
       <!-- Main content -->
-      <main class="w-full md:w-5/6 p-6 md:p-16 lg:p-24 max-w-4xl mx-auto">
+      <main class="w-full md:w-5/6 p-6 md:p-16 lg:p-24 max-w-6xl mx-auto">
         <header class="mb-12 border-b border-gray-900 dark:border-gray-600 pb-8">
           <div class="font-mono text-sm text-gray-500 dark:text-gray-400 mb-4" data-astro-cid-bvzihdzo>
             {updated.slice(0, 10)}
