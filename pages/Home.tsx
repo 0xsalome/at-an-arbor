@@ -119,7 +119,7 @@ const Home: React.FC = () => {
                     >
                       <span dangerouslySetInnerHTML={{ __html: moment.excerpt }} />
                       {moment.images && moment.images.length > 0 && (
-                        <span className="ml-2 text-gray-400 dark:text-gray-500">[photo]</span>
+                        <span className="ml-2 text-gray-400 dark:text-gray-500">[写真{moment.images.length}枚]</span>
                       )}
                     </p>
                   </article>

@@ -76,7 +76,12 @@ const SimplePage: React.FC<SimplePageProps> = ({ type }) => {
               <ul className="divide-y divide-gray-100 dark:divide-gray-800">
                 {MOMENTS.map(moment => (
                   <li key={moment.slug} className="group py-6 first:pt-0">
-                    <div className="font-mono text-xs text-gray-400 mb-3 tracking-wide">{moment.updated.slice(0, 16).replace('T', ' ')}</div>
+                    <div className="font-mono text-xs text-gray-400 mb-3 tracking-wide">
+                      {moment.updated.slice(0, 16).replace('T', ' ')}
+                      {moment.images && moment.images.length > 0 && (
+                        <span className="ml-2">/ 写真{moment.images.length}枚</span>
+                      )}
+                    </div>
                     <div 
                       className="prose prose-sm md:prose-base prose-stone dark:prose-invert max-w-none font-serif leading-relaxed text-gray-800 dark:text-gray-200"
                       dangerouslySetInnerHTML={{ __html: moment.content }}

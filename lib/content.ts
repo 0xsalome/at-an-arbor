@@ -74,7 +74,7 @@ const poemFiles = import.meta.glob('../content/poem/*.md', {
   eager: true
 }) as Record<string, string>;
 
-const momentFiles = import.meta.glob('../content/moments/*.md', {
+const momentFiles = import.meta.glob('../content/moments/**/*.md', {
   query: '?raw',
   import: 'default',
   eager: true

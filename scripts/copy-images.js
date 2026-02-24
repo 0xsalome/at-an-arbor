@@ -29,6 +29,28 @@ function findImageFile(filename, type) {
   return null;
 }
 
+function collectMarkdownFiles(dir) {
+  const result = [];
+  if (!fs.existsSync(dir)) return result;
+
+  const entries = fs.readdirSync(dir, { withFileTypes: true });
+  for (const entry of entries) {
+    if (entry.name.startsWith('.')) continue;
+    const fullPath = path.join(dir, entry.name);
+
+    if (entry.isDirectory()) {
+      result.push(...collectMarkdownFiles(fullPath));
+      continue;
+    }
+
+    if (entry.isFile() && entry.name.endsWith('.md')) {
+      result.push(fullPath);
+    }
+  }
+
+  return result;
+}
+
 // Helper to extract image references from markdown
 function extractImages(content) {
   const images = new Set();
@@ -143,12 +165,10 @@ async function main() {
 
     // 2. Scan markdown files for referenced images that might be elsewhere
     if (fs.existsSync(typeDir)) {
-      const files = fs.readdirSync(typeDir);
-      
-      for (const file of files) {
-        if (!file.endsWith('.md')) continue;
-        
-        const content = fs.readFileSync(path.join(typeDir, file), 'utf-8');
+      const markdownFiles = collectMarkdownFiles(typeDir);
+
+      for (const mdPath of markdownFiles) {
+        const content = fs.readFileSync(mdPath, 'utf-8');
         const images = extractImages(content);
 
         for (const imageName of images) {
