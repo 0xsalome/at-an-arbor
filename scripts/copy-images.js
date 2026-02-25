@@ -13,10 +13,17 @@ if (!fs.existsSync(TARGET_BASE_DIR)) {
 }
 
 // Helper to find image file in potential locations
-function findImageFile(filename, type) {
+function findImageFile(filename, type, mdPath = '') {
   // 1. Look in content/{type}/images/
   const typeDir = path.join(CONTENT_ROOT, type, 'images', filename);
   if (fs.existsSync(typeDir)) return typeDir;
+
+  // 1.5 Look in sibling images/ directory next to the markdown file
+  // e.g. content/moments/2026.2/2026-02-26.md -> content/moments/2026.2/images/<file>
+  if (mdPath) {
+    const siblingDir = path.join(path.dirname(mdPath), 'images', filename);
+    if (fs.existsSync(siblingDir)) return siblingDir;
+  }
 
   // 2. Look in content/ root (common if dropped in Obsidian root)
   const rootDir = path.join(CONTENT_ROOT, filename);
@@ -173,7 +180,7 @@ async function main() {
 
         for (const imageName of images) {
           const destPath = path.join(targetDir, imageName);
-          const sourcePath = findImageFile(imageName, type);
+          const sourcePath = findImageFile(imageName, type, mdPath);
           
           if (sourcePath) {
              const processed = await processImage(sourcePath, destPath);
