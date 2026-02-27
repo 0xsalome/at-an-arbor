@@ -6,7 +6,7 @@
     <description>digital garden</description>
     <language>ja</language>
     <atom:link href="https://0xsalome.github.io/at-an-arbor/rss.xml" rel="self" type="application/rss+xml"/>
-    <lastBuildDate>Tue, 24 Feb 2026 00:55:49 GMT</lastBuildDate>
+    <lastBuildDate>Fri, 27 Feb 2026 02:17:19 GMT</lastBuildDate>
     
     <item>
       <title>Digital_Gardening (AI)</title>
@@ -33,14 +33,6 @@
       <category>blog</category>
     </item>
     <item>
-      <title>2026-02-24</title>
-      <link>https://0xsalome.github.io/at-an-arbor/moments/2026-02-24</link>
-      <guid>https://0xsalome.github.io/at-an-arbor/moments/2026-02-24</guid>
-      <pubDate>Tue, 24 Feb 2026 00:02:00 GMT</pubDate>
-      <description>Cliツールで作りたい物は山ほどあるのだが、思うようにいかない。完全に私がボトルネック… 詰まりが解ける時って大体ちょっとしたコツなんだけどなぁ〜</description>
-      <category>moment</category>
-    </item>
-    <item>
       <title>芸術祭と地方</title>
       <link>https://0xsalome.github.io/at-an-arbor/blog/芸術祭と地方</link>
       <guid>https://0xsalome.github.io/at-an-arbor/blog/芸術祭と地方</guid>
@@ -55,30 +47,6 @@
       <pubDate>Sat, 21 Feb 2026 13:52:00 GMT</pubDate>
       <description>3週目 [2/14-21]</description>
       <category>blog</category>
-    </item>
-    <item>
-      <title>2026-02-19</title>
-      <link>https://0xsalome.github.io/at-an-arbor/moments/2026-02-19-3</link>
-      <guid>https://0xsalome.github.io/at-an-arbor/moments/2026-02-19-3</guid>
-      <pubDate>Thu, 19 Feb 2026 07:40:00 GMT</pubDate>
-      <description>なんかAI使用料をAIに自給自足してもらいたいな。複利効果のある持続的でトレンドから離れた地道なシステム…人間の介入は最初だけがいい。。</description>
-      <category>moment</category>
-    </item>
-    <item>
-      <title>2026-02-19</title>
-      <link>https://0xsalome.github.io/at-an-arbor/moments/2026-02-19-2</link>
-      <guid>https://0xsalome.github.io/at-an-arbor/moments/2026-02-19-2</guid>
-      <pubDate>Thu, 19 Feb 2026 00:50:00 GMT</pubDate>
-      <description>フロー状態での気づきは再現性が低いけれど、AIを扱う事で現実的に反芻できるのかも… だけど楽しさや美しさは様々な背景を軽やかに飛び越えていくなぁ</description>
-      <category>moment</category>
-    </item>
-    <item>
-      <title>2026-02-19</title>
-      <link>https://0xsalome.github.io/at-an-arbor/moments/2026-02-19</link>
-      <guid>https://0xsalome.github.io/at-an-arbor/moments/2026-02-19</guid>
-      <pubDate>Thu, 19 Feb 2026 00:38:00 GMT</pubDate>
-      <description>AIへ渡すコンテキストと同じくらい、人間同士でも文脈、背景を共有したり、前提としての層を認識する事の難しさを改めて感じる…</description>
-      <category>moment</category>
     </item>
     <item>
       <title>ムッキーちゃん</title>
@@ -97,22 +65,6 @@
       <category>poem</category>
     </item>
     <item>
-      <title>2026-02-15</title>
-      <link>https://0xsalome.github.io/at-an-arbor/moments/2026-02-15-2</link>
-      <guid>https://0xsalome.github.io/at-an-arbor/moments/2026-02-15-2</guid>
-      <pubDate>Sun, 15 Feb 2026 08:52:00 GMT</pubDate>
-      <description>桜を愛でる方は気になってしまったかもしれないけど、実際は桜の花→葉っぱの順なんですよね。新緑に癒されたいため実際の成長過程とは異なる設定です…</description>
-      <category>moment</category>
-    </item>
-    <item>
-      <title>2026-02-15</title>
-      <link>https://0xsalome.github.io/at-an-arbor/moments/2026-02-15</link>
-      <guid>https://0xsalome.github.io/at-an-arbor/moments/2026-02-15</guid>
-      <pubDate>Sat, 14 Feb 2026 17:17:00 GMT</pubDate>
-      <description>謎のお花見会場が出現🌸githubの芝生機能を桜の木に見立てて。自分や誰かのgithub名を入力すると、手を動かした分の景色が…</description>
-      <category>moment</category>
-    </item>
-    <item>
       <title>アルゴリズムのはずれに</title>
       <link>https://0xsalome.github.io/at-an-arbor/blog/アルゴリズムのはずれに</link>
       <guid>https://0xsalome.github.io/at-an-arbor/blog/アルゴリズムのはずれに</guid>
@@ -121,52 +73,84 @@
       <category>blog</category>
     </item>
     <item>
-      <title>2026-02-11</title>
-      <link>https://0xsalome.github.io/at-an-arbor/moments/2026-02-11-2</link>
-      <guid>https://0xsalome.github.io/at-an-arbor/moments/2026-02-11-2</guid>
-      <pubDate>Wed, 11 Feb 2026 01:40:00 GMT</pubDate>
-      <description>ブルータリズム調の建築に十字架…？と色々と気にかかる所はあったけど。言葉にできない余韻が続くと、映画を観てよかったといつも思う。</description>
+      <title>読書についての雑感</title>
+      <link>https://0xsalome.github.io/at-an-arbor/blog/読書についての雑感</link>
+      <guid>https://0xsalome.github.io/at-an-arbor/blog/読書についての雑感</guid>
+      <pubDate>Sat, 31 Jan 2026 04:26:00 GMT</pubDate>
+      <description>難解な本を読むと、何だか少し頭が良くなった気がしたり、人に話したくなったりする。</description>
+      <category>blog</category>
+    </item>
+    <item>
+      <title>皮</title>
+      <link>https://0xsalome.github.io/at-an-arbor/poems/2026.01.27</link>
+      <guid>https://0xsalome.github.io/at-an-arbor/poems/2026.01.27</guid>
+      <pubDate>Tue, 27 Jan 2026 07:53:00 GMT</pubDate>
+      <description>混ざりあった その色は ひとつなのかい</description>
+      <category>poem</category>
+    </item>
+    <item>
+      <title>個人サイトあるいは箱庭</title>
+      <link>https://0xsalome.github.io/at-an-arbor/blog/個人サイトあるいは箱庭</link>
+      <guid>https://0xsalome.github.io/at-an-arbor/blog/個人サイトあるいは箱庭</guid>
+      <pubDate>Tue, 20 Jan 2026 13:10:00 GMT</pubDate>
+      <description>AIエージェントの進化によって 非エンジニアが一から何かを作ることは、特別な挑戦ではなくなってきている2025年。</description>
+      <category>blog</category>
+    </item>
+    <item>
+      <title>2026-01-13</title>
+      <link>https://0xsalome.github.io/at-an-arbor/moments/2056-01-13</link>
+      <guid>https://0xsalome.github.io/at-an-arbor/moments/2056-01-13</guid>
+      <pubDate>Tue, 13 Jan 2026 10:31:00 GMT</pubDate>
+      <description>古民家改修の内装設計を生成AIでお手伝いすることに。 漆喰の色合いや扉をつけてみたら、とリアルに再現出来て、 歴史あるものと新しい技術の組み合わせは不思議な高揚感があった。 そして単なる趣味が周りの役に立てて良かった、、</description>
       <category>moment</category>
     </item>
     <item>
-      <title>2026-02-10</title>
-      <link>https://0xsalome.github.io/at-an-arbor/moments/2026-02-10-2</link>
-      <guid>https://0xsalome.github.io/at-an-arbor/moments/2026-02-10-2</guid>
-      <pubDate>Tue, 10 Feb 2026 13:38:00 GMT</pubDate>
-      <description>気分転換にブルータリストを観た、3時間半は長かった。 建築家のリアリティ、洗練された美しいシーンが多かった。</description>
+      <title>親しみ</title>
+      <link>https://0xsalome.github.io/at-an-arbor/poems/2025.12.23</link>
+      <guid>https://0xsalome.github.io/at-an-arbor/poems/2025.12.23</guid>
+      <pubDate>Sun, 04 Jan 2026 02:42:00 GMT</pubDate>
+      <description>ある本の中に出てきた言葉が残っている   愛より少し軽いもの、それは親切。  </description>
+      <category>poem</category>
+    </item>
+    <item>
+      <title>ジョウビタキ</title>
+      <link>https://0xsalome.github.io/at-an-arbor/poems/2025.11.25</link>
+      <guid>https://0xsalome.github.io/at-an-arbor/poems/2025.11.25</guid>
+      <pubDate>Sun, 04 Jan 2026 02:33:00 GMT</pubDate>
+      <description>てん　てんてん　と聴こえたら   柿色の腹をした 小鳥が近くに居るだろう  </description>
+      <category>poem</category>
+    </item>
+    <item>
+      <title>ふとしたときに</title>
+      <link>https://0xsalome.github.io/at-an-arbor/poems/2025.10.21</link>
+      <guid>https://0xsalome.github.io/at-an-arbor/poems/2025.10.21</guid>
+      <pubDate>Sun, 04 Jan 2026 02:03:00 GMT</pubDate>
+      <description>あたまにゾウを飼っている   何事にも動じず  優しいまなざしで  </description>
+      <category>poem</category>
+    </item>
+    <item>
+      <title>朝のコーヒー (AI)</title>
+      <link>https://0xsalome.github.io/at-an-arbor/moments/first-coffee</link>
+      <guid>https://0xsalome.github.io/at-an-arbor/moments/first-coffee</guid>
+      <pubDate>Thu, 09 Oct 2025 23:15:00 GMT</pubDate>
+      <description>今日も一杯から始まる。</description>
       <category>moment</category>
     </item>
     <item>
-      <title>2026-02-10</title>
-      <link>https://0xsalome.github.io/at-an-arbor/moments/2026-02-10</link>
-      <guid>https://0xsalome.github.io/at-an-arbor/moments/2026-02-10</guid>
-      <pubDate>Mon, 09 Feb 2026 16:24:00 GMT</pubDate>
-      <description>ちょこちょこgithubで、もしかしてクリプトの元だった？というのに遭遇する、、uni swap? ![[スクリーンショット 2026-02-10 1.19.08.png]]</description>
-      <category>moment</category>
+      <title>反響 (AI)</title>
+      <link>https://0xsalome.github.io/at-an-arbor/poems/echo</link>
+      <guid>https://0xsalome.github.io/at-an-arbor/poems/echo</guid>
+      <pubDate>Wed, 08 Oct 2025 10:45:00 GMT</pubDate>
+      <description>声は壁に当たり 形を変えて戻ってくる</description>
+      <category>poem</category>
     </item>
     <item>
-      <title>2026-02-09</title>
-      <link>https://0xsalome.github.io/at-an-arbor/moments/2026-02-09</link>
-      <guid>https://0xsalome.github.io/at-an-arbor/moments/2026-02-09</guid>
-      <pubDate>Mon, 09 Feb 2026 03:01:00 GMT</pubDate>
-      <description>cliツールからの承認の際に音で知らせるよう設定して1か月程経ち、とても良いけど並走してるとお祭り状態に突入</description>
-      <category>moment</category>
-    </item>
-    <item>
-      <title>2026-02-07</title>
-      <link>https://0xsalome.github.io/at-an-arbor/moments/2026-02-07-2</link>
-      <guid>https://0xsalome.github.io/at-an-arbor/moments/2026-02-07-2</guid>
-      <pubDate>Sat, 07 Feb 2026 02:56:00 GMT</pubDate>
-      <description>ずっとコミットとプッシュはにこいちだと思ってた… コミットは昔のPSでいうとメモリーカードみたいな感じだったのか</description>
-      <category>moment</category>
-    </item>
-    <item>
-      <title>2026-02-07</title>
-      <link>https://0xsalome.github.io/at-an-arbor/moments/2026-02-07</link>
-      <guid>https://0xsalome.github.io/at-an-arbor/moments/2026-02-07</guid>
-      <pubDate>Fri, 06 Feb 2026 23:42:00 GMT</pubDate>
-      <description>良好な関係性を続けていくには、母性と父性が大切なのかもしれない、、</description>
-      <category>moment</category>
+      <title>月影 (AI)</title>
+      <link>https://0xsalome.github.io/at-an-arbor/poems/moonshadow</link>
+      <guid>https://0xsalome.github.io/at-an-arbor/poems/moonshadow</guid>
+      <pubDate>Wed, 01 Oct 2025 12:00:00 GMT</pubDate>
+      <description>静かな夜の裂け目から 白い風が流れ込む</description>
+      <category>poem</category>
     </item>
   </channel>
 </rss>
