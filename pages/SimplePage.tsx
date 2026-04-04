@@ -83,7 +83,7 @@ const SimplePage: React.FC<SimplePageProps> = ({ type }) => {
                       )}
                     </div>
                     <div 
-                      className="prose prose-sm md:prose-base prose-stone dark:prose-invert max-w-none font-serif leading-relaxed text-gray-800 dark:text-gray-200"
+                      className="moment-content prose prose-sm md:prose-base prose-stone dark:prose-invert max-w-none font-serif leading-relaxed text-gray-800 dark:text-gray-200"
                       dangerouslySetInnerHTML={{ __html: moment.content }}
                     />
                     <div className="mt-4">
