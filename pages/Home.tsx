@@ -61,7 +61,7 @@ function createBlogPairs(blogs: ContentItem[], poems: ContentItem[]) {
 
 const Home: React.FC = () => {
   const navigate = useNavigate();
-  const recentMoments = MOMENTS.slice(0, 2); // 最新2件のmoments
+  const homeMoments = MOMENTS;
   const blogPairs = createBlogPairs(BLOG_POSTS, POEMS);
 
   return (
@@ -95,43 +95,48 @@ const Home: React.FC = () => {
             <Nav />
           </div>
 
-          <div className="flex-grow flex flex-col justify-end pb-20 md:pb-8 max-w-2xl relative z-10">
+          <div className="flex-grow min-h-0 flex flex-col justify-end pb-20 md:pb-8 max-w-2xl relative z-10">
             <WhisperBar />
-            <FadeIn>
-              <div className="space-y-6">
-                {recentMoments.map((moment) => (
-                  <article
-                    key={moment.slug}
-                    className="cursor-pointer group"
+            <FadeIn className="min-h-0">
+              <div className="flex max-h-[44vh] min-h-0 flex-col">
+                <div className="mb-3 flex items-center justify-between text-[11px] font-mono tracking-wide text-gray-400 dark:text-gray-500">
+                  <span>MOMENTS</span>
+                  <button
+                    className="hover:text-gray-600 dark:hover:text-gray-300 transition-colors"
                     onClick={() => navigate('/moments')}
                   >
-                    <div className="font-mono text-xs text-gray-400 dark:text-gray-500 mb-1">
-                      {moment.updated.slice(0, 16).replace('T', ' ')} <span className="mx-1">/</span> MOMENT
-                    </div>
-                    <p 
-                      className="font-serif leading-relaxed text-gray-700 dark:text-gray-300 text-sm md:text-base group-hover:text-gray-900 dark:group-hover:text-gray-100 transition-colors"
-                      onClick={(e) => {
-                        const target = e.target as HTMLElement;
-                        if (target.tagName === 'A' || target.closest('a')) {
-                          e.stopPropagation();
-                        }
-                      }}
-                    >
-                      <span dangerouslySetInnerHTML={{ __html: moment.excerpt }} />
-                      {moment.images && moment.images.length > 0 && (
-                        <span className="ml-2 text-gray-400 dark:text-gray-500">[{moment.images.length}Photo{moment.images.length > 1 ? 's' : ''}]</span>
-                      )}
-                    </p>
-                  </article>
-                ))}
-                {MOMENTS.length > 2 && (
-                  <div
-                    className="text-xs font-mono text-gray-400 dark:text-gray-500 cursor-pointer hover:text-gray-600 dark:hover:text-gray-300 transition-colors"
-                    onClick={() => navigate('/moments')}
-                  >
-                    [MORE MOMENTS →]
+                    [OPEN]
+                  </button>
+                </div>
+                <div className="min-h-0 overflow-y-auto overscroll-contain pr-2">
+                  <div className="space-y-6">
+                    {homeMoments.map((moment) => (
+                      <article
+                        key={moment.slug}
+                        className="cursor-pointer group"
+                        onClick={() => navigate(`/moments/${moment.slug}`)}
+                      >
+                        <div className="font-mono text-xs text-gray-400 dark:text-gray-500 mb-1">
+                          {moment.updated.slice(0, 16).replace('T', ' ')} <span className="mx-1">/</span> MOMENT
+                        </div>
+                        <p
+                          className="font-serif leading-relaxed text-gray-700 dark:text-gray-300 text-sm md:text-base group-hover:text-gray-900 dark:group-hover:text-gray-100 transition-colors"
+                          onClick={(e) => {
+                            const target = e.target as HTMLElement;
+                            if (target.tagName === 'A' || target.closest('a')) {
+                              e.stopPropagation();
+                            }
+                          }}
+                        >
+                          <span dangerouslySetInnerHTML={{ __html: moment.excerpt }} />
+                          {moment.images && moment.images.length > 0 && (
+                            <span className="ml-2 text-gray-400 dark:text-gray-500">[{moment.images.length}Photo{moment.images.length > 1 ? 's' : ''}]</span>
+                          )}
+                        </p>
+                      </article>
+                    ))}
                   </div>
-                )}
+                </div>
               </div>
             </FadeIn>
           </div>
