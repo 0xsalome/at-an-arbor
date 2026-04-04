@@ -140,7 +140,9 @@ const ContentDetail: React.FC<ContentDetailProps> = ({ type }) => {
           </header>
 
           <article
-            className="prose prose-stone dark:prose-invert prose-lg font-serif leading-loose text-gray-800 dark:text-gray-200"
+            className={`prose prose-stone dark:prose-invert prose-lg font-serif leading-loose text-gray-800 dark:text-gray-200 ${
+              type === 'moment' ? 'moment-content' : ''
+            }`}
             dangerouslySetInnerHTML={{ __html: item.content }}
           />
 

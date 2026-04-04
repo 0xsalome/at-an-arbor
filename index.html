@@ -107,6 +107,16 @@
         background-size: 300% auto;
         background-position: right center;
       }
+      /* Moments detail spacing: keep a blank line between consecutive media blocks */
+      .moment-content p + p {
+        margin-top: 1em;
+      }
+      .moment-content img + br + img,
+      .moment-content img + br + video,
+      .moment-content video + br + img,
+      .moment-content video + br + video {
+        margin-top: 1em;
+      }
       @media (max-width: 768px) {
         .bg-contour-left {
           background-size: 300vw auto;
