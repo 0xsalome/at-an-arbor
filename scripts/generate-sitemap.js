@@ -25,22 +25,36 @@ function parseFrontmatter(content) {
   return { data };
 }
 
+// Read markdown files from a directory, including monthly subfolders.
+function listMarkdownFiles(dir) {
+  if (!fs.existsSync(dir)) return [];
+
+  return fs.readdirSync(dir, { withFileTypes: true }).flatMap(entry => {
+    const fullPath = path.join(dir, entry.name);
+    if (entry.isDirectory()) {
+      if (entry.name === 'images') return [];
+      return listMarkdownFiles(fullPath);
+    }
+    return entry.isFile() && entry.name.endsWith('.md') ? [fullPath] : [];
+  });
+}
+
 // Read markdown files from a directory
 function readMarkdownFiles(dir, type) {
   const fullPath = path.join(process.cwd(), 'content', dir);
   if (!fs.existsSync(fullPath)) return [];
 
-  const files = fs.readdirSync(fullPath).filter(f => f.endsWith('.md'));
+  const files = listMarkdownFiles(fullPath);
 
   return files.map(file => {
-    const content = fs.readFileSync(path.join(fullPath, file), 'utf-8');
+    const content = fs.readFileSync(file, 'utf-8');
     const { data } = parseFrontmatter(content);
 
     if (data.unlisted === 'true' || data.unlisted === true) {
       return null;
     }
 
-    const slug = file.replace('.md', '');
+    const slug = path.basename(file, '.md');
     const lastmod = data.updated || data.date || '';
 
     // URL mapping based on type

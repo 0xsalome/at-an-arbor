@@ -6,7 +6,7 @@
     <description>digital garden</description>
     <language>ja</language>
     <atom:link href="https://0xsalome.github.io/at-an-arbor/rss.xml" rel="self" type="application/rss+xml"/>
-    <lastBuildDate>Sat, 04 Apr 2026 10:17:27 GMT</lastBuildDate>
+    <lastBuildDate>Wed, 22 Apr 2026 13:59:05 GMT</lastBuildDate>
     
     <item>
       <title>Digital_Gardening (AI)</title>
@@ -31,6 +31,70 @@
       <pubDate>Invalid Date</pubDate>
       <description>ランプの光が机を照らす。コーヒーの香りが漂う。</description>
       <category>blog</category>
+    </item>
+    <item>
+      <title>2026-04-18</title>
+      <link>https://0xsalome.github.io/at-an-arbor/moments/2026-04-18</link>
+      <guid>https://0xsalome.github.io/at-an-arbor/moments/2026-04-18</guid>
+      <pubDate>Fri, 17 Apr 2026 17:54:00 GMT</pubDate>
+      <description>AI codingは楽しい、ゲーマーには沼だ。。 仕事ややるべき事がなかったらずっと触っていたい</description>
+      <category>moment</category>
+    </item>
+    <item>
+      <title>2026-04-17</title>
+      <link>https://0xsalome.github.io/at-an-arbor/moments/2026-04-17</link>
+      <guid>https://0xsalome.github.io/at-an-arbor/moments/2026-04-17</guid>
+      <pubDate>Thu, 16 Apr 2026 16:04:00 GMT</pubDate>
+      <description>少し体調崩すと、猫が駆けつけてふみふみゴロゴロしてくれて回復に向かう。信頼のおけるヒーラー</description>
+      <category>moment</category>
+    </item>
+    <item>
+      <title>2026-04-15</title>
+      <link>https://0xsalome.github.io/at-an-arbor/moments/2026-04-15-2</link>
+      <guid>https://0xsalome.github.io/at-an-arbor/moments/2026-04-15-2</guid>
+      <pubDate>Wed, 15 Apr 2026 12:51:00 GMT</pubDate>
+      <description>宮崎駿がいつも口ぐせのように&quot;あ〜めんどくさい&quot;って言ってた。大事なことほどめんどくさい</description>
+      <category>moment</category>
+    </item>
+    <item>
+      <title>2026-04-15</title>
+      <link>https://0xsalome.github.io/at-an-arbor/moments/2026-04-15</link>
+      <guid>https://0xsalome.github.io/at-an-arbor/moments/2026-04-15</guid>
+      <pubDate>Wed, 15 Apr 2026 12:34:00 GMT</pubDate>
+      <description>なるべく完成に向かう。というアウトプットが一番しんどいというか滞りやすい…</description>
+      <category>moment</category>
+    </item>
+    <item>
+      <title>2026-04-14</title>
+      <link>https://0xsalome.github.io/at-an-arbor/moments/2026-04-14</link>
+      <guid>https://0xsalome.github.io/at-an-arbor/moments/2026-04-14</guid>
+      <pubDate>Mon, 13 Apr 2026 23:33:00 GMT</pubDate>
+      <description>GPTの一時チャットが良い時が増えてきた、 AIでもコンテキストがノイズになるんだね… ん、ノイズと認識してるのはこっちだ。意識せず使い分けてた</description>
+      <category>moment</category>
+    </item>
+    <item>
+      <title>2026-04-08</title>
+      <link>https://0xsalome.github.io/at-an-arbor/moments/2026-04-08</link>
+      <guid>https://0xsalome.github.io/at-an-arbor/moments/2026-04-08</guid>
+      <pubDate>Wed, 08 Apr 2026 05:25:00 GMT</pubDate>
+      <description>成果物を作るために色々なツール作りばかりしていたけれど、やっと一旦漕ぎ着けた…。ありがとうOSS、ありがとう開発者さん達の叡智。。</description>
+      <category>moment</category>
+    </item>
+    <item>
+      <title>2026-04-07</title>
+      <link>https://0xsalome.github.io/at-an-arbor/moments/2026-04-07</link>
+      <guid>https://0xsalome.github.io/at-an-arbor/moments/2026-04-07</guid>
+      <pubDate>Tue, 07 Apr 2026 10:15:00 GMT</pubDate>
+      <description>散歩。ふとソメイヨシノは新芽が鮮やかな緑で、山桜は新芽が桜餅の塩漬けの葉色だと気づいた。つまりこの時期に美味しそうな桜を見かけたら山桜。笑</description>
+      <category>moment</category>
+    </item>
+    <item>
+      <title>2026-04-05</title>
+      <link>https://0xsalome.github.io/at-an-arbor/moments/2026-04-05</link>
+      <guid>https://0xsalome.github.io/at-an-arbor/moments/2026-04-05</guid>
+      <pubDate>Sun, 05 Apr 2026 02:11:00 GMT</pubDate>
+      <description>GPTに庭と自然農の折衷案を相談した。 いつも自然のままか成長点で刈るか覆うかだった。夏草は柔らかいうちに&quot;倒す&quot; だそう。目から鱗…</description>
+      <category>moment</category>
     </item>
     <item>
       <title>2026-04-04</title>
@@ -81,92 +145,28 @@
       <category>moment</category>
     </item>
     <item>
-      <title>2026-03-06</title>
-      <link>https://0xsalome.github.io/at-an-arbor/moments/2026-03-06</link>
-      <guid>https://0xsalome.github.io/at-an-arbor/moments/2026-03-06</guid>
-      <pubDate>Thu, 05 Mar 2026 15:11:00 GMT</pubDate>
-      <description>グレムリンになる前に、ギズモみたいに関係性を築けたらいいなぁ</description>
+      <title>2026-03-27</title>
+      <link>https://0xsalome.github.io/at-an-arbor/moments/2026-03-27-2</link>
+      <guid>https://0xsalome.github.io/at-an-arbor/moments/2026-03-27-2</guid>
+      <pubDate>Thu, 26 Mar 2026 23:41:00 GMT</pubDate>
+      <description>闘うというとちょっと違くて、ドクダミは好きだけど侵食してゆくので土壌の見直しというか福岡さんの自然農のように調和する方法を見出したい。</description>
       <category>moment</category>
     </item>
     <item>
-      <title>芸術祭と地方</title>
-      <link>https://0xsalome.github.io/at-an-arbor/blog/芸術祭と地方</link>
-      <guid>https://0xsalome.github.io/at-an-arbor/blog/芸術祭と地方</guid>
-      <pubDate>Mon, 23 Feb 2026 05:53:00 GMT</pubDate>
-      <description>移住してから、この小さな街で芸術祭が増えており、 県内でも芸術家や地域協力隊の移住者による催しが次々と立ち上がっている。</description>
-      <category>blog</category>
+      <title>2026-03-27</title>
+      <link>https://0xsalome.github.io/at-an-arbor/moments/2026-03-27</link>
+      <guid>https://0xsalome.github.io/at-an-arbor/moments/2026-03-27</guid>
+      <pubDate>Thu, 26 Mar 2026 22:32:00 GMT</pubDate>
+      <description>そろそろドクダミのアレロパシーとの闘いが始まる。数年間色々な事を試したけどまだ見つからない、うまく共生する方法。。</description>
+      <category>moment</category>
     </item>
     <item>
-      <title>瞑想ログ</title>
-      <link>https://0xsalome.github.io/at-an-arbor/blog/瞑想ログ</link>
-      <guid>https://0xsalome.github.io/at-an-arbor/blog/瞑想ログ</guid>
-      <pubDate>Sat, 21 Feb 2026 13:52:00 GMT</pubDate>
-      <description>3週目 [2/14-21]</description>
-      <category>blog</category>
-    </item>
-    <item>
-      <title>ムッキーちゃん</title>
-      <link>https://0xsalome.github.io/at-an-arbor/blog/ムッキーちゃん</link>
-      <guid>https://0xsalome.github.io/at-an-arbor/blog/ムッキーちゃん</guid>
-      <pubDate>Tue, 17 Feb 2026 13:45:00 GMT</pubDate>
-      <description>ムッキーちゃんをご存知だろうか。</description>
-      <category>blog</category>
-    </item>
-    <item>
-      <title>きりさめ</title>
-      <link>https://0xsalome.github.io/at-an-arbor/poems/2026.02.17</link>
-      <guid>https://0xsalome.github.io/at-an-arbor/poems/2026.02.17</guid>
-      <pubDate>Tue, 17 Feb 2026 09:55:00 GMT</pubDate>
-      <description>はいいろに霞んだ空</description>
-      <category>poem</category>
-    </item>
-    <item>
-      <title>アルゴリズムのはずれに</title>
-      <link>https://0xsalome.github.io/at-an-arbor/blog/アルゴリズムのはずれに</link>
-      <guid>https://0xsalome.github.io/at-an-arbor/blog/アルゴリズムのはずれに</guid>
-      <pubDate>Sat, 14 Feb 2026 16:37:00 GMT</pubDate>
-      <description>昨日までのプラクティスが今日にはもう塗り替えられている。そんな速度で進むAIの動向を眺めながら、置き変わらないものとはどんな事だろう？とぼんやり考える事は増えた気がする。</description>
-      <category>blog</category>
-    </item>
-    <item>
-      <title>読書についての雑感</title>
-      <link>https://0xsalome.github.io/at-an-arbor/blog/読書についての雑感</link>
-      <guid>https://0xsalome.github.io/at-an-arbor/blog/読書についての雑感</guid>
-      <pubDate>Sat, 31 Jan 2026 04:26:00 GMT</pubDate>
-      <description>難解な本を読むと、何だか少し頭が良くなった気がしたり、人に話したくなったりする。</description>
-      <category>blog</category>
-    </item>
-    <item>
-      <title>皮</title>
-      <link>https://0xsalome.github.io/at-an-arbor/poems/2026.01.27</link>
-      <guid>https://0xsalome.github.io/at-an-arbor/poems/2026.01.27</guid>
-      <pubDate>Tue, 27 Jan 2026 07:53:00 GMT</pubDate>
-      <description>混ざりあった その色は ひとつなのかい</description>
-      <category>poem</category>
-    </item>
-    <item>
-      <title>個人サイトあるいは箱庭</title>
-      <link>https://0xsalome.github.io/at-an-arbor/blog/個人サイトあるいは箱庭</link>
-      <guid>https://0xsalome.github.io/at-an-arbor/blog/個人サイトあるいは箱庭</guid>
-      <pubDate>Tue, 20 Jan 2026 13:10:00 GMT</pubDate>
-      <description>AIエージェントの進化によって 非エンジニアが一から何かを作ることは、特別な挑戦ではなくなってきている2025年。</description>
-      <category>blog</category>
-    </item>
-    <item>
-      <title>親しみ</title>
-      <link>https://0xsalome.github.io/at-an-arbor/poems/2025.12.23</link>
-      <guid>https://0xsalome.github.io/at-an-arbor/poems/2025.12.23</guid>
-      <pubDate>Sun, 04 Jan 2026 02:42:00 GMT</pubDate>
-      <description>ある本の中に出てきた言葉が残っている   愛より少し軽いもの、それは親切。  </description>
-      <category>poem</category>
-    </item>
-    <item>
-      <title>ジョウビタキ</title>
-      <link>https://0xsalome.github.io/at-an-arbor/poems/2025.11.25</link>
-      <guid>https://0xsalome.github.io/at-an-arbor/poems/2025.11.25</guid>
-      <pubDate>Sun, 04 Jan 2026 02:33:00 GMT</pubDate>
-      <description>てん　てんてん　と聴こえたら   柿色の腹をした 小鳥が近くに居るだろう  </description>
-      <category>poem</category>
+      <title>2026-03-18</title>
+      <link>https://0xsalome.github.io/at-an-arbor/moments/2026-03-18</link>
+      <guid>https://0xsalome.github.io/at-an-arbor/moments/2026-03-18</guid>
+      <pubDate>Wed, 18 Mar 2026 12:20:00 GMT</pubDate>
+      <description>今回出逢ったもの、クリシュナムルティの日記とユングの自伝。それと&quot;私たちの体は小さな海&quot;に惹かれて</description>
+      <category>moment</category>
     </item>
   </channel>
 </rss>

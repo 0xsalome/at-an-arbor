@@ -29,21 +29,32 @@ function parseFrontmatter(raw) {
   return { data, body: lines.slice(contentStart).join('\n') };
 }
 
+function listMarkdownFiles(dir) {
+  if (!fs.existsSync(dir)) return [];
+
+  return fs.readdirSync(dir, { withFileTypes: true }).flatMap((entry) => {
+    const fullPath = path.join(dir, entry.name);
+    if (entry.isDirectory()) {
+      if (entry.name === 'images') return [];
+      return listMarkdownFiles(fullPath);
+    }
+    return entry.isFile() && entry.name.endsWith('.md') ? [fullPath] : [];
+  });
+}
+
 function readContentItems(contentDir, routeBase, typeLabel) {
   const fullPath = path.join(process.cwd(), 'content', contentDir);
   if (!fs.existsSync(fullPath)) return [];
 
-  return fs
-    .readdirSync(fullPath)
-    .filter((file) => file.endsWith('.md'))
+  return listMarkdownFiles(fullPath)
     .map((file) => {
-      const raw = fs.readFileSync(path.join(fullPath, file), 'utf-8');
+      const raw = fs.readFileSync(file, 'utf-8');
       const { data, body } = parseFrontmatter(raw);
       if (data.unlisted === 'true' || data.unlisted === true) {
         return null;
       }
 
-      const slug = file.replace(/\.md$/, '');
+      const slug = path.basename(file, '.md');
       const title = data.title || slug;
       const firstParagraph = (body.trim().split('\n\n')[0] || '')
         .replace(/!\[\[.*?\]\]/g, '')

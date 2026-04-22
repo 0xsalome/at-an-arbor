@@ -11,7 +11,7 @@
     "build:react": "vite build --outDir dist-react",
     "build:merge": "node scripts/merge-builds.js",
     "build:spa-og": "node scripts/generate-spa-og-pages.js",
-    "build": "node scripts/auto-announce.js && npm run copy-images && npm run build:astro && npm run build:react && npm run build:merge && npm run build:spa-og && npm run rss && npm run sitemap",
+    "build": "node scripts/auto-announce.js && npm run copy-images && npm run rss && npm run sitemap && npm run build:astro && npm run build:react && npm run build:merge && npm run build:spa-og",
     "preview": "vite preview",
     "preview:built": "vite preview --host 127.0.0.1 --port 3000 --strictPort",
     "preview:prod": "npm run build && npm run preview:built",
