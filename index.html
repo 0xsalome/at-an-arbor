@@ -91,6 +91,32 @@
         width: 0px;
         background: transparent;
       }
+      .moments-scrollbar {
+        scrollbar-width: thin;
+        scrollbar-color: rgba(120, 113, 108, 0.24) transparent;
+      }
+      .moments-scrollbar::-webkit-scrollbar {
+        width: 4px;
+      }
+      .moments-scrollbar::-webkit-scrollbar-track {
+        background: transparent;
+      }
+      .moments-scrollbar::-webkit-scrollbar-thumb {
+        background-color: rgba(120, 113, 108, 0.24);
+        border-radius: 999px;
+      }
+      .moments-scrollbar::-webkit-scrollbar-thumb:hover {
+        background-color: rgba(87, 83, 78, 0.4);
+      }
+      .dark .moments-scrollbar {
+        scrollbar-color: rgba(214, 211, 209, 0.22) transparent;
+      }
+      .dark .moments-scrollbar::-webkit-scrollbar-thumb {
+        background-color: rgba(214, 211, 209, 0.22);
+      }
+      .dark .moments-scrollbar::-webkit-scrollbar-thumb:hover {
+        background-color: rgba(245, 245, 244, 0.38);
+      }
       /* Vertical writing utility */
       .writing-vertical {
         writing-mode: vertical-rl;

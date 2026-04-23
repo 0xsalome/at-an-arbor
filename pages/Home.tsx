@@ -108,34 +108,37 @@ const Home: React.FC = () => {
                     [OPEN]
                   </button>
                 </div>
-                <div className="min-h-0 overflow-y-auto overscroll-contain pr-2">
-                  <div className="space-y-6">
-                    {homeMoments.map((moment) => (
-                      <article
-                        key={moment.slug}
-                        className="cursor-pointer group"
-                        onClick={() => navigate(`/moments/${moment.slug}`)}
-                      >
-                        <div className="font-mono text-xs text-gray-400 dark:text-gray-500 mb-1">
-                          {moment.updated.slice(0, 16).replace('T', ' ')} <span className="mx-1">/</span> MOMENT
-                        </div>
-                        <p
-                          className="font-serif leading-relaxed text-gray-700 dark:text-gray-300 text-sm md:text-base group-hover:text-gray-900 dark:group-hover:text-gray-100 transition-colors"
-                          onClick={(e) => {
-                            const target = e.target as HTMLElement;
-                            if (target.tagName === 'A' || target.closest('a')) {
-                              e.stopPropagation();
-                            }
-                          }}
+                <div className="relative min-h-0">
+                  <div className="moments-scrollbar min-h-0 max-h-[44vh] overflow-y-scroll overscroll-contain pr-4">
+                    <div className="space-y-6">
+                      {homeMoments.map((moment) => (
+                        <article
+                          key={moment.slug}
+                          className="cursor-pointer group"
+                          onClick={() => navigate('/moments')}
                         >
-                          <span dangerouslySetInnerHTML={{ __html: moment.excerpt }} />
-                          {moment.images && moment.images.length > 0 && (
-                            <span className="ml-2 text-gray-400 dark:text-gray-500">[{moment.images.length}Photo{moment.images.length > 1 ? 's' : ''}]</span>
-                          )}
-                        </p>
-                      </article>
-                    ))}
+                          <div className="font-mono text-xs text-gray-400 dark:text-gray-500 mb-1">
+                            {moment.updated.slice(0, 16).replace('T', ' ')} <span className="mx-1">/</span> MOMENT
+                          </div>
+                          <p
+                            className="font-serif leading-relaxed text-gray-700 dark:text-gray-300 text-sm md:text-base group-hover:text-gray-900 dark:group-hover:text-gray-100 transition-colors"
+                            onClick={(e) => {
+                              const target = e.target as HTMLElement;
+                              if (target.tagName === 'A' || target.closest('a')) {
+                                e.stopPropagation();
+                              }
+                            }}
+                          >
+                            <span dangerouslySetInnerHTML={{ __html: moment.excerpt }} />
+                            {moment.images && moment.images.length > 0 && (
+                              <span className="ml-2 text-gray-400 dark:text-gray-500">[{moment.images.length}Photo{moment.images.length > 1 ? 's' : ''}]</span>
+                            )}
+                          </p>
+                        </article>
+                      ))}
+                    </div>
                   </div>
+                  <div className="pointer-events-none absolute right-0 top-0 h-full w-px bg-gray-300/35 dark:bg-gray-500/30" aria-hidden="true" />
                 </div>
               </div>
             </FadeIn>
