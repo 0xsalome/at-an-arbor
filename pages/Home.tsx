@@ -109,15 +109,15 @@ const Home: React.FC = () => {
                   </button>
                 </div>
                 <div className="relative min-h-0">
-                  <div className="moments-scrollbar min-h-0 max-h-[44vh] overflow-y-scroll overscroll-contain pr-4">
-                    <div className="space-y-6">
+                  <div className="moments-scrollbar min-h-0 max-h-[44vh] overflow-y-scroll overscroll-contain pr-0 md:pr-4">
+                    <div className="space-y-6 pb-8 md:pb-0">
                       {homeMoments.map((moment) => (
                         <article
                           key={moment.slug}
                           className="cursor-pointer group"
                           onClick={() => navigate('/moments')}
                         >
-                          <div className="font-mono text-xs text-gray-400 dark:text-gray-500 mb-1">
+                          <div className="font-mono text-xs text-gray-400 dark:text-gray-500 mb-1 whitespace-nowrap">
                             {moment.updated.slice(0, 16).replace('T', ' ')} <span className="mx-1">/</span> MOMENT
                           </div>
                           <p
@@ -139,6 +139,7 @@ const Home: React.FC = () => {
                     </div>
                   </div>
                   <div className="pointer-events-none absolute right-0 top-0 h-full w-px bg-gray-300/35 dark:bg-gray-500/30" aria-hidden="true" />
+                  <div className="pointer-events-none absolute inset-x-0 bottom-0 h-12 bg-gradient-to-b from-transparent via-paper-white/80 to-paper-white dark:via-ink-black/80 dark:to-ink-black" aria-hidden="true" />
                 </div>
               </div>
             </FadeIn>

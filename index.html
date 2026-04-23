@@ -117,6 +117,15 @@
       .dark .moments-scrollbar::-webkit-scrollbar-thumb:hover {
         background-color: rgba(245, 245, 244, 0.38);
       }
+      @media (max-width: 767px) {
+        .moments-scrollbar {
+          scrollbar-width: none;
+        }
+        .moments-scrollbar::-webkit-scrollbar {
+          width: 0;
+          height: 0;
+        }
+      }
       /* Vertical writing utility */
       .writing-vertical {
         writing-mode: vertical-rl;
