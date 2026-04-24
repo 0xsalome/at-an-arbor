@@ -138,7 +138,6 @@ const Home: React.FC = () => {
                       ))}
                     </div>
                   </div>
-                  <div className="pointer-events-none absolute right-0 top-0 h-full w-px bg-gray-300/35 dark:bg-gray-500/30" aria-hidden="true" />
                   <div className="pointer-events-none absolute inset-x-0 bottom-0 h-12 bg-gradient-to-b from-transparent via-paper-white/80 to-paper-white dark:via-ink-black/80 dark:to-ink-black" aria-hidden="true" />
                 </div>
               </div>
