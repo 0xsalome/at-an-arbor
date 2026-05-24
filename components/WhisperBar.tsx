@@ -14,7 +14,7 @@ const WhisperBar: React.FC = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch('/at-an-arbor/announcements.json')
+    fetch(`/at-an-arbor/announcements.json?v=${Date.now()}`)
       .then((res) => res.json())
       .then((data) => {
         const sorted = data.sort((a: Announcement, b: Announcement) => 
