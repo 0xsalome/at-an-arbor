@@ -6,19 +6,39 @@ import { buildBacklinksMap, getBacklinksForSlug } from '../../utils/backlinks';
 export async function getStaticPaths() {
   // unlisted記事も含めて全て取得（直リンクでアクセス可能にするため）
   const blogEntries = await getCollection('blog');
+  const sortedEntries = [...blogEntries].sort((a, b) =>
+    (b.data.updated || b.data.date).localeCompare(a.data.updated || a.data.date)
+  );
 
   const backlinksMap = await buildBacklinksMap(blogEntries);
 
-  return blogEntries.map((entry) => ({
-    params: { slug: entry.slug },
-    props: {
-      entry,
-      backlinks: getBacklinksForSlug(entry.slug, backlinksMap),
-    },
-  }));
+  return sortedEntries.map((entry, index) => {
+    const newerEntry = sortedEntries[index - 1];
+    const olderEntry = sortedEntries[index + 1];
+
+    return {
+      params: { slug: entry.slug },
+      props: {
+        entry,
+        backlinks: getBacklinksForSlug(entry.slug, backlinksMap),
+        adjacentPosts: {
+          newer: newerEntry ? {
+            slug: newerEntry.slug,
+            title: newerEntry.data.title,
+            updated: newerEntry.data.updated || newerEntry.data.date,
+          } : undefined,
+          older: olderEntry ? {
+            slug: olderEntry.slug,
+            title: olderEntry.data.title,
+            updated: olderEntry.data.updated || olderEntry.data.date,
+          } : undefined,
+        },
+      },
+    };
+  });
 }
 
-const { entry, backlinks } = Astro.props;
+const { entry, backlinks, adjacentPosts } = Astro.props;
 const { Content } = await entry.render();
 ---
 
@@ -31,6 +51,7 @@ const { Content } = await entry.render();
   versions={entry.data.versions}
   latestLog={entry.data.latestLog}
   noindex={entry.data.noindex}
+  adjacentPosts={adjacentPosts}
 >
   <Content />
 </BlogPost>

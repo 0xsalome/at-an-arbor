@@ -12,6 +12,12 @@ interface Version {
   content: string;
 }
 
+interface AdjacentPost {
+  slug: string;
+  title: string;
+  updated: string;
+}
+
 interface Props {
   title: string;
   date: string;
@@ -21,9 +27,13 @@ interface Props {
   versions?: Version[];
   latestLog?: string;
   noindex?: boolean;
+  adjacentPosts?: {
+    newer?: AdjacentPost;
+    older?: AdjacentPost;
+  };
 }
 
-const { title, date, updated, tags = ['blog'], backlinks, latestLog, noindex } = Astro.props;
+const { title, date, updated, tags = ['blog'], backlinks, latestLog, noindex, adjacentPosts } = Astro.props;
 const postLabel = tags.includes('essay') ? 'ESSAY' : 'BLOG';
 const siteUrl = 'https://0xsalome.github.io/at-an-arbor';
 const ogImageUrl = `${siteUrl}/images/ogp.png`;
@@ -474,9 +484,45 @@ const normalizedSlotHtml = convertWikiLinksInHTML(renderedSlotHtml);
           </section>
         )}
 
-        <footer class="mt-16 pt-8 border-t border-gray-200 dark:border-gray-700 flex justify-between font-mono text-sm">
-          <a href="/at-an-arbor/blog/" class="text-purple-600 dark:text-purple-300 hover:text-purple-700 dark:hover:text-purple-200 transition-colors">← BACK</a>
-          <span class="text-gray-500 dark:text-gray-400">END OF RECORD</span>
+        <footer class="mt-16 pt-8 border-t border-gray-200 dark:border-gray-700 font-mono text-sm">
+          <nav class="grid gap-6 md:grid-cols-[1fr_auto_1fr] md:items-start" aria-label="Post navigation">
+            <div>
+              {adjacentPosts?.older ? (
+                <a
+                  href={`/at-an-arbor/blog/${adjacentPosts.older.slug}/`}
+                  class="group block text-purple-600 dark:text-purple-300 hover:text-purple-700 dark:hover:text-purple-200 transition-colors"
+                >
+                  <span class="block text-xs text-gray-500 dark:text-gray-400 mb-1">← OLDER</span>
+                  <span class="font-serif text-base group-hover:underline decoration-1 underline-offset-4">{adjacentPosts.older.title}</span>
+                </a>
+              ) : (
+                <span class="block text-xs text-gray-400 dark:text-gray-600">NO OLDER RECORD</span>
+              )}
+            </div>
+
+            <div class="flex items-center gap-5 md:justify-center">
+              <a href="/at-an-arbor/blog/" class="text-purple-600 dark:text-purple-300 hover:text-purple-700 dark:hover:text-purple-200 transition-colors">← BACK</a>
+              <a href="/at-an-arbor/" class="text-xl leading-none text-purple-600 dark:text-purple-300 hover:text-purple-700 dark:hover:text-purple-200 transition-colors" aria-label="Home">⁂</a>
+            </div>
+
+            <div class="md:text-right">
+              {adjacentPosts?.newer ? (
+                <a
+                  href={`/at-an-arbor/blog/${adjacentPosts.newer.slug}/`}
+                  class="group block text-purple-600 dark:text-purple-300 hover:text-purple-700 dark:hover:text-purple-200 transition-colors"
+                >
+                  <span class="block text-xs text-gray-500 dark:text-gray-400 mb-1">NEWER →</span>
+                  <span class="font-serif text-base group-hover:underline decoration-1 underline-offset-4">{adjacentPosts.newer.title}</span>
+                </a>
+              ) : (
+                <span class="block text-xs text-gray-400 dark:text-gray-600">NO NEWER RECORD</span>
+              )}
+            </div>
+          </nav>
+
+          <div class="mt-8 text-center text-gray-500 dark:text-gray-400">
+            END OF RECORD
+          </div>
         </footer>
       </main>
     </div>
