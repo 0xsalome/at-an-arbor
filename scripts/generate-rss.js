@@ -1,5 +1,6 @@
 import fs from 'fs';
 import path from 'path';
+import { contentSlugFromPath } from '../lib/slug.js';
 
 const SITE_URL = 'https://0xsalome.github.io/at-an-arbor';
 const SITE_TITLE = 'at an arbor';
@@ -51,7 +52,7 @@ function readMarkdownFiles(dir, type) {
   return files.map(file => {
     const content = fs.readFileSync(file, 'utf-8');
     const { data, content: body } = parseFrontmatter(content);
-    const slug = path.basename(file, '.md');
+    const slug = contentSlugFromPath(file);
 
     // Skip unlisted items
     if (data.unlisted === 'true' || data.unlisted === true) {

@@ -1,5 +1,6 @@
 import fs from 'fs';
 import path from 'path';
+import { contentSlugFromPath } from '../lib/slug.js';
 
 const SITE_URL = 'https://0xsalome.github.io/at-an-arbor';
 const SITE_NAME = 'at an arbor';
@@ -54,7 +55,7 @@ function readContentItems(contentDir, routeBase, typeLabel) {
         return null;
       }
 
-      const slug = path.basename(file, '.md');
+      const slug = contentSlugFromPath(file);
       const title = data.title || slug;
       const firstParagraph = (body.trim().split('\n\n')[0] || '')
         .replace(/!\[\[.*?\]\]/g, '')

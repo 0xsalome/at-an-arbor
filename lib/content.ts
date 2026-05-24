@@ -1,6 +1,7 @@
 import { marked } from 'marked';
 import DOMPurify from 'dompurify';
 import type { ContentItem, ContentType } from '../types';
+import { contentSlugFromPath } from './slug.js';
 
 // Simple frontmatter parser (no Node.js dependencies)
 function parseFrontmatter(raw: string): { data: Record<string, any>; content: string } {
@@ -120,7 +121,7 @@ function parseMarkdownFile(
 ): ContentItem {
   const { data, content: rawBody } = parseFrontmatter(rawContent);
   let content = rawBody;
-  const slug = filePath.split('/').pop()?.replace('.md', '') || '';
+  const slug = contentSlugFromPath(filePath);
 
   // Extract excerpt based on type
   let excerpt: string;

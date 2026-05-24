@@ -1,5 +1,6 @@
 import fs from 'fs';
 import path from 'path';
+import { contentSlugFromPath } from '../lib/slug.js';
 
 const SITE_URL = 'https://0xsalome.github.io/at-an-arbor';
 
@@ -54,7 +55,7 @@ function readMarkdownFiles(dir, type) {
       return null;
     }
 
-    const slug = path.basename(file, '.md');
+    const slug = contentSlugFromPath(file);
     const lastmod = data.updated || data.date || '';
 
     // URL mapping based on type

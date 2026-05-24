@@ -2,6 +2,7 @@ import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import matter from 'gray-matter';
+import { contentSlugFromPath } from '../lib/slug.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -45,7 +46,7 @@ try {
 
     if (!data.date || data.unlisted === true) continue;
 
-    const slug = file.replace('.md', '');
+    const slug = contentSlugFromPath(file);
     const isEssay = data.tags && data.tags.includes('essay');
     const typeLabel = isEssay ? 'エッセイ' : 'ブログ';
 
