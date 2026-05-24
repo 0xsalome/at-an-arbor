@@ -5,7 +5,8 @@ import { contentSlugFromPath } from '../lib/slug.js';
 const SITE_URL = 'https://0xsalome.github.io/at-an-arbor';
 const SITE_NAME = 'at an arbor';
 const DEFAULT_DESCRIPTION = 'digital garden';
-const OGP_IMAGE_URL = `${SITE_URL}/images/ogp.png`;
+const OGP_IMAGE_URL = `${SITE_URL}/images/ogp.jpg`;
+const TWITTER_IMAGE_URL = `${SITE_URL}/images/twitter-card.jpg`;
 const DIST_DIR = path.join(process.cwd(), 'dist');
 const TEMPLATE_PATH = path.join(DIST_DIR, 'index.html');
 
@@ -105,7 +106,7 @@ function buildHtml(template, page) {
   html = setOrInsert(html, /<meta\s+name="twitter:card"\s+content="[^"]*"\s*\/?>/i, `<meta name="twitter:card" content="summary_large_image" />`);
   html = setOrInsert(html, /<meta\s+name="twitter:title"\s+content="[^"]*"\s*\/?>/i, `<meta name="twitter:title" content="${safeTitle}" />`);
   html = setOrInsert(html, /<meta\s+name="twitter:description"\s+content="[^"]*"\s*\/?>/i, `<meta name="twitter:description" content="${safeDescription}" />`);
-  html = setOrInsert(html, /<meta\s+name="twitter:image"\s+content="[^"]*"\s*\/?>/i, `<meta name="twitter:image" content="${OGP_IMAGE_URL}" />`);
+  html = setOrInsert(html, /<meta\s+name="twitter:image"\s+content="[^"]*"\s*\/?>/i, `<meta name="twitter:image" content="${TWITTER_IMAGE_URL}" />`);
   return html;
 }
 

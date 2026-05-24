@@ -36,7 +36,8 @@ interface Props {
 const { title, date, updated, tags = ['blog'], backlinks, latestLog, noindex, adjacentPosts } = Astro.props;
 const postLabel = tags.includes('essay') ? 'ESSAY' : 'BLOG';
 const siteUrl = 'https://0xsalome.github.io/at-an-arbor';
-const ogImageUrl = `${siteUrl}/images/ogp.png`;
+const ogImageUrl = `${siteUrl}/images/ogp.jpg`;
+const twitterImageUrl = `${siteUrl}/images/twitter-card.jpg`;
 const renderedSlotHtml = await Astro.slots.render('default');
 const normalizedSlotHtml = convertWikiLinksInHTML(renderedSlotHtml);
 ---
@@ -53,12 +54,12 @@ const normalizedSlotHtml = convertWikiLinksInHTML(renderedSlotHtml);
     <meta property="og:type" content="article" />
     <meta property="og:url" content={`${siteUrl}/blog/${Astro.params.slug}`} />
     <meta property="og:image" content={ogImageUrl} />
-    <meta property="og:image:width" content="1200" />
-    <meta property="og:image:height" content="630" />
+    <meta property="og:image:width" content="1600" />
+    <meta property="og:image:height" content="840" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={title} />
-    <meta name="twitter:image" content={ogImageUrl} />
+    <meta name="twitter:image" content={twitterImageUrl} />
     {noindex && <meta name="robots" content="noindex, nofollow" />}
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -167,7 +168,7 @@ const normalizedSlotHtml = convertWikiLinksInHTML(renderedSlotHtml);
       <!-- Sidebar -->
       <aside class="w-full md:w-1/6 p-6 md:p-12 border-b md:border-b-0 md:border-r border-gray-200 dark:border-gray-700">
         <nav class="space-y-6">
-          <a href="/at-an-arbor/" class="block text-sm font-mono text-purple-600 dark:text-purple-300 hover:text-purple-700 dark:hover:text-purple-200 transition-colors">← HOME</a>
+          <a href="/at-an-arbor/" class="block w-fit text-xl font-serif text-purple-600 dark:text-purple-300 hover:text-purple-700 dark:hover:text-purple-200 transition-colors" aria-label="Home">⁂</a>
           <div class="text-xs font-mono text-gray-500 dark:text-gray-400">
             at an arbor
           </div>
