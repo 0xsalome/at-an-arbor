@@ -28,6 +28,30 @@ function parseFrontmatter(content) {
   return { data, content: lines.slice(contentStart).join('\n') };
 }
 
+function normalizeDateValue(value = '') {
+  return String(value).trim().replace(/^['"]|['"]$/g, '');
+}
+
+function parseContentDate(value) {
+  const normalized = normalizeDateValue(value);
+  const dateTimeMatch = normalized.match(/^(\d{4}-\d{2}-\d{2})[ T](\d{2}:\d{2})(?::\d{2})?$/);
+  if (dateTimeMatch) {
+    return new Date(`${dateTimeMatch[1]}T${dateTimeMatch[2]}:00+09:00`);
+  }
+
+  const dateMatch = normalized.match(/^(\d{4}-\d{2}-\d{2})$/);
+  if (dateMatch) {
+    return new Date(`${dateMatch[1]}T00:00:00+09:00`);
+  }
+
+  return new Date(normalized);
+}
+
+function dateToTime(value) {
+  const time = parseContentDate(value).getTime();
+  return Number.isFinite(time) ? time : 0;
+}
+
 // Read markdown files from a directory, including monthly subfolders.
 function listMarkdownFiles(dir) {
   if (!fs.existsSync(dir)) return [];
@@ -72,7 +96,7 @@ function readMarkdownFiles(dir, type) {
 
     return {
       title: data.title || slug,
-      date: data.updated || data.date || '',
+      date: normalizeDateValue(data.updated || data.date || ''),
       slug,
       type,
       excerpt,
@@ -94,7 +118,7 @@ function escapeXml(str) {
 // Generate RSS XML
 function generateRss(items) {
   const sortedItems = items.sort((a, b) =>
-    new Date(b.date).getTime() - new Date(a.date).getTime()
+    dateToTime(b.date) - dateToTime(a.date)
   );
 
   const itemsXml = sortedItems.slice(0, 20).map(item => `
@@ -102,7 +126,7 @@ function generateRss(items) {
       <title>${escapeXml(item.title)}</title>
       <link>${item.url}</link>
       <guid>${item.url}</guid>
-      <pubDate>${new Date(item.date).toUTCString()}</pubDate>
+      <pubDate>${dateToTime(item.date) ? parseContentDate(item.date).toUTCString() : ''}</pubDate>
       <description>${escapeXml(item.excerpt)}</description>
       <category>${item.type}</category>
     </item>`).join('');
