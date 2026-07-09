@@ -6,6 +6,8 @@ import Nav from '../components/Nav';
 import WhisperBar from '../components/WhisperBar';
 import type { ContentItem } from '../types';
 
+const LLM_ARCHIVE_URL = 'https://0xsalome.github.io/llm-archive/';
+
 const DarkModeToggle: React.FC = () => {
   const [isDark, setIsDark] = useState(() => {
     if (typeof window !== 'undefined') {
@@ -72,13 +74,28 @@ const Home: React.FC = () => {
         <div className="absolute top-6 left-[66.666%] -translate-x-1/2 z-20">
           <DarkModeToggle />
         </div>
+        {/* LLM archive link - placed slightly up-left from Fieldwork */}
+        <a
+          href={LLM_ARCHIVE_URL}
+          className="absolute z-20 left-[38%] top-[26%] md:left-[41%] md:top-[38%] cursor-pointer group inline-flex items-center"
+          aria-label="LLM書庫"
+        >
+          <span
+            className="absolute left-0 top-1/2 h-px w-8 bg-text-main/20 dark:bg-text-inv/20 group-hover:bg-text-main/40 dark:group-hover:bg-text-inv/40 transition-colors"
+            style={{ transform: 'translateY(-50%) rotate(-135deg)', transformOrigin: 'left center' }}
+            aria-hidden="true"
+          />
+          <span className="pl-2 font-mono text-[10px] text-text-main/30 dark:text-text-inv/30 group-hover:text-text-main/60 dark:group-hover:text-text-inv/60 transition-opacity tracking-wider whitespace-nowrap">
+            LLM書庫
+          </span>
+        </a>
         {/* Fieldwork link - positioned on white side, line pointing toward 470 (5 o'clock direction) */}
         <div
           className="absolute z-20 left-[48%] top-[32%] md:top-[45%] cursor-pointer group flex items-center gap-1"
           onClick={() => navigate('/fieldwork')}
         >
           <span className="font-mono text-[10px] text-text-main/30 dark:text-text-inv/30 group-hover:text-text-main/60 dark:group-hover:text-text-inv/60 transition-opacity tracking-wider">
-            fieldwork🌸
+            fieldwork
           </span>
           <span
             className="text-text-main/20 dark:text-text-inv/20 group-hover:text-text-main/40 dark:group-hover:text-text-inv/40 transition-opacity inline-block"

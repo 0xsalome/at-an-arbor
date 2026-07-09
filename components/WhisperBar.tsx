@@ -37,12 +37,13 @@ const WhisperBar: React.FC = () => {
   const renderAnnouncementText = (item: Announcement) => {
     const targetPath = item.path || item.link;
     if (!targetPath) return <span>{item.text}</span>;
+    const isExternal = targetPath.startsWith('http');
 
     return (
       <span className="flex items-center gap-2">
         {item.text}
         <a 
-          href={`/at-an-arbor${targetPath}`}
+          href={isExternal ? targetPath : `/at-an-arbor${targetPath}`}
           className="text-gray-400 dark:text-gray-500 hover:text-blue-500 dark:hover:text-blue-400 transition-colors ml-1"
           onClick={(e) => e.stopPropagation()} // Prevent history toggle
         >
